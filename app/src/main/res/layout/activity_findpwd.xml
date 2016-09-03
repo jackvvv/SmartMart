@@ -17,7 +17,7 @@
             android:id="@+id/et_tel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="手机号"
+            android:hint="输入注册手机号"
             android:inputType="phone"
             android:maxLength="11"
             android:textColorHint="@color/hint_color"
@@ -79,7 +79,7 @@
             android:id="@+id/et_pwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="密码"
+            android:hint="输入新密码"
             android:inputType="textPassword"
             android:maxLength="20"
             android:textColorHint="@color/hint_color"
@@ -97,7 +97,7 @@
             android:id="@+id/et_confirm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="确认输入密码"
+            android:hint="确认新密码"
             android:inputType="textPassword"
             android:maxLength="20"
             android:textColorHint="@color/hint_color"
@@ -105,16 +105,36 @@
     </android.support.design.widget.TextInputLayout>
 
     <TextView
-        android:id="@+id/tv_register"
+        android:id="@+id/tv_ok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/btn_login"
+        android:background="@drawable/btn_ok"
         android:gravity="center"
-        android:text="立即注册"
-        android:textColor="#001d54"
+        android:text="确定"
+        android:textColor="#fff"
         android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26dp"
+        android:text="立即登录"
+        android:textColor="@color/themeColor"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26dp"
+        android:text="我要注册新账号"
+        android:textColor="@color/themeColor"
+        android:textSize="16sp" />
 </LinearLayout>
