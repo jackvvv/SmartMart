@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:su="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:gravity="center_horizontal"
+    android:orientation="horizontal" >
+
+    <sinia.com.smartmart.city.ScrollerNumberPicker
+        android:id="@+id/province"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        su:itemNumber="5"
+        su:lineColor="#d8d8d8"
+        su:maskHight="32dp"
+        su:noEmpty="true"
+        su:normalTextColor="#a2a2a2"
+        su:normalTextSize="14sp"
+        su:selecredTextColor="#212121"
+        su:selecredTextSize="18sp"
+        su:unitHight="50dp" />
+
+    <sinia.com.smartmart.city.ScrollerNumberPicker
+        android:id="@+id/city"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        su:itemNumber="5"
+        su:lineColor="#d8d8d8"
+        su:maskHight="32dp"
+        su:noEmpty="true"
+        su:normalTextColor="#a2a2a2"
+        su:normalTextSize="14sp"
+        su:selecredTextColor="#212121"
+        su:selecredTextSize="18sp"
+        su:unitHight="50dp" />
+
+    <sinia.com.smartmart.city.ScrollerNumberPicker
+        android:id="@+id/couny"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        su:itemNumber="5"
+        su:lineColor="#d8d8d8"
+        su:maskHight="32dp"
+        su:noEmpty="true"
+        su:normalTextColor="#a2a2a2"
+        su:normalTextSize="14sp"
+        su:selecredTextColor="#212121"
+        su:selecredTextSize="18sp"
+        su:unitHight="50dp" />
+
+</LinearLayout>
