@@ -1,5 +1,6 @@
 package sinia.com.smartmart.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.FindPasswordActivity;
+import sinia.com.smartmart.activity.LoginRegisterActivity;
 import sinia.com.smartmart.base.BaseFragment;
 
 /**
@@ -55,6 +58,9 @@ public class LoginFragment extends BaseFragment {
             case R.id.tv_login:
                 break;
             case R.id.tv_forgetPwd:
+                Intent intent = new Intent(getActivity(), FindPasswordActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.login_open, 0);
                 break;
         }
     }

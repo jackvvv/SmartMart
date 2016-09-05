@@ -23,7 +23,6 @@
             android:clickable="true"
             android:drawableLeft="@drawable/back"
             android:padding="10dp"
-            android:text="返回"
             android:textColor="#fff"
             android:drawablePadding="5dp"
             android:gravity="center_vertical"

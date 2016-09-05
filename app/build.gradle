@@ -46,4 +46,5 @@ dependencies {
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     compile 'com.zcw:togglebutton-library:1.0.0'
+    compile 'com.github.cpoopc:scrollablelayoutlib:1.0.1'
 }

@@ -46,6 +46,7 @@ public class LoginRegisterActivity extends BaseActivity {
     private List<Fragment> fragmentList;
     private LoginFragment loginFragment;
     private RegisterFragment registerFragment;
+    private String from_findpwd = "0";//1.切换登录，2.切换注册
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +58,7 @@ public class LoginRegisterActivity extends BaseActivity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void initViews() {
+        from_findpwd = getIntent().getStringExtra("from_findpwd");
         titleList = new ArrayList<>();
         titleList.add("登录");
         titleList.add("注册");
@@ -71,6 +73,12 @@ public class LoginRegisterActivity extends BaseActivity {
         tabTitle.addTab(tabTitle.newTab().setText(titleList.get(0)));
         tabTitle.addTab(tabTitle.newTab().setText(titleList.get(1)));
         tabTitle.setupWithViewPager(viewPager);
+
+        if ("1".equals(from_findpwd)) {
+            viewPager.setCurrentItem(0);
+        } else if ("2".equals(from_findpwd)) {
+            viewPager.setCurrentItem(1);
+        }
 
         Class<?> tablayout = tabTitle.getClass();
         Field tabStrip = null;
@@ -100,6 +108,13 @@ public class LoginRegisterActivity extends BaseActivity {
 
     @OnClick(R.id.imgClose)
     public void onClick() {
+        ActivityManager.getInstance().finishCurrentActivity();
+        overridePendingTransition(0, R.anim.login_close);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
         ActivityManager.getInstance().finishCurrentActivity();
         overridePendingTransition(0, R.anim.login_close);
     }

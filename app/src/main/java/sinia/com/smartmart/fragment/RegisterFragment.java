@@ -1,5 +1,6 @@
 package sinia.com.smartmart.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
@@ -13,6 +14,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.PerfectInfoActivity;
 import sinia.com.smartmart.base.BaseFragment;
 
 /**
@@ -62,6 +64,8 @@ public class RegisterFragment extends BaseFragment {
             case R.id.tv_getCode:
                 break;
             case R.id.tv_register:
+                Intent intent = new Intent(getActivity(), PerfectInfoActivity.class);
+                getActivity().startActivity(intent);
                 break;
         }
     }
