@@ -48,7 +48,7 @@
                     android:layout_marginTop="2dp"
                     android:text="首页"
                     android:textColor="@drawable/home_tab_home_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -74,7 +74,7 @@
                     android:layout_marginTop="2dp"
                     android:text="订单"
                     android:textColor="@drawable/home_tab_home_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -100,7 +100,7 @@
                     android:layout_marginTop="2dp"
                     android:text="物业"
                     android:textColor="@drawable/home_tab_home_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -126,7 +126,7 @@
                     android:layout_marginTop="2dp"
                     android:text="我的"
                     android:textColor="@drawable/home_tab_home_text_color"
-                    android:textSize="13sp" />
+                    android:textSize="12sp" />
             </RelativeLayout>
         </LinearLayout>
 

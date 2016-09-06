@@ -1,4 +1,4 @@
-package sinia.com.smartmart;
+package sinia.com.smartmart.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.fragment.HomeFragment;
 import sinia.com.smartmart.fragment.MineFragment;

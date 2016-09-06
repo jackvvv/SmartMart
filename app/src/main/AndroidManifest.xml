@@ -41,12 +41,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginRegisterActivity"
-            android:theme="@style/activityTheme"/>
-        <activity android:name=".activity.FindPasswordActivity"
-            android:theme="@style/activityTheme"/>
-        <activity android:name=".activity.PerfectInfoActivity"/>
-        <activity android:name=".MainActivity" />
+        <activity
+            android:name=".activity.LoginRegisterActivity"
+            android:theme="@style/activityTheme" />
+        <activity
+            android:name=".activity.FindPasswordActivity"
+            android:theme="@style/activityTheme" />
+        <activity android:name=".activity.PerfectInfoActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.WaterAccountListActivity" />
+        <activity android:name=".activity.AddWaterAccountActivity" />
+        <activity android:name=".activity.PayFeeActivity" />
+        <activity android:name=".activity.PayActivity" />
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

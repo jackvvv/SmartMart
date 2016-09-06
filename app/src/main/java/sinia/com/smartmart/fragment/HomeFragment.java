@@ -1,5 +1,6 @@
 package sinia.com.smartmart.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -22,6 +23,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.SearchActivity;
 import sinia.com.smartmart.adapter.HomeAdapter;
 import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.utils.AppInfoUtil;
@@ -111,8 +113,11 @@ public class HomeFragment extends BaseFragment {
     @OnClick({R.id.imgSearch, R.id.tv_address, R.id.imgFood, R.id.imgFarm, R.id.imgJancai, R.id.imgMore, R.id
             .img_jiazheng, R.id.imgWash, R.id.imgClean, R.id.tv_all, R.id.tv_smart})
     public void onClick(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.imgSearch:
+                intent = new Intent(getActivity(), SearchActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_address:
                 break;

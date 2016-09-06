@@ -1,6 +1,5 @@
 package sinia.com.smartmart.activity;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.Window;
@@ -14,7 +13,6 @@ import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import sinia.com.smartmart.MainActivity;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.utils.ActivityManager;
