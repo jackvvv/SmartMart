@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="@color/themeColor"
+        android:orientation="horizontal"
+        android:paddingLeft="3dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:drawableLeft="@drawable/back"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:padding="10dp"
+            android:textColor="#fff"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:singleLine="true"
+            android:text="个人资料"
+            android:textColor="#fff"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/divider_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="头像"
+                android:textColor="@color/textblackColor"
+                android:textSize="15sp" />
+
+            <sinia.com.smartmart.view.CircleImageView
+                android:id="@+id/img_head"
+                android:layout_width="52dp"
+                android:layout_height="52dp"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/s"
+                android:src="@drawable/ic_launcher"
+                app:border_color="@android:color/transparent"
+                app:border_width="1dp" />
+
+            <ImageView
+                android:id="@+id/s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_detail_jian" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color" />
+
+        <RelativeLayout
+            android:id="@+id/rl_workplace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_selector"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tv_place"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="户主姓名"
+                android:textColor="@color/textblackColor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/sa"
+                android:layout_toRightOf="@+id/tv_place"
+                android:background="@null"
+                android:gravity="right"
+                android:inputType="text"
+                android:maxLength="20"
+                android:singleLine="true"
+                android:text="周杰伦"
+                android:textColor="#999"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/sa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_detail_jian"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color" />
+
+        <RelativeLayout
+            android:id="@+id/rl_sex"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_selector"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="性别"
+                android:textColor="@color/textblackColor"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="27dp"
+                android:layout_toRightOf="@+id/sex"
+                android:drawablePadding="8dp"
+                android:drawableRight="@drawable/ic_detail_jian"
+                android:gravity="right"
+                android:text="未设置"
+                android:textColor="@color/themeColor"
+                android:textSize="15sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color" />
+
+        <RelativeLayout
+            android:id="@+id/rl_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_selector"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="住址"
+                android:textColor="@color/textblackColor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/ss"
+                android:layout_toRightOf="@+id/address"
+                android:background="@null"
+                android:gravity="right"
+                android:inputType="text"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:text="南京市栖霞区仙隐北路5号"
+                android:textColor="#999"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/ss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_detail_jian"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_selector"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="户型面积"
+                android:textColor="@color/textblackColor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="27dp"
+                android:layout_toLeftOf="@+id/u"
+                android:layout_toRightOf="@+id/area"
+                android:background="@null"
+                android:gravity="right"
+                android:inputType="number"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:text="120"
+                android:textColor="#999"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/u"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/ssss"
+                android:text="㎡"
+                android:textColor="#999"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:id="@+id/ssss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_detail_jian"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/layout_selector"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/tel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:text="联系电话"
+                android:textColor="@color/textblackColor"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="27dp"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/sss"
+                android:layout_toRightOf="@+id/tel"
+                android:background="@null"
+                android:gravity="right"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:singleLine="true"
+                android:text="18552569989"
+                android:textColor="#999"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/sss"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_detail_jian"
+                android:visibility="invisible" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/divider_color" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,5 +1,6 @@
 package sinia.com.smartmart.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.PersonalInfoActivity;
+import sinia.com.smartmart.activity.SettingsActivity;
 import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.utils.DialogUtils;
 import sinia.com.smartmart.view.CircleImageView;
@@ -35,6 +38,8 @@ public class MineFragment extends BaseFragment {
     TextView tvAddress;
     @Bind(R.id.img_into)
     ImageView imgInto;
+    @Bind(R.id.img_settings)
+    ImageView img_settings;
     @Bind(R.id.rl_person_info)
     RelativeLayout rlPersonInfo;
     @Bind(R.id.ll_myaccount)
@@ -72,12 +77,15 @@ public class MineFragment extends BaseFragment {
     }
 
     @OnClick({R.id.rl_msg, R.id.rl_person_info, R.id.ll_myaccount, R.id.ll_collect, R.id.ll_coupon, R.id.ll_mysay, R
-            .id.ll_neighbour, R.id.ll_eye})
+            .id.ll_neighbour, R.id.ll_eye, R.id.img_settings})
     public void onClick(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.rl_msg:
                 break;
             case R.id.rl_person_info:
+                intent = new Intent(getActivity(), PersonalInfoActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_myaccount:
                 break;
@@ -93,6 +101,10 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.ll_eye:
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "监控功能正在完善中...");
+                break;
+            case R.id.img_settings:
+                intent = new Intent(getActivity(), SettingsActivity.class);
+                startActivity(intent);
                 break;
         }
     }

@@ -47,13 +47,36 @@
         <activity
             android:name=".activity.FindPasswordActivity"
             android:theme="@style/activityTheme" />
+        <activity android:name=".activity.MainActivity" />
         <activity android:name=".activity.PerfectInfoActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.WaterAccountListActivity" />
         <activity android:name=".activity.AddWaterAccountActivity" />
         <activity android:name=".activity.PayFeeActivity" />
         <activity android:name=".activity.PayActivity" />
-        <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.PayResultActivity" />
+        <activity android:name=".activity.PayPropertyFeeActivity" />
+        <activity android:name=".activity.PropertyFeeActivity" />
+        <activity android:name=".activity.MaintainListActivity" />
+        <activity android:name=".activity.GeneralSettingsActivity" />
+        <activity android:name=".activity.ChangePasswordActivity" />
+        <activity android:name=".activity.ReportBackActivity" />
+        <activity android:name=".activity.ContactUsActivity" />
+        <activity
+            android:name=".activity.AddMaintainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.MaintainDetailActivity" />
+        <activity android:name=".activity.FeedBackActivity" />
+        <activity android:name=".activity.SettingsActivity" />
+        <activity android:name=".activity.MessageNoticeActivity" />
+        <activity android:name=".activity.AddressManagerActivity" />
+        <activity android:name=".activity.AddAddressActivity" />
+        <activity
+            android:name=".activity.PersonalInfoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

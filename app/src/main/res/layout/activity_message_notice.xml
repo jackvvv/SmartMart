@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toggle="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/divider_color" />
+
+    <LinearLayout
+        android:id="@+id/ll_fee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_selector"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="缴费通知"
+            android:textColor="@color/textblackColor"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_weight="1" />
+
+        <com.zcw.togglebutton.ToggleButton
+            android:id="@+id/tgb_fee"
+            android:layout_width="52dp"
+            android:layout_height="26dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            toggle:tbBorderWidth="1dp"
+            toggle:tbOffBorderColor="#ccc"
+            toggle:tbOffColor="#C7C7C7"
+            toggle:tbOnColor="#5EE348"
+            toggle:tbSpotColor="#fff" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_color" />
+
+    <LinearLayout
+        android:id="@+id/ll_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/layout_selector"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="订单通知"
+            android:textColor="@color/textblackColor"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.5dp"
+            android:layout_weight="1" />
+
+        <com.zcw.togglebutton.ToggleButton
+            android:id="@+id/tgb_order"
+            android:layout_width="52dp"
+            android:layout_height="26dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            toggle:tbBorderWidth="1dp"
+            toggle:tbOffBorderColor="#ccc"
+            toggle:tbOffColor="#C7C7C7"
+            toggle:tbOnColor="#5EE348"
+            toggle:tbSpotColor="#fff" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/divider_color" />
+
+</LinearLayout>

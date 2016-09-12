@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
+import sinia.com.smartmart.utils.ActivityManager;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/6.
@@ -82,6 +83,8 @@ public class PayActivity extends BaseActivity {
                 pay_type = "2";
                 break;
             case R.id.tv_ok:
+                startActivityForNoIntent(PayResultActivity.class);
+                ActivityManager.getInstance().finishCurrentActivity();
                 break;
         }
     }

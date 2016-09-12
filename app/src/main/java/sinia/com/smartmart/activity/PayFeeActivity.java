@@ -70,12 +70,6 @@ public class PayFeeActivity extends BaseActivity {
             imgFee.setImageResource(R.drawable.ic_gas_small);
             tvFee.setText("煤气费");
             tvCurrentFee.setText("当前煤气费");
-        } else if ("4".equals(fee_type)) {
-            setContentView(R.layout.activity_pay_fee, "物业费缴纳");
-            ButterKnife.bind(this);
-            imgFee.setImageResource(R.drawable.ic_wuye_samll);
-            tvFee.setText("物业费");
-            tvCurrentFee.setText("当前物业费");
         }
     }
 

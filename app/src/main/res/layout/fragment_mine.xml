@@ -29,7 +29,8 @@
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/rl_msg"
             android:padding="10dp"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/ic_settings"
+            android:id="@+id/img_settings" />
 
         <RelativeLayout
             android:id="@+id/rl_msg"

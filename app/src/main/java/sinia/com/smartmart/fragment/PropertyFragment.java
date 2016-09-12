@@ -21,6 +21,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.FeedBackActivity;
+import sinia.com.smartmart.activity.MaintainListActivity;
+import sinia.com.smartmart.activity.PropertyFeeActivity;
 import sinia.com.smartmart.activity.WaterAccountListActivity;
 import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.utils.AppInfoUtil;
@@ -102,14 +105,24 @@ public class PropertyFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.ll_elec:
+                intent = new Intent(getActivity(), WaterAccountListActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_gas:
+                intent = new Intent(getActivity(), WaterAccountListActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_property:
+                intent = new Intent(getActivity(), PropertyFeeActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_maintain:
+                intent = new Intent(getActivity(), MaintainListActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_feedback:
+                intent = new Intent(getActivity(), FeedBackActivity.class);
+                startActivity(intent);
                 break;
         }
     }

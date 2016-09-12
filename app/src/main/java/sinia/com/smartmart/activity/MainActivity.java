@@ -15,6 +15,7 @@ import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.fragment.HomeFragment;
+import sinia.com.smartmart.fragment.HomeFragment2;
 import sinia.com.smartmart.fragment.MineFragment;
 import sinia.com.smartmart.fragment.OrderFragment;
 import sinia.com.smartmart.fragment.PropertyFragment;

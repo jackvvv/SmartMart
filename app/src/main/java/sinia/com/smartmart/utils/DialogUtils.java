@@ -32,7 +32,7 @@ public class DialogUtils {
     public static Dialog createSelectAreaDialog(final Context context, final TextView tv_area) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_select_area, null);
-        dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
+        dialog = new Dialog(context, R.style.DialogScaleStyle);
         dialog.show();
         Window window = dialog.getWindow();
         window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置

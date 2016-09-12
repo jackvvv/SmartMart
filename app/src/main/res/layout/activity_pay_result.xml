@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/img_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:src="@drawable/ic_pau_success" />
+
+    <TextView
+        android:id="@+id/tv_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="支付成功"
+        android:textColor="#48cf5e"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_orderno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="订单号：201608215687"
+        android:textColor="#939393"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="支付时间：2016-09-02 15:32:43"
+        android:textColor="#939393"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="40dp"
+        android:background="@drawable/btn_ok"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="#fff"
+        android:textSize="15sp" />
+
+</LinearLayout>
