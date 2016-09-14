@@ -100,7 +100,7 @@
         <RelativeLayout
             android:id="@+id/rl_workplace"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/layout_selector"
             android:padding="10dp">
 
@@ -150,7 +150,7 @@
         <RelativeLayout
             android:id="@+id/rl_sex"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/layout_selector"
             android:padding="10dp">
 
@@ -187,7 +187,7 @@
         <RelativeLayout
             android:id="@+id/rl_address"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/layout_selector"
             android:padding="10dp">
 
@@ -236,7 +236,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/layout_selector"
             android:padding="10dp">
 
@@ -295,7 +295,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/layout_selector"
             android:padding="10dp">
 

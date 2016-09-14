@@ -49,7 +49,7 @@ public class GeneralSettingsActivity extends BaseActivity {
     }
 
     private void initView() {
-        tvTemp.setText(DataCleanManager.getTotalCacheSize(this) + "k");
+        tvTemp.setText(DataCleanManager.getTotalCacheSize(this));
         tvVersion.setText("v" + AppInfoUtil.getVersionCode(this) + ".0");
     }
 
@@ -88,6 +88,7 @@ public class GeneralSettingsActivity extends BaseActivity {
                         showToast("清理了缓存" + DataCleanManager
                                 .getTotalCacheSize(GeneralSettingsActivity.this));
                         DataCleanManager.clearAllCache(GeneralSettingsActivity.this);
+                        tvTemp.setText("0.0K");
                         materialDialog.dismiss();
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {

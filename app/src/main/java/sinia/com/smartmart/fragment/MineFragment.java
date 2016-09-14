@@ -15,6 +15,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.MessageWarnActivity;
 import sinia.com.smartmart.activity.PersonalInfoActivity;
 import sinia.com.smartmart.activity.SettingsActivity;
 import sinia.com.smartmart.base.BaseFragment;
@@ -82,6 +83,8 @@ public class MineFragment extends BaseFragment {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.rl_msg:
+                intent = new Intent(getActivity(), MessageWarnActivity.class);
+                startActivity(intent);
                 break;
             case R.id.rl_person_info:
                 intent = new Intent(getActivity(), PersonalInfoActivity.class);
