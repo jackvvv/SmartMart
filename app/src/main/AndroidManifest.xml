@@ -72,6 +72,9 @@
         <activity android:name=".activity.MessageNoticeActivity" />
         <activity android:name=".activity.AddressManagerActivity" />
         <activity android:name=".activity.AddAddressActivity" />
+        <activity android:name=".activity.MessageWarnActivity" />
+        <activity android:name=".activity.OrderMessageActivity" />
+        <activity android:name=".activity.FeeMessageActivity" />
         <activity
             android:name=".activity.PersonalInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

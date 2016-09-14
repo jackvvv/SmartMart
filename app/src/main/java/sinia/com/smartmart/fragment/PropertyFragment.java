@@ -23,6 +23,7 @@ import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.FeedBackActivity;
 import sinia.com.smartmart.activity.MaintainListActivity;
+import sinia.com.smartmart.activity.MessageWarnActivity;
 import sinia.com.smartmart.activity.PropertyFeeActivity;
 import sinia.com.smartmart.activity.WaterAccountListActivity;
 import sinia.com.smartmart.base.BaseFragment;
@@ -99,6 +100,8 @@ public class PropertyFragment extends BaseFragment {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.rl_msg:
+                intent = new Intent(getActivity(), MessageWarnActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_water:
                 intent = new Intent(getActivity(), WaterAccountListActivity.class);
