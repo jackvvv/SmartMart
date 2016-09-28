@@ -12,18 +12,20 @@ import sinia.com.smartmart.R;
 import sinia.com.smartmart.utils.ViewHolder;
 
 /**
- * Created by 忧郁的眼神 on 2016/9/14.
+ * Created by 忧郁的眼神 on 2016/8/5.
  */
-public class OrderMessageAdapter extends BaseAdapter {
+public class AccountAdapter extends BaseAdapter {
+
     private Context context;
 
-    public OrderMessageAdapter(Context context) {
+
+    public AccountAdapter(Context context) {
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return 8;
     }
 
     @Override
@@ -37,15 +39,16 @@ public class OrderMessageAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_order_msg, null);
+            view = LayoutInflater.from(context).inflate(R.layout.item_my_account, null);
         }
-        TextView tv_goods_name = ViewHolder.get(view, R.id.tv_goods_name);
+        TextView tv_money = ViewHolder.get(view, R.id.tv_money);
         TextView tv_status = ViewHolder.get(view, R.id.tv_status);
-        TextView tv_status_content = ViewHolder.get(view, R.id.tv_status_content);
-        TextView tv_order_no = ViewHolder.get(view, R.id.tv_order_no);
-        ImageView img_goods = ViewHolder.get(view, R.id.img_goods);
+        TextView tv_fee_type = ViewHolder.get(view, R.id.tv_fee_type);
+        TextView tv_code = ViewHolder.get(view, R.id.tv_code);
+        TextView tv_time = ViewHolder.get(view, R.id.tv_time);
+        ImageView img_fee = ViewHolder.get(view, R.id.img_fee);
         return view;
     }
 }

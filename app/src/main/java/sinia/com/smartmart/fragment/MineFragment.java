@@ -15,7 +15,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.LoginRegisterActivity;
 import sinia.com.smartmart.activity.MessageWarnActivity;
+import sinia.com.smartmart.activity.MyAccountActivity;
+import sinia.com.smartmart.activity.MyCouponsActivity;
 import sinia.com.smartmart.activity.PersonalInfoActivity;
 import sinia.com.smartmart.activity.SettingsActivity;
 import sinia.com.smartmart.base.BaseFragment;
@@ -60,7 +63,7 @@ public class MineFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
-    Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         rootView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_mine, null);
         ButterKnife.bind(this, rootView);
         initData();
@@ -91,13 +94,20 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.ll_myaccount:
+                intent = new Intent(getActivity(), MyAccountActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_collect:
                 break;
             case R.id.ll_coupon:
+                intent = new Intent(getActivity(), MyCouponsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_mysay:
-                DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "说说功能正在完善中...");
+                intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.login_open, 0);
+//                DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "说说功能正在完善中...");
                 break;
             case R.id.ll_neighbour:
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "邻里功能正在完善中...");

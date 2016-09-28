@@ -325,6 +325,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/btn_ok"
                 android:gravity="center"
                 android:text="联系物业：025-8888888"

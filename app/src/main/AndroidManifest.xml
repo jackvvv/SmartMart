@@ -75,6 +75,10 @@
         <activity android:name=".activity.MessageWarnActivity" />
         <activity android:name=".activity.OrderMessageActivity" />
         <activity android:name=".activity.FeeMessageActivity" />
+        <activity android:name=".activity.OverdueCouponsActivity" />
+        <activity android:name=".activity.MyCouponsActivity" />
+        <activity android:name=".activity.MyAccountActivity" />
+        <activity android:name=".activity.AccountDetailActivity" />
         <activity
             android:name=".activity.PersonalInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
