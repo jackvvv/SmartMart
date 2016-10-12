@@ -47,7 +47,11 @@
         <activity
             android:name=".activity.FindPasswordActivity"
             android:theme="@style/activityTheme" />
-        <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
         <activity android:name=".activity.PerfectInfoActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.WaterAccountListActivity" />
@@ -83,6 +87,10 @@
             android:name=".activity.PersonalInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
+        <!-- 腾讯bugly版本升级-->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:theme="@android:style/Theme.Translucent" />
 
     </application>
 

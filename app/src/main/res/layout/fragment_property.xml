@@ -60,7 +60,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="月桂圆 14栋 2306室"
+            android:text=""
             android:textColor="#fff"
             android:textSize="14sp" />
     </RelativeLayout>
@@ -85,7 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:singleLine="true"
-            android:text="公告信息公告信息公告信息公告信息公告信息公告信息公告信息"
+            android:text=""
             android:textColor="#001d54"
             android:textSize="14sp" />
     </LinearLayout>
@@ -99,6 +99,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
+        android:scrollbars="none"
         android:overScrollMode="never">
 
         <LinearLayout

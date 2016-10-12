@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.bean.VillageListBean;
 import sinia.com.smartmart.utils.ViewHolder;
 
 /**
@@ -17,13 +20,16 @@ public class AreaAdapter extends BaseAdapter {
 
     private Context context;
 
-    public AreaAdapter(Context context) {
+    private List<VillageListBean.VillageBean> list;
+
+    public AreaAdapter(Context context, List<VillageListBean.VillageBean> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return list.size();
     }
 
     @Override
@@ -42,6 +48,7 @@ public class AreaAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.item_select_area, null);
         }
         TextView tv_name = ViewHolder.get(view, R.id.tv_name);
+        tv_name.setText(list.get(i).getVillagename());
         return view;
     }
 }

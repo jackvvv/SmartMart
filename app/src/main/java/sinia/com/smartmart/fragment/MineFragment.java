@@ -22,7 +22,10 @@ import sinia.com.smartmart.activity.MyCouponsActivity;
 import sinia.com.smartmart.activity.PersonalInfoActivity;
 import sinia.com.smartmart.activity.SettingsActivity;
 import sinia.com.smartmart.base.BaseFragment;
+import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.utils.BitmapUtilsHelp;
 import sinia.com.smartmart.utils.DialogUtils;
+import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.view.CircleImageView;
 
 /**
@@ -58,7 +61,12 @@ public class MineFragment extends BaseFragment {
     LinearLayout llNeighbour;
     @Bind(R.id.ll_eye)
     LinearLayout llEye;
+    @Bind(R.id.ll_login)
+    LinearLayout ll_login;
+    @Bind(R.id.ll_notlogin)
+    LinearLayout ll_notlogin;
     private View rootView;
+    private UserBean.UserInfo user;
 
     @Nullable
     @Override
@@ -75,13 +83,30 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    public void onResume() {
+        super.onResume();
+        if (MyApplication.getInstance().getBoolValue("is_login")) {
+            setUserData();
+            ll_login.setVisibility(View.VISIBLE);
+            ll_notlogin.setVisibility(View.GONE);
+        } else {
+            ll_notlogin.setVisibility(View.VISIBLE);
+            ll_login.setVisibility(View.GONE);
+        }
+    }
+
+    private void setUserData() {
+        user = MyApplication.getInstance().getUserBean();
+        if (null != user) {
+            tvUsername.setText(user.getUsername());
+            tvAddress.setText(user.getAddress());
+            BitmapUtilsHelp.getImage(getActivity(), R.drawable
+                    .head_default).display(ivHead, user.getIcon());
+        }
     }
 
     @OnClick({R.id.rl_msg, R.id.rl_person_info, R.id.ll_myaccount, R.id.ll_collect, R.id.ll_coupon, R.id.ll_mysay, R
-            .id.ll_neighbour, R.id.ll_eye, R.id.img_settings})
+            .id.ll_neighbour, R.id.ll_eye, R.id.img_settings, R.id.ll_notlogin})
     public void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {
@@ -119,6 +144,17 @@ public class MineFragment extends BaseFragment {
                 intent = new Intent(getActivity(), SettingsActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.ll_notlogin:
+                intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(R.anim.login_open, 0);
+                break;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
     }
 }

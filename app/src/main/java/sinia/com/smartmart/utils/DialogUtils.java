@@ -29,35 +29,35 @@ public class DialogUtils {
 
     public static AreaAdapter areaAdapter;
 
-    public static Dialog createSelectAreaDialog(final Context context, final TextView tv_area) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.dialog_select_area, null);
-        dialog = new Dialog(context, R.style.DialogScaleStyle);
-        dialog.show();
-        Window window = dialog.getWindow();
-        window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置
-        WindowManager windowManager = ((Activity) context).getWindowManager();
-        Display display = windowManager.getDefaultDisplay();
-        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
-        lp.width = (display.getWidth() - AppInfoUtil.dip2px(context, 70)); // 设置宽度
-        lp.height = lp.width + AppInfoUtil.dip2px(context, 70);
-        dialog.getWindow().setAttributes(lp);
-        dialog.setContentView(v, lp);
-        final ListView listView = (ListView) dialog.findViewById(R.id.listView);
-        areaAdapter = new AreaAdapter(context);
-        listView.setAdapter(areaAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
-                tv_name.setBackgroundResource(R.drawable.theme_color_btn);
-                tv_name.setTextColor(context.getResources().getColor(R.color.textwhite));
-                tv_area.setText("智慧中环");
-                dialog.dismiss();
-            }
-        });
-        return dialog;
-    }
+//    public static Dialog createSelectAreaDialog(final Context context, final TextView tv_area) {
+//        LayoutInflater inflater = LayoutInflater.from(context);
+//        View v = inflater.inflate(R.layout.dialog_select_area, null);
+//        dialog = new Dialog(context, R.style.DialogScaleStyle);
+//        dialog.show();
+//        Window window = dialog.getWindow();
+//        window.setGravity(Gravity.CENTER); // 此处可以设置dialog显示的位置
+//        WindowManager windowManager = ((Activity) context).getWindowManager();
+//        Display display = windowManager.getDefaultDisplay();
+//        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+//        lp.width = (display.getWidth() - AppInfoUtil.dip2px(context, 70)); // 设置宽度
+//        lp.height = lp.width + AppInfoUtil.dip2px(context, 70);
+//        dialog.getWindow().setAttributes(lp);
+//        dialog.setContentView(v, lp);
+//        final ListView listView = (ListView) dialog.findViewById(R.id.listView);
+//        areaAdapter = new AreaAdapter(context);
+//        listView.setAdapter(areaAdapter);
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
+//                tv_name.setBackgroundResource(R.drawable.theme_color_btn);
+//                tv_name.setTextColor(context.getResources().getColor(R.color.textwhite));
+//                tv_area.setText("智慧中环");
+//                dialog.dismiss();
+//            }
+//        });
+//        return dialog;
+//    }
 
     public static Dialog createFountionDevelopingTipsDialog(final Context context, String title) {
         LayoutInflater inflater = LayoutInflater.from(context);

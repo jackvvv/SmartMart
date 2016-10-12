@@ -11,11 +11,12 @@
         android:background="@drawable/layout_selector_theme_color"
         android:gravity="center"
         android:paddingBottom="10dp"
-        android:paddingLeft="80dp"
-        android:paddingRight="80dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp"
         android:paddingTop="10dp"
         android:text="智慧中环"
+        android:singleLine="true"
         android:textColor="@drawable/text_color2"
-        android:textSize="16sp" />
+        android:textSize="14sp" />
 
 </RelativeLayout>

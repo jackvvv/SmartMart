@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="输入验证码"
-                android:inputType="textPassword"
+                android:inputType="number"
                 android:maxLength="6"
                 android:textColorHint="@color/hint_color"
                 android:textSize="15sp" />

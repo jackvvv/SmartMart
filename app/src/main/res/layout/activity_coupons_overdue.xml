@@ -4,6 +4,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="共3个红包"
+            android:textColor="#727272"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"

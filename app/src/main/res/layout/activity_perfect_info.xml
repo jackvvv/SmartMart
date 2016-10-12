@@ -7,260 +7,273 @@
     android:orientation="vertical"
     android:paddingBottom="20dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="38dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:overScrollMode="never">
 
-        <TextView
-            android:id="@+id/tv_area"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:drawableRight="@drawable/jian_xia"
-            android:text="选择小区"
-            android:textColor="#1d1d25"
-            android:textSize="15sp" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="3dp"
-            android:background="@color/divider_color" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/tl"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="2">
-
-            <EditText
-                android:id="@+id/et_name"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入户主姓名"
-                android:inputType="text"
-                android:maxLength="20"
-                android:textColorHint="@color/hint_color"
-                android:textSize="15sp" />
-        </android.support.design.widget.TextInputLayout>
-    </LinearLayout>
+                android:layout_marginLeft="38dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+                <TextView
+                    android:id="@+id/tv_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:drawableRight="@drawable/jian_xia"
+                    android:hint="选择小区"
+                    android:textColor="#1d1d25"
+                    android:textSize="15sp" />
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="4">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginTop="3dp"
+                    android:background="@color/divider_color" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_building"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入您的栋数"
-                android:inputType="number"
-                android:maxLength="3"
-                android:textColorHint="@color/hint_color"
-                android:textSize="15sp" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
-        <TextView
-            android:id="@+id/tv_getCode"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/lineimg"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="6dp"
-            android:text="栋"
-            android:textColor="@color/themeColor"
-            android:textSize="15sp" />
-    </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/tl"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="2">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+                    <EditText
+                        android:id="@+id/et_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="输入户主姓名"
+                        android:inputType="text"
+                        android:maxLength="20"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="4">
-
-            <EditText
-                android:id="@+id/et_cell"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入单元"
-                android:inputType="number"
-                android:maxLength="10"
-                android:textColorHint="@color/hint_color"
-                android:textSize="15sp" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/lineimg"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="6dp"
-            android:text="单元"
-            android:textColor="@color/themeColor"
-            android:textSize="15sp" />
-    </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="4">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+                    <EditText
+                        android:id="@+id/et_building"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="输入您的栋数"
+                        android:inputType="number"
+                        android:maxLength="3"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="4">
+                <TextView
+                    android:id="@+id/tv_getCode"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:drawableBottom="@drawable/lineimg"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:text="栋"
+                    android:textColor="@color/themeColor"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_floor"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入楼层"
-                android:inputType="number"
-                android:maxLength="2"
-                android:textColorHint="@color/hint_color"
-                android:textSize="15sp" />
-        </android.support.design.widget.TextInputLayout>
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/lineimg"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="6dp"
-            android:text="层"
-            android:textColor="@color/themeColor"
-            android:textSize="15sp" />
-    </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="4">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp">
+                    <EditText
+                        android:id="@+id/et_cell"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="输入单元"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_weight="4">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:drawableBottom="@drawable/lineimg"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:text="单元"
+                    android:textColor="@color/themeColor"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/et_doornum"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入门牌号"
-                android:inputType="number"
-                android:maxLength="10"
-                android:textColorHint="@color/hint_color"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="4">
+
+                    <EditText
+                        android:id="@+id/et_floor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="输入楼层"
+                        android:inputType="number"
+                        android:maxLength="2"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:drawableBottom="@drawable/lineimg"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:text="层"
+                    android:textColor="@color/themeColor"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="4">
+
+                    <EditText
+                        android:id="@+id/et_doornum"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="输入门牌号"
+                        android:inputType="number"
+                        android:maxLength="10"
+                        android:textColorHint="@color/hint_color"
+                        android:textSize="15sp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_weight="1"
+                    android:drawableBottom="@drawable/lineimg"
+                    android:drawablePadding="4dp"
+                    android:gravity="center"
+                    android:paddingBottom="7dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="6dp"
+                    android:text="号"
+                    android:textColor="@color/themeColor"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tv_ok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="35dp"
+                android:layout_marginRight="35dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/btn_ok"
+                android:gravity="center"
+                android:text="完成注册"
+                android:textColor="#fff"
                 android:textSize="15sp" />
-        </android.support.design.widget.TextInputLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/lineimg"
-            android:drawablePadding="4dp"
-            android:gravity="center"
-            android:paddingBottom="7dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="6dp"
-            android:text="号"
-            android:textColor="@color/themeColor"
-            android:textSize="15sp" />
-    </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/tv_ok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/btn_ok"
-        android:gravity="center"
-        android:text="完成注册"
-        android:textColor="#fff"
-        android:textSize="15sp" />
-
-    <TextView
-        android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="36dp"
-        android:text="已有账号，立即登录"
-        android:textColor="@color/themeColor"
-        android:textSize="16sp" />
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="36dp"
+                android:text="已有账号，立即登录"
+                android:textColor="@color/themeColor"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -4,6 +4,13 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
+
+import sinia.com.smartmart.bean.UserBean;
+
+import static com.tencent.bugly.Bugly.applicationContext;
+
 
 /**
  * Created by 忧郁的眼神 on 2016/7/15.
@@ -13,6 +20,7 @@ public class MyApplication extends Application {
     private static MyApplication instance;
 
     public static Context context;
+    private UserBean.UserInfo user;
 //    private LoginBean login;
 //    public static PushAgent mPushAgent;
 
@@ -21,7 +29,8 @@ public class MyApplication extends Application {
         super.onCreate();
         context = this.getApplicationContext();
         instance = this;
-//        CrashReport.initCrashReport(getApplicationContext(), "900038739", true);
+        Bugly.init(getApplicationContext(), "16bbef9827", false);
+        Beta.checkUpgrade(false, false);
         initShareKey();
         initUMPush();
     }
@@ -66,7 +75,8 @@ public class MyApplication extends Application {
 //                                .notification_view);
 //                        myNotificationView.setTextViewText(R.id.notification_title, msg.title);
 //                        myNotificationView.setTextViewText(R.id.notification_text, msg.text);
-//                        myNotificationView.setImageViewBitmap(R.id.notification_large_icon, getLargeIcon(context, msg));
+//                        myNotificationView.setImageViewBitmap(R.id.notification_large_icon, getLargeIcon(context,
+// msg));
 //                        myNotificationView.setImageViewResource(R.id.notification_small_icon, getSmallIconId(context,
 //                                msg));
 //                        builder.setContent(myNotificationView)
@@ -134,6 +144,42 @@ public class MyApplication extends Application {
 
     public static synchronized MyApplication getInstance() {
         return instance;
+    }
+
+    public UserBean.UserInfo getUserBean() {
+        if (null == user) {
+            UserBean.UserInfo ub = SaveUtils.getShareObject(applicationContext, "USER",
+                    "userbean", UserBean.UserInfo.class);
+            return ub;
+        }
+        return user;
+    }
+
+    public void setUserBean(UserBean.UserInfo user) {
+        this.user = user;
+        if (user != null) {
+            SaveUtils.putShareObject(applicationContext, "USER", "userbean",
+                    user);
+        }
+    }
+
+    private UserBean bean;
+
+    public UserBean getUser() {
+        if (null == bean) {
+            UserBean ub = SaveUtils.getShareObject(applicationContext, "USER",
+                    "userbean", UserBean.class);
+            return ub;
+        }
+        return bean;
+    }
+
+    public void setUser(UserBean bean) {
+        this.bean = bean;
+        if (user != null) {
+            SaveUtils.putShareObject(applicationContext, "USER", "userbean",
+                    user);
+        }
     }
 
     public void setBooleanValue(String in_settingName, boolean in_val) {

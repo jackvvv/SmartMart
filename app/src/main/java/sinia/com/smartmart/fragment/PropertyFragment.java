@@ -27,7 +27,10 @@ import sinia.com.smartmart.activity.MessageWarnActivity;
 import sinia.com.smartmart.activity.PropertyFeeActivity;
 import sinia.com.smartmart.activity.WaterAccountListActivity;
 import sinia.com.smartmart.base.BaseFragment;
+import sinia.com.smartmart.bean.UserBean;
 import sinia.com.smartmart.utils.AppInfoUtil;
+import sinia.com.smartmart.utils.BitmapUtilsHelp;
+import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.view.LocalImageHolderView;
 
 /**
@@ -59,15 +62,30 @@ public class PropertyFragment extends BaseFragment {
     ConvenientBanner convenientBanner;
     private View rootView;
     private ArrayList<Integer> localImages = new ArrayList<Integer>();
+    private UserBean userBean;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
-    Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         rootView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_property, null);
         ButterKnife.bind(this, rootView);
         initData();
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (MyApplication.getInstance().getBoolValue("is_login")) {
+            userBean = MyApplication.getInstance().getUser();
+            if (null != userBean) {
+                tvAddress.setText(userBean.getRescnt().getAddress());
+                tvNotice.setText(userBean.getNoticedetail());
+            }
+        } else {
+            tvAddress.setText("未登录");
+        }
     }
 
     private void initData() {

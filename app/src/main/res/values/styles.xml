@@ -104,7 +104,7 @@
         <!-- 半透明 -->
         <item name="android:windowIsTranslucent">true</item>
         <!-- Dialog进入及退出动画 -->
-        <item name="android:windowAnimationStyle">@style/DialogScaleAnimation</item>
+        <!--<item name="android:windowAnimationStyle">@style/DialogScaleAnimation</item>-->
     </style>
 
     <style name="dialog" parent="@android:style/Theme.Dialog">

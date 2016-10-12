@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.tencent.bugly.beta.Beta;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -50,7 +52,7 @@ public class GeneralSettingsActivity extends BaseActivity {
 
     private void initView() {
         tvTemp.setText(DataCleanManager.getTotalCacheSize(this));
-        tvVersion.setText("v" + AppInfoUtil.getVersionCode(this) + ".0");
+        tvVersion.setText("v" + AppInfoUtil.getVersionName(this));
     }
 
     @OnClick({R.id.ll_modifypwd, R.id.ll_contact, R.id.ll_about, R.id.ll_version, R.id.ll_clear, R.id.ll_feedback, R
@@ -66,6 +68,8 @@ public class GeneralSettingsActivity extends BaseActivity {
             case R.id.ll_about:
                 break;
             case R.id.ll_version:
+                //手动检测更新
+                Beta.checkUpgrade();
                 break;
             case R.id.ll_clear:
                 clearCache();
@@ -88,7 +92,8 @@ public class GeneralSettingsActivity extends BaseActivity {
                         showToast("清理了缓存" + DataCleanManager
                                 .getTotalCacheSize(GeneralSettingsActivity.this));
                         DataCleanManager.clearAllCache(GeneralSettingsActivity.this);
-                        tvTemp.setText("0.0K");
+                        tvTemp.setText(DataCleanManager
+                                .getTotalCacheSize(GeneralSettingsActivity.this));
                         materialDialog.dismiss();
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {
