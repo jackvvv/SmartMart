@@ -25,8 +25,11 @@ import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.SearchActivity;
 import sinia.com.smartmart.adapter.HomeAdapter;
 import sinia.com.smartmart.base.BaseFragment;
+import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.bean.UserInfo;
 import sinia.com.smartmart.utils.AppInfoUtil;
 import sinia.com.smartmart.utils.DialogUtils;
+import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.view.LocalImageHolderView;
 
 /**
@@ -56,6 +59,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     private HomeAdapter adapter;
     private ArrayList<Integer> localImages = new ArrayList<Integer>();
     private ConvenientBanner convenientBanner;
+    private UserInfo userBean;
 
     @Nullable
     @Override
@@ -66,6 +70,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         initView();
         initData();
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (MyApplication.getInstance().getBoolValue("is_login")) {
+            userBean = MyApplication.getInstance().getUserInfo();
+            if (null != userBean) {
+                tvAddress.setText(userBean.getAddress());
+            }
+        } else {
+            tvAddress.setText("未登录");
+        }
     }
 
     private void initData() {

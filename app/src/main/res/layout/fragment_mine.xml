@@ -88,7 +88,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_toLeftOf="@+id/img_into"
                     android:layout_toRightOf="@+id/iv_head"
                     android:orientation="vertical">
 
@@ -96,7 +97,7 @@
                         android:id="@+id/tv_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="周杰伦"
+                        android:text=""
                         android:textColor="#fff"
                         android:textSize="16sp" />
 
@@ -105,7 +106,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="月桂圆 14栋 2306室"
+                        android:text=""
                         android:textColor="#fff"
                         android:textSize="14sp" />
                 </LinearLayout>

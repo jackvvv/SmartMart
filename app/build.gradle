@@ -58,5 +58,7 @@ dependencies {
     //腾讯bugly 版本升级，异常上报
     compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
     //其中latest.release指代最新Bugly SDK版本号，也可以指定明确的版本号，例如2.1.9
-    compile 'com.tencent.bugly:nativecrashreport:latest.release' //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //其中latest.release指代最新Bugly NDK版本号，也可以指定明确的版本号，例如3.0
+    compile files('libs/gesture-imageview.jar')
 }

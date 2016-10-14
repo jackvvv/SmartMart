@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,12 +15,27 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.adapter.AccountAdapter;
 import sinia.com.smartmart.base.BaseActivity;
+import sinia.com.smartmart.bean.BillListBean;
+import sinia.com.smartmart.bean.FeeDetailBean;
+import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.utils.AppInfoUtil;
+import sinia.com.smartmart.utils.Constants;
+import sinia.com.smartmart.utils.JsonUtil;
+import sinia.com.smartmart.utils.MyApplication;
+import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.view.swipmenulistview.SwipeMenu;
 import sinia.com.smartmart.view.swipmenulistview.SwipeMenuCreator;
 import sinia.com.smartmart.view.swipmenulistview.SwipeMenuItem;
@@ -42,6 +58,8 @@ public class MyAccountActivity extends BaseActivity {
     private AccountAdapter adapter;
     private boolean isFilter = false;
     private PopupWindow popWindow;
+    private AsyncHttpClient client = new AsyncHttpClient();
+    private List<BillListBean.RescntBean.BillBean> list = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +67,46 @@ public class MyAccountActivity extends BaseActivity {
         setContentView(R.layout.activity_my_account, "我的账单");
         ButterKnife.bind(this);
         getDoingView().setText("筛选");
+        getBillList("-1");
         initData();
     }
 
+    private void getBillList(String type) {
+        showLoad("加载中...");
+        RequestParams params = new RequestParams();
+        params.put("memberid", MyApplication.getInstance().getUserInfo().getMemberid());
+        params.put("type", type);
+        Log.i("tag", Constants.BASE_URL + "mybilllist" + params);
+        client.post(Constants.BASE_URL + "mybilllist", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        Gson gson = new Gson();
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            BillListBean bean = gson.fromJson(resultStr, BillListBean.class);
+                            list.clear();
+                            list.addAll(bean.getRescnt().getList());
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            showToast((String) json.getRescnt());
+                        }
+                    }
+                });
+    }
+
     private void initData() {
-        adapter = new AccountAdapter(this);
+        adapter = new AccountAdapter(this, list);
         listView.setAdapter(adapter);
         SwipeMenuCreator creator = new SwipeMenuCreator() {
 
@@ -77,8 +130,8 @@ public class MyAccountActivity extends BaseActivity {
                                            int index) {
                 switch (index) {
                     case 0:
-//                        String id = list.get(position).getAddId();
-//                        deleteAddress(id, position);
+                        String id = list.get(position).getBillid();
+                        delete(id, position);
                 }
                 return false;
             }
@@ -89,6 +142,38 @@ public class MyAccountActivity extends BaseActivity {
                 startActivityForNoIntent(AccountDetailActivity.class);
             }
         });
+    }
+
+    private void delete(String id, final int position) {
+        showLoad("加载中...");
+        RequestParams params = new RequestParams();
+        params.put("memberid", MyApplication.getInstance().getUserInfo().getMemberid());
+        params.put("billid", id);
+        Log.i("tag", Constants.BASE_URL + "deletebill");
+        client.post(Constants.BASE_URL + "deletebill", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            showToast((String) json.getRescnt());
+                            list.remove(position);
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            showToast((String) json.getRescnt());
+                        }
+                    }
+                });
     }
 
     @Override
@@ -143,6 +228,7 @@ public class MyAccountActivity extends BaseActivity {
                 getDoingView().setText("筛选");
                 isFilter = false;
                 popWindow.dismiss();
+                getBillList("1");
             }
         });
         tv_ele.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +241,7 @@ public class MyAccountActivity extends BaseActivity {
                 getDoingView().setText("筛选");
                 isFilter = false;
                 popWindow.dismiss();
+                getBillList("2");
             }
         });
         tv_gas.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +254,7 @@ public class MyAccountActivity extends BaseActivity {
                 getDoingView().setText("筛选");
                 isFilter = false;
                 popWindow.dismiss();
+                getBillList("3");
             }
         });
         tv_property.setOnClickListener(new View.OnClickListener() {
@@ -179,6 +267,7 @@ public class MyAccountActivity extends BaseActivity {
                 getDoingView().setText("筛选");
                 isFilter = false;
                 popWindow.dismiss();
+                getBillList("4");
             }
         });
     }

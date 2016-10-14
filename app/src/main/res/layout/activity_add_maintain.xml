@@ -72,7 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="户主：周杰伦"
+                    android:text="户主："
                     android:textColor="#3a3a3a"
                     android:textSize="15sp" />
 
@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="周杰伦"
+                    android:text="地址"
                     android:textColor="#3a3a3a"
                     android:textSize="15sp" />
             </LinearLayout>
@@ -174,7 +174,7 @@
                     android:layout_marginRight="37dp"
                     android:layout_marginTop="20dp"
                     android:drawableRight="@drawable/jian_xia"
-                    android:text="选择报修情况"
+                    android:hint="选择报修情况"
                     android:textColor="#1d1d25"
                     android:textSize="15sp" />
 

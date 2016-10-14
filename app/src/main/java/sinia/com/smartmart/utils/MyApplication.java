@@ -8,9 +8,10 @@ import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
 import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.bean.UserInfo;
+import sinia.com.smartmart.bean.UserNoticeBean;
 
 import static com.tencent.bugly.Bugly.applicationContext;
-
 
 /**
  * Created by 忧郁的眼神 on 2016/7/15.
@@ -20,18 +21,17 @@ public class MyApplication extends Application {
     private static MyApplication instance;
 
     public static Context context;
-    private UserBean.UserInfo user;
-//    private LoginBean login;
+    private UserNoticeBean userNoticeBean;
+    private UserInfo userInfo;
 //    public static PushAgent mPushAgent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        context = this.getApplicationContext();
+        context = this;
         instance = this;
         Bugly.init(getApplicationContext(), "16bbef9827", false);
         Beta.checkUpgrade(false, false);
-        initShareKey();
         initUMPush();
     }
 
@@ -136,49 +136,41 @@ public class MyApplication extends Application {
 //        mPushAgent.setNotificationClickHandler(notificationClickHandler);
     }
 
-    private void initShareKey() {
-//        PlatformConfig.setWeixin("wx72646ac912a1a65a", "df5d7fc9d7f6664038b26ff95b3423b0");
-//        PlatformConfig.setQQZone("1105256171", "6xAwTDWTtz08qQFs");
-//        PlatformConfig.setSinaWeibo("1382880293", "d165e356f5a75c6c09f46bf8999cebe8");
-    }
-
     public static synchronized MyApplication getInstance() {
         return instance;
     }
 
-    public UserBean.UserInfo getUserBean() {
-        if (null == user) {
-            UserBean.UserInfo ub = SaveUtils.getShareObject(applicationContext, "USER",
-                    "userbean", UserBean.UserInfo.class);
-            return ub;
+    public UserNoticeBean getUserNoticeBean() {
+        if (null == userNoticeBean) {
+            UserNoticeBean unb = SaveUtils.getShareObject(applicationContext, "UserNotice",
+                    "usernotice", UserNoticeBean.class);
+            return unb;
         }
-        return user;
+        return userNoticeBean;
     }
 
-    public void setUserBean(UserBean.UserInfo user) {
-        this.user = user;
-        if (user != null) {
-            SaveUtils.putShareObject(applicationContext, "USER", "userbean",
-                    user);
+    public void setUserNoticeBean(UserNoticeBean userNoticeBean) {
+        this.userNoticeBean = userNoticeBean;
+        if (userNoticeBean != null) {
+            SaveUtils.putShareObject(applicationContext, "UserNotice", "usernotice",
+                    userNoticeBean);
         }
     }
 
-    private UserBean bean;
-
-    public UserBean getUser() {
-        if (null == bean) {
-            UserBean ub = SaveUtils.getShareObject(applicationContext, "USER",
-                    "userbean", UserBean.class);
-            return ub;
+    public UserInfo getUserInfo() {
+        if (null == userInfo) {
+            UserInfo userInfo = SaveUtils.getShareObject(applicationContext, "USERINFO",
+                    "userinfo", UserInfo.class);
+            return userInfo;
         }
-        return bean;
+        return userInfo;
     }
 
-    public void setUser(UserBean bean) {
-        this.bean = bean;
-        if (user != null) {
-            SaveUtils.putShareObject(applicationContext, "USER", "userbean",
-                    user);
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+        if (userInfo != null) {
+            SaveUtils.putShareObject(applicationContext, "USERINFO", "userinfo",
+                    userInfo);
         }
     }
 
@@ -217,22 +209,6 @@ public class MyApplication extends Application {
         sp = null;
         return ret;
     }
-
-//    public LoginBean getLoginBean() {
-//        if (null == login) {
-//            LoginBean lb = SaveUtils.getShareObject(context, "LOGIN",
-//                    "loginbean", LoginBean.class);
-//            return lb;
-//        }
-//        return login;
-//    }
-//
-//    public void setLoginBean(LoginBean login) {
-//        this.login = login;
-//        if (login != null) {
-//            SaveUtils.putShareObject(context, "LOGIN", "loginbean", login);
-//        }
-//    }
 
     // 回收
     public void onLowMemory() {

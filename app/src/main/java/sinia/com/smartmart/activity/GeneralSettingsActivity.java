@@ -110,11 +110,13 @@ public class GeneralSettingsActivity extends BaseActivity {
                 .setPositiveButton("确定", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        MyApplication.getInstance().setBooleanValue("is_login",
-//                                false);
-//                        MyApplication.getInstance().setLoginBean(null);
-//                        startActivityForNoIntent(LoginActivity.class);
+                        MyApplication.getInstance().setBooleanValue("is_login",
+                                false);
+                        MyApplication.getInstance().setUserNoticeBean(null);
+                        MyApplication.getInstance().setUserInfo(null);
+                        startLoginActivityForNoIntent(LoginRegisterActivity.class);
                         ActivityManager.getInstance().finishCurrentActivity();
+                        ActivityManager.getInstance().finishActivity(SettingsActivity.class);
                         materialDialog.dismiss();
                     }
                 }).setNegativeButton("取消", new View.OnClickListener() {

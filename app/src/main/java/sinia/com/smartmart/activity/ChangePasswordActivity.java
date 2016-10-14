@@ -1,13 +1,18 @@
 package sinia.com.smartmart.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -20,8 +25,19 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
+import sinia.com.smartmart.bean.JsonBean;
+import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.bean.UserInfo;
+import sinia.com.smartmart.bean.ValidateCodeBean;
+import sinia.com.smartmart.utils.ActivityManager;
+import sinia.com.smartmart.utils.Constants;
+import sinia.com.smartmart.utils.JsonUtil;
+import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.utils.StringUtils;
+import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.utils.ValidationUtils;
+
+import static android.icu.lang.UScript.getCode;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/12.
@@ -69,13 +85,44 @@ public class ChangePasswordActivity extends BaseActivity {
             @Override
             public void onValidationSucceeded() {
                 super.onValidationSucceeded();
-//                if (!etCode.getEditableText().toString().trim().equals(code)) {
-//                    showToast("验证码不正确");
-//                    return;
-//                }
-//                findPassword();
+                if (!etCode.getEditableText().toString().trim().equals(code)) {
+                    showToast("验证码不正确");
+                    return;
+                }
+                findPassword();
             }
         });
+    }
+
+    private void findPassword() {
+        showLoad("加载中...");
+        RequestParams params = new RequestParams();
+        params.put("username", etTel.getEditableText().toString().trim());
+        params.put("password", etConfirm.getEditableText().toString().trim());
+        Log.i("tag", Constants.BASE_URL + "updatePassword");
+        client.post(Constants.BASE_URL + "updatePassword", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            showToast("修改成功");
+                            ActivityManager.getInstance().finishCurrentActivity();
+                        } else {
+                            showToast((String) json.getRescnt());
+                        }
+                    }
+                });
     }
 
     @OnClick({R.id.tv_getCode, R.id.tv_ok})
@@ -104,13 +151,44 @@ public class ChangePasswordActivity extends BaseActivity {
                             handler.sendEmptyMessage(-8);
                         }
                     }).start();
-//                    getCode();
+                    getCode(etTel.getText().toString());
                 }
                 break;
             case R.id.tv_ok:
                 validator.validate();
                 break;
         }
+    }
+
+    private void getCode(String string) {
+        showLoad("正在发送短信...");
+        RequestParams params = new RequestParams();
+        params.put("mobile", string);
+        client.post(Constants.BASE_URL + "sendVerificationCode", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        Gson gson = new Gson();
+                        if (s.contains("rescode")
+                                && s.contains("rescnt")) {
+                            ValidateCodeBean bean = gson.fromJson(s, ValidateCodeBean.class);
+                            int state = bean.getRescode();
+                            if (0 == state) {
+                                showToast((String) bean.getRescnt());
+                                code = bean.getCode();
+                            } else {
+                                showToast((String) bean.getRescnt());
+                            }
+                        }
+                    }
+                });
     }
 
     private Handler handler = new Handler() {

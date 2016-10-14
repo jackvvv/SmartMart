@@ -36,6 +36,8 @@ import sinia.com.smartmart.adapter.AreaAdapter;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.bean.UserInfo;
+import sinia.com.smartmart.bean.UserNoticeBean;
 import sinia.com.smartmart.bean.ValidateCodeBean;
 import sinia.com.smartmart.bean.VillageListBean;
 import sinia.com.smartmart.utils.ActivityManager;
@@ -130,7 +132,7 @@ public class PerfectInfoActivity extends BaseActivity {
         params.put("unit", etCell.getEditableText().toString().trim());
         params.put("floor", etFloor.getEditableText().toString().trim());
         params.put("number", etDoornum.getEditableText().toString().trim());
-        Log.i("tag",Constants.BASE_URL + "register");
+        Log.i("tag", Constants.BASE_URL + "register");
         client.post(Constants.BASE_URL + "register", params,
                 new AsyncHttpResponseHandler() {
                     @Override
@@ -149,8 +151,9 @@ public class PerfectInfoActivity extends BaseActivity {
                         if (0 == rescode) {
                             UserBean bean = gson.fromJson(resultStr,
                                     UserBean.class);
-                            UserBean.UserInfo info = bean.getRescnt();
-                            MyApplication.getInstance().setUserBean(info);
+                            saveUserData(bean);
+                            UserInfo info = bean.getRescnt();
+                            MyApplication.getInstance().setUserInfo(info);
                             MyApplication.getInstance().setBooleanValue(
                                     "is_login", true);
                             startActivityForNoIntent(MainActivity.class);
@@ -163,6 +166,13 @@ public class PerfectInfoActivity extends BaseActivity {
                         }
                     }
                 });
+    }
+
+    private void saveUserData(UserBean bean) {
+        UserNoticeBean unb = new UserNoticeBean();
+        unb.setNoticedetail(bean.getNoticedetail());
+        unb.setRatenum(bean.getRatenum());
+        MyApplication.getInstance().setUserNoticeBean(unb);
     }
 
     private void getVillageList() {

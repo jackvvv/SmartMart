@@ -33,7 +33,8 @@
                 android:layout_marginTop="10dp"
                 android:lineSpacingExtra="3dp"
                 android:maxLines="2"
-                android:text="公共走廊卫生两周没有打扫了，影响正常生活环境，请尽快处理！"
+                android:ellipsize="end"
+                android:text="公共走廊卫生两周没有打扫了，影响正常生活环境，请尽快处理！公共走廊卫生两周没有打扫了公共走廊卫生两周没有打扫了"
                 android:textColor="#3a3a3a"
                 android:textSize="13sp" />
 

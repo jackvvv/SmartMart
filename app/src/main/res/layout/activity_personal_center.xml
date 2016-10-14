@@ -77,7 +77,6 @@
                 android:layout_width="52dp"
                 android:layout_height="52dp"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/s"
                 android:src="@drawable/ic_launcher"
                 app:border_color="@android:color/transparent"
@@ -114,19 +113,14 @@
                 android:textColor="@color/textblackColor"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="27dp"
-                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/sa"
                 android:layout_toRightOf="@+id/tv_place"
-                android:background="@null"
                 android:gravity="right"
-                android:inputType="text"
-                android:maxLength="20"
                 android:singleLine="true"
                 android:text="周杰伦"
                 android:textColor="#999"
@@ -171,7 +165,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="27dp"
                 android:layout_toRightOf="@+id/sex"
-                android:drawablePadding="8dp"
                 android:drawableRight="@drawable/ic_detail_jian"
                 android:gravity="right"
                 android:text="未设置"
@@ -201,18 +194,15 @@
                 android:textColor="@color/textblackColor"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="27dp"
-                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/ss"
                 android:layout_toRightOf="@+id/address"
-                android:background="@null"
                 android:gravity="right"
-                android:inputType="text"
                 android:maxLength="30"
                 android:singleLine="true"
                 android:text="南京市栖霞区仙隐北路5号"
@@ -250,7 +240,7 @@
                 android:textColor="@color/textblackColor"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -258,10 +248,7 @@
                 android:layout_marginLeft="27dp"
                 android:layout_toLeftOf="@+id/u"
                 android:layout_toRightOf="@+id/area"
-                android:background="@null"
                 android:gravity="right"
-                android:inputType="number"
-                android:maxLength="11"
                 android:singleLine="true"
                 android:text="120"
                 android:textColor="#999"
@@ -272,7 +259,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/ssss"
                 android:text="㎡"
                 android:textColor="#999"
@@ -309,19 +295,15 @@
                 android:textColor="@color/textblackColor"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_tel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="27dp"
-                android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@+id/sss"
                 android:layout_toRightOf="@+id/tel"
-                android:background="@null"
                 android:gravity="right"
-                android:inputType="phone"
-                android:maxLength="11"
                 android:singleLine="true"
                 android:text="18552569989"
                 android:textColor="#999"

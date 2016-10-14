@@ -7,7 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.bean.MaintainListBean;
 import sinia.com.smartmart.utils.ViewHolder;
 
 /**
@@ -17,13 +20,16 @@ public class MaintainAdapter extends BaseAdapter {
 
     private Context context;
 
-    public MaintainAdapter(Context context) {
+    private List<MaintainListBean.MaintainBean> list;
+
+    public MaintainAdapter(Context context, List<MaintainListBean.MaintainBean> list) {
         this.context = context;
+        this.list = list;
     }
 
     @Override
     public int getCount() {
-        return 3;
+        return list.size();
     }
 
     @Override
@@ -45,6 +51,26 @@ public class MaintainAdapter extends BaseAdapter {
         TextView tv_content = ViewHolder.get(view, R.id.tv_content);
         TextView tv_time = ViewHolder.get(view, R.id.tv_time);
         TextView tv_status = ViewHolder.get(view, R.id.tv_status);
+        String repairType = list.get(i).getRepairtype();
+        String repairStatus = list.get(i).getRepairstatus();
+        if ("1".equals(repairType)) {
+            tv_question.setText("报修问题：公共部位报修");
+        } else {
+            tv_question.setText("报修问题：自用部位报修");
+        }
+
+        if ("1".equals(repairStatus)) {
+            tv_status.setText("待处理");
+        } else if ("2".equals(repairStatus)) {
+            tv_status.setText("处理中");
+        } else if ("3".equals(repairStatus)) {
+            tv_status.setText("已解决");
+        } else if ("4".equals(repairStatus)) {
+            tv_status.setText("已删除");
+        }
+
+        tv_content.setText(list.get(i).getContent());
+        tv_time.setText(list.get(i).getCreatetime());
         return view;
     }
 }

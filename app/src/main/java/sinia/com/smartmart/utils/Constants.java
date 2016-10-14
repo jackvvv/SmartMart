@@ -9,7 +9,7 @@ public class Constants {
 //            ".do?interface&sign=123&messageFormat=json/xml&locale=zh_CN&appKey=001&method=";
     public static String BASE_URL = "http://120.27.113.95:8080/yihua/data/";
 
-    public static final String BMOB_KEY = "d4ecefd1ecdd89d41b182409cd68f2d4";
+    public static final String BMOB_KEY = "c8f8ecb32c63ea2afcb5056cad7678b2";
 
     /**
      * 支付宝支付

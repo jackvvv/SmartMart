@@ -99,8 +99,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
-        android:scrollbars="none"
-        android:overScrollMode="never">
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,11 +111,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="#f6f6f6" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/divider_color" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -261,23 +256,8 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/divider_color" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/divider_color" />
-
-            <View
-                android:layout_width="match_parent"
                 android:layout_height="10dp"
                 android:background="#f6f6f6" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/divider_color" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -290,6 +270,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/layout_selector"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:paddingBottom="25dp"
@@ -315,6 +296,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@drawable/layout_selector"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:paddingBottom="25dp"
@@ -330,11 +312,6 @@
                         android:textSize="15sp" />
                 </LinearLayout>
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/divider_color" />
 
             <View
                 android:layout_width="match_parent"

@@ -52,31 +52,38 @@
         android:orientation="vertical"
         android:padding="24dp">
 
-        <TextView
-            android:id="@+id/tv_issue"
+        <LinearLayout
+            android:id="@+id/ll_issue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:drawableRight="@drawable/jian_xia"
-            android:text="选择投诉类别"
-            android:textColor="#1d1d25"
-            android:textSize="15sp" />
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/divider_color" />
+            <TextView
+                android:id="@+id/tv_issue"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:drawableRight="@drawable/jian_xia"
+                android:text="选择投诉类别"
+                android:textColor="#1d1d25"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/divider_color" />
+        </LinearLayout>
 
         <EditText
             android:id="@+id/et_content"
             android:layout_width="match_parent"
             android:layout_height="180dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginRight="35dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:layout_marginTop="25dp"
             android:background="@drawable/gray_round_edit"
             android:gravity="left|top"
@@ -91,8 +98,8 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#fff"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="#fff" />
 
     <View
         android:layout_width="match_parent"
@@ -110,8 +117,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="15dp"
-            android:layout_marginLeft="59dp"
-            android:layout_marginRight="59dp"
+            android:layout_marginLeft="49dp"
+            android:layout_marginRight="49dp"
             android:layout_marginTop="18dp"
             android:background="@drawable/btn_ok"
             android:gravity="center"

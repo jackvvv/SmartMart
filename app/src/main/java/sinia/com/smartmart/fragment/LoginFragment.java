@@ -30,6 +30,8 @@ import sinia.com.smartmart.activity.PerfectInfoActivity;
 import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.bean.UserInfo;
+import sinia.com.smartmart.bean.UserNoticeBean;
 import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.utils.Constants;
 import sinia.com.smartmart.utils.DialogUtils;
@@ -87,7 +89,7 @@ public class LoginFragment extends BaseFragment {
         RequestParams params = new RequestParams();
         params.put("username", etTel.getEditableText().toString().trim());
         params.put("password", etPwd.getEditableText().toString().trim());
-        Log.i("tag",Constants.BASE_URL + "login");
+        Log.i("tag", Constants.BASE_URL + "login");
         client.post(Constants.BASE_URL + "login", params,
                 new AsyncHttpResponseHandler() {
                     @Override
@@ -106,8 +108,9 @@ public class LoginFragment extends BaseFragment {
                         if (0 == rescode) {
                             UserBean bean = gson.fromJson(resultStr,
                                     UserBean.class);
-                            UserBean.UserInfo info = bean.getRescnt();
-                            MyApplication.getInstance().setUserBean(info);
+                            UserInfo info = bean.getRescnt();
+                            saveUserData(bean);
+                            MyApplication.getInstance().setUserInfo(info);
                             MyApplication.getInstance().setBooleanValue(
                                     "is_login", true);
                             Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -118,6 +121,13 @@ public class LoginFragment extends BaseFragment {
                         }
                     }
                 });
+    }
+
+    private void saveUserData(UserBean bean) {
+        UserNoticeBean unb = new UserNoticeBean();
+        unb.setNoticedetail(bean.getNoticedetail());
+        unb.setRatenum(bean.getRatenum());
+        MyApplication.getInstance().setUserNoticeBean(unb);
     }
 
     @OnClick({R.id.tv_login, R.id.tv_forgetPwd})

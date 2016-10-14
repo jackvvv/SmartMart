@@ -2,16 +2,29 @@ package sinia.com.smartmart.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
+import sinia.com.smartmart.bean.FeeDetailBean;
+import sinia.com.smartmart.bean.JsonBean;
+import sinia.com.smartmart.bean.PropertyFeeBean;
+import sinia.com.smartmart.utils.Constants;
+import sinia.com.smartmart.utils.JsonUtil;
+import sinia.com.smartmart.utils.MyApplication;
+import sinia.com.smartmart.utils.Utils;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/7.
@@ -46,18 +59,70 @@ public class PayPropertyFeeActivity extends BaseActivity {
     @Bind(R.id.tv_ok)
     TextView tvOk;
 
+    private AsyncHttpClient client = new AsyncHttpClient();
+    private Double money;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_property_fee, "物业费缴纳");
         getDoingView().setVisibility(View.GONE);
         ButterKnife.bind(this);
+        initData();
+    }
+
+    private void initData() {
+        RequestParams params = new RequestParams();
+        params.put("memberid", MyApplication.getInstance().getUserInfo().getMemberid());
+        Log.i("tag", Constants.BASE_URL + "propertyrate" + params);
+        client.post(Constants.BASE_URL + "propertyrate", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        Gson gson = new Gson();
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            PropertyFeeBean detailBean = gson.fromJson(resultStr, PropertyFeeBean.class);
+                            setData(detailBean);
+                        } else {
+                            showToast((String) json.getRescnt());
+                        }
+                    }
+                });
+    }
+
+    private void setData(PropertyFeeBean detailBean) {
+        tvName.setText(detailBean.getUsername());
+        tvAddress.setText(detailBean.getAddress());
+        tvArea.setText(detailBean.getHousearea() + "㎡");
+        tvCompany.setText(detailBean.getCompanyname());
+        if (0 == detailBean.getRatecost()) {
+            llNofee.setVisibility(View.VISIBLE);
+            llFee.setVisibility(View.GONE);
+        } else {
+            llNofee.setVisibility(View.GONE);
+            llFee.setVisibility(View.VISIBLE);
+            tvMoney.setText(detailBean.getRatecost() + "元");
+        }
+        money = detailBean.getRatecost();
+        tvTimeS.setText(detailBean.getProfeetime());
     }
 
     @OnClick(R.id.tv_ok)
     public void onClick() {
         Intent intent = new Intent();
         intent.putExtra("fee_type", "4");
+        intent.putExtra("fee", money + "");
         startActivityForIntent(PayActivity.class, intent);
     }
 }

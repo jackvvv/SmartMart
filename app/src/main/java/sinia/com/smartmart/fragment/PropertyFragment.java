@@ -3,6 +3,7 @@ package sinia.com.smartmart.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,10 @@ import android.widget.TextView;
 import com.ToxicBakery.viewpager.transforms.ABaseTransformer;
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import java.util.ArrayList;
 
@@ -21,16 +26,26 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.AddWaterAccountActivity;
 import sinia.com.smartmart.activity.FeedBackActivity;
+import sinia.com.smartmart.activity.LoginRegisterActivity;
 import sinia.com.smartmart.activity.MaintainListActivity;
 import sinia.com.smartmart.activity.MessageWarnActivity;
+import sinia.com.smartmart.activity.PayFeeActivity;
 import sinia.com.smartmart.activity.PropertyFeeActivity;
 import sinia.com.smartmart.activity.WaterAccountListActivity;
 import sinia.com.smartmart.base.BaseFragment;
+import sinia.com.smartmart.bean.FeeDetailBean;
+import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.bean.UserInfo;
+import sinia.com.smartmart.bean.UserNoticeBean;
 import sinia.com.smartmart.utils.AppInfoUtil;
 import sinia.com.smartmart.utils.BitmapUtilsHelp;
+import sinia.com.smartmart.utils.Constants;
+import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.MyApplication;
+import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.view.LocalImageHolderView;
 
 /**
@@ -62,7 +77,9 @@ public class PropertyFragment extends BaseFragment {
     ConvenientBanner convenientBanner;
     private View rootView;
     private ArrayList<Integer> localImages = new ArrayList<Integer>();
-    private UserBean userBean;
+    private UserInfo userInfo;
+    private UserNoticeBean userNoticeBean;
+    private AsyncHttpClient client = new AsyncHttpClient();
 
     @Nullable
     @Override
@@ -78,10 +95,11 @@ public class PropertyFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         if (MyApplication.getInstance().getBoolValue("is_login")) {
-            userBean = MyApplication.getInstance().getUser();
-            if (null != userBean) {
-                tvAddress.setText(userBean.getRescnt().getAddress());
-                tvNotice.setText(userBean.getNoticedetail());
+            userInfo = MyApplication.getInstance().getUserInfo();
+            userNoticeBean = MyApplication.getInstance().getUserNoticeBean();
+            if (null != userInfo && null != userNoticeBean) {
+                tvAddress.setText(userInfo.getAddress());
+                tvNotice.setText(userNoticeBean.getNoticedetail());
             }
         } else {
             tvAddress.setText("未登录");
@@ -118,34 +136,115 @@ public class PropertyFragment extends BaseFragment {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.rl_msg:
-                intent = new Intent(getActivity(), MessageWarnActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), MessageWarnActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_water:
-                intent = new Intent(getActivity(), WaterAccountListActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    checkFeeStatus("1", "水费缴纳");
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
+//                intent = new Intent(getActivity(), WaterAccountListActivity.class);
+//                startActivity(intent);
                 break;
             case R.id.ll_elec:
-                intent = new Intent(getActivity(), WaterAccountListActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    checkFeeStatus("2", "电费缴纳");
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_gas:
-                intent = new Intent(getActivity(), WaterAccountListActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    checkFeeStatus("3", "煤气费缴纳");
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_property:
-                intent = new Intent(getActivity(), PropertyFeeActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), PropertyFeeActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_maintain:
-                intent = new Intent(getActivity(), MaintainListActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), MaintainListActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_feedback:
-                intent = new Intent(getActivity(), FeedBackActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), FeedBackActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
         }
+    }
+
+    private void checkFeeStatus(final String ratetype, final String title) {
+        RequestParams params = new RequestParams();
+        params.put("memberid", MyApplication.getInstance().getUserInfo().getMemberid());
+        params.put("ratetype", ratetype);
+        Log.i("tag", Constants.BASE_URL + "checkmemberrate" + params);
+        client.post(Constants.BASE_URL + "checkmemberrate", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        Gson gson = new Gson();
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            //0 已完善对应信息，跳转欠费详情
+                            FeeDetailBean detailBean = gson.fromJson(resultStr, FeeDetailBean.class);
+                            Intent intent = new Intent(getActivity(), PayFeeActivity.class);
+                            intent.putExtra("feeBean", detailBean);
+                            intent.putExtra("fee_type", ratetype);
+                            intent.putExtra("isFromProperty", "1");
+                            startActivity(intent);
+                        } else if (1 == rescode) {
+                            //未完善，跳转完善页面
+                            Intent intent = new Intent(getActivity(), AddWaterAccountActivity.class);
+                            intent.putExtra("fee_type", ratetype);
+                            intent.putExtra("title", title);
+                            startActivity(intent);
+                        }
+                    }
+                });
     }
 
     @Override

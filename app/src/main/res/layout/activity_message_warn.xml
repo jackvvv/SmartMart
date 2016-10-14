@@ -35,7 +35,8 @@
             android:background="@drawable/ic_new_msg"
             android:gravity="center"
             android:text="1"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/s"
@@ -82,7 +83,8 @@
             android:background="@drawable/ic_new_msg"
             android:gravity="center"
             android:text="1"
-            android:textColor="#fff" />
+            android:textColor="#fff"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/ss"

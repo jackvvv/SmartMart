@@ -34,7 +34,7 @@
                 android:paddingRight="10dp">
 
                 <TextView
-                    android:id="@+id/tv_status"
+                    android:id="@+id/tv_type"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="水费缴费提醒"
@@ -73,7 +73,7 @@
                     android:id="@+id/tv_money"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="欠费金额：88.0元"
+                    android:text="欠费金额：0元"
                     android:textColor="#001d54"
                     android:textSize="18sp" />
 
@@ -96,7 +96,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="周杰伦"
+                        android:text=""
                         android:textColor="#727272"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -120,7 +120,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="月桂圆14栋 2306室"
+                        android:text=""
                         android:textColor="#727272"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -144,7 +144,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="南京港华燃气有限公司"
+                        android:text=""
                         android:textColor="#727272"
                         android:textSize="14sp" />
                 </LinearLayout>
@@ -167,7 +167,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="0395584235"
+                        android:text=""
                         android:textColor="#727272"
                         android:textSize="14sp" />
                 </LinearLayout>

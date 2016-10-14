@@ -3,6 +3,7 @@ package sinia.com.smartmart.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,21 +12,34 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.LoginRegisterActivity;
+import sinia.com.smartmart.activity.MainActivity;
 import sinia.com.smartmart.activity.MessageWarnActivity;
 import sinia.com.smartmart.activity.MyAccountActivity;
 import sinia.com.smartmart.activity.MyCouponsActivity;
 import sinia.com.smartmart.activity.PersonalInfoActivity;
 import sinia.com.smartmart.activity.SettingsActivity;
 import sinia.com.smartmart.base.BaseFragment;
+import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.bean.UserBean;
+import sinia.com.smartmart.bean.UserInfo;
+import sinia.com.smartmart.bean.UserNoticeBean;
+import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.utils.BitmapUtilsHelp;
+import sinia.com.smartmart.utils.Constants;
 import sinia.com.smartmart.utils.DialogUtils;
+import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.MyApplication;
+import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.view.CircleImageView;
 
 /**
@@ -66,7 +80,8 @@ public class MineFragment extends BaseFragment {
     @Bind(R.id.ll_notlogin)
     LinearLayout ll_notlogin;
     private View rootView;
-    private UserBean.UserInfo user;
+    private UserInfo user;
+    private AsyncHttpClient client = new AsyncHttpClient();
 
     @Nullable
     @Override
@@ -92,17 +107,46 @@ public class MineFragment extends BaseFragment {
         } else {
             ll_notlogin.setVisibility(View.VISIBLE);
             ll_login.setVisibility(View.GONE);
+            BitmapUtilsHelp.getImage(getActivity(), R.drawable
+                    .head_default).display(ivHead, "");
         }
     }
 
     private void setUserData() {
-        user = MyApplication.getInstance().getUserBean();
-        if (null != user) {
-            tvUsername.setText(user.getUsername());
-            tvAddress.setText(user.getAddress());
-            BitmapUtilsHelp.getImage(getActivity(), R.drawable
-                    .head_default).display(ivHead, user.getIcon());
-        }
+        user = MyApplication.getInstance().getUserInfo();
+        RequestParams params = new RequestParams();
+        params.put("memberid", user.getMemberid());
+        Log.i("tag", Constants.BASE_URL + "refreshData");
+        client.post(Constants.BASE_URL + "refreshData", params,
+                new AsyncHttpResponseHandler() {
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        Gson gson = new Gson();
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            UserBean bean = gson.fromJson(resultStr,
+                                    UserBean.class);
+                            UserInfo info = bean.getRescnt();
+                            MyApplication.getInstance().setUserInfo(info);
+                            saveUserData(bean);
+                            tvUsername.setText(info.getUsername());
+                            tvAddress.setText(info.getAddress());
+                            BitmapUtilsHelp.getImage(getActivity(), R.drawable
+                                    .head_default).display(ivHead, info.getIcon());
+                        } else {
+                            showToast((String) json.getRescnt());
+                        }
+                    }
+                });
     }
 
     @OnClick({R.id.rl_msg, R.id.rl_person_info, R.id.ll_myaccount, R.id.ll_collect, R.id.ll_coupon, R.id.ll_mysay, R
@@ -111,16 +155,34 @@ public class MineFragment extends BaseFragment {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.rl_msg:
-                intent = new Intent(getActivity(), MessageWarnActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), MessageWarnActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.rl_person_info:
-                intent = new Intent(getActivity(), PersonalInfoActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), PersonalInfoActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_myaccount:
-                intent = new Intent(getActivity(), MyAccountActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), MyAccountActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_collect:
                 break;
@@ -129,10 +191,13 @@ public class MineFragment extends BaseFragment {
                 startActivity(intent);
                 break;
             case R.id.ll_mysay:
-                intent = new Intent(getActivity(), LoginRegisterActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(R.anim.login_open, 0);
-//                DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "说说功能正在完善中...");
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "说说功能正在完善中...");
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_neighbour:
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "邻里功能正在完善中...");
@@ -141,8 +206,14 @@ public class MineFragment extends BaseFragment {
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "监控功能正在完善中...");
                 break;
             case R.id.img_settings:
-                intent = new Intent(getActivity(), SettingsActivity.class);
-                startActivity(intent);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    intent = new Intent(getActivity(), SettingsActivity.class);
+                    startActivity(intent);
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_notlogin:
                 intent = new Intent(getActivity(), LoginRegisterActivity.class);
@@ -150,6 +221,13 @@ public class MineFragment extends BaseFragment {
                 getActivity().overridePendingTransition(R.anim.login_open, 0);
                 break;
         }
+    }
+
+    private void saveUserData(UserBean bean) {
+        UserNoticeBean unb = new UserNoticeBean();
+        unb.setNoticedetail(bean.getNoticedetail());
+        unb.setRatenum(bean.getRatenum());
+        MyApplication.getInstance().setUserNoticeBean(unb);
     }
 
     @Override

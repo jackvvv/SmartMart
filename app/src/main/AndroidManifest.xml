@@ -83,6 +83,7 @@
         <activity android:name=".activity.MyCouponsActivity" />
         <activity android:name=".activity.MyAccountActivity" />
         <activity android:name=".activity.AccountDetailActivity" />
+        <activity android:name=".activity.PreViewImageActivity" />
         <activity
             android:name=".activity.PersonalInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

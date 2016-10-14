@@ -14,6 +14,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -21,6 +22,10 @@ import com.google.gson.Gson;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.mobsandgeeks.saripaar.Validator;
+import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Order;
+import com.mobsandgeeks.saripaar.annotation.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +34,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.actionsheetdialog.ActionSheetDialog;
 import sinia.com.smartmart.adapter.AreaAdapter;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.bean.JsonBean;
@@ -38,6 +44,7 @@ import sinia.com.smartmart.utils.Constants;
 import sinia.com.smartmart.utils.DialogUtils;
 import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.Utils;
+import sinia.com.smartmart.utils.ValidationUtils;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/6.
@@ -46,8 +53,14 @@ public class AddWaterAccountActivity extends BaseActivity {
 
     @Bind(R.id.tv_area)
     TextView tvArea;
+    @Bind(R.id.img)
+    ImageView img;
+    @NotEmpty(message = "请选择缴费公司")
+    @Order(1)
     @Bind(R.id.tv_company)
     TextView tvCompany;
+    @Size(message = "请输入7-10位卡号", min = 7)
+    @Order(2)
     @Bind(R.id.et_card)
     EditText etCard;
     @Bind(R.id.tl)
@@ -59,15 +72,47 @@ public class AddWaterAccountActivity extends BaseActivity {
     public Dialog dialog;
     public AreaAdapter areaAdapter;
     private List<VillageListBean.VillageBean> list = new ArrayList<>();
-    private String villageId;
+    private String villageId, fee_type, title, companyName;
+    private Validator validator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_water_account, "水费缴纳");
+        fee_type = getIntent().getStringExtra("fee_type");
+        title = getIntent().getStringExtra("title");
+        setContentView(R.layout.activity_add_water_account, title);
         ButterKnife.bind(this);
+        validator = new Validator(this);
         getDoingView().setVisibility(View.GONE);
-        getVillageList();
+        initData();
+//        getVillageList();
+    }
+
+    private void initData() {
+        if ("1".equals(fee_type)) {
+            img.setImageResource(R.drawable.ic_water_big);
+            etCard.setHint("输入水费卡号7-10位编号");
+        }
+        if ("2".equals(fee_type)) {
+            img.setImageResource(R.drawable.ic_elec_big);
+            etCard.setHint("输入电费卡号10位编号");
+        }
+        if ("3".equals(fee_type)) {
+            img.setImageResource(R.drawable.ic_gas_big);
+            etCard.setHint("输入煤气费卡号10位编号");
+        }
+        validator.setValidationListener(new ValidationUtils.ValidationListener() {
+            @Override
+            public void onValidationSucceeded() {
+                super.onValidationSucceeded();
+                Intent intent = new Intent();
+                intent.putExtra("fee_type", fee_type);
+                intent.putExtra("isFromProperty", "3");
+                intent.putExtra("rateno", etCard.getEditableText().toString().trim());
+                intent.putExtra("companyname", companyName);
+                startActivityForIntent(PayFeeActivity.class, intent);
+            }
+        });
     }
 
     private void getVillageList() {
@@ -106,13 +151,43 @@ public class AddWaterAccountActivity extends BaseActivity {
                 createSelectAreaDialog(this, tvArea, list);
                 break;
             case R.id.tv_company:
+                if ("1".equals(fee_type)) {
+                    createCompanyDialog(this, "贵阳水利公司", "贵州水利公司", tvCompany);
+                }
+                if ("2".equals(fee_type)) {
+                    createCompanyDialog(this, "贵阳电力公司", "贵州电力公司", tvCompany);
+                }
+                if ("3".equals(fee_type)) {
+                    createCompanyDialog(this, "贵阳燃气公司", "贵州燃气公司", tvCompany);
+                }
                 break;
             case R.id.tv_ok:
-                Intent intent = new Intent();
-                intent.putExtra("fee_type", "1");
-                startActivityForIntent(PayFeeActivity.class, intent);
+                validator.validate();
                 break;
         }
+    }
+
+    private void createCompanyDialog(Context context, final String company1, final String company2, final TextView tv) {
+        new ActionSheetDialog(context)
+                .builder()
+                .setCancelable(true)
+                .setCanceledOnTouchOutside(true)
+                .addSheetItem(company1, ActionSheetDialog.SheetItemColor.BLACK,
+                        new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                tv.setText(company1);
+                                companyName = company2;
+                            }
+                        })
+                .addSheetItem(company2, ActionSheetDialog.SheetItemColor.BLACK,
+                        new ActionSheetDialog.OnSheetItemClickListener() {
+                            @Override
+                            public void onClick(int which) {
+                                tv.setText(company2);
+                                companyName = company2;
+                            }
+                        }).show();
     }
 
     public Dialog createSelectAreaDialog(final Context context, final TextView tv_area, final List<VillageListBean
