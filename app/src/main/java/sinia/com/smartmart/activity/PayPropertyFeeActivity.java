@@ -61,6 +61,7 @@ public class PayPropertyFeeActivity extends BaseActivity {
 
     private AsyncHttpClient client = new AsyncHttpClient();
     private Double money;
+    private String rateid, isFromProperty;//2.从缴费提醒跳转
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +69,45 @@ public class PayPropertyFeeActivity extends BaseActivity {
         setContentView(R.layout.activity_pay_property_fee, "物业费缴纳");
         getDoingView().setVisibility(View.GONE);
         ButterKnife.bind(this);
-        initData();
+        isFromProperty = getIntent().getStringExtra("isFromProperty");
+        if ("2".equals(isFromProperty)) {
+            rateid = getIntent().getStringExtra("rateid");
+            getFeeDetail();
+        } else {
+            initData();
+        }
+    }
+
+    private void getFeeDetail() {
+        showLoad("加载中...");
+        RequestParams params = new RequestParams();
+        params.put("memberid", MyApplication.getInstance().getUserInfo().getMemberid());
+        params.put("rateid", rateid);
+        Log.i("tag", Constants.BASE_URL + "readratemessage" + params);
+        client.post(Constants.BASE_URL + "readratemessage", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        Gson gson = new Gson();
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            PropertyFeeBean feeBean = gson.fromJson(resultStr, PropertyFeeBean.class);
+                            setData(feeBean);
+                        } else {
+                            showToast((String) json.getRescnt());
+                        }
+                    }
+                });
     }
 
     private void initData() {

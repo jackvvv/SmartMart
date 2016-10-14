@@ -98,7 +98,11 @@ public class FeeMessageActivity extends BaseActivity {
                 intent.putExtra("fee_type", feeList.get(i).getType());
                 intent.putExtra("rateid", feeList.get(i).getRateid());
                 intent.putExtra("isFromProperty", "2");
-                startActivityForIntent(PayFeeActivity.class, intent);
+                if (feeList.get(i).getType().equals("4")) {
+                    startActivityForIntent(PayPropertyFeeActivity.class, intent);
+                } else {
+                    startActivityForIntent(PayFeeActivity.class, intent);
+                }
             }
         });
     }
