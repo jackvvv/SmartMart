@@ -1,5 +1,6 @@
 package sinia.com.smartmart.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -60,7 +61,13 @@ public class GeneralSettingsActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_modifypwd:
-                startActivityForNoIntent(ChangePasswordActivity.class);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    startActivityForNoIntent(ChangePasswordActivity.class);
+                } else {
+                    Intent intent = new Intent(this, LoginRegisterActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.ll_contact:
                 startActivityForNoIntent(ContactUsActivity.class);
@@ -75,10 +82,22 @@ public class GeneralSettingsActivity extends BaseActivity {
                 clearCache();
                 break;
             case R.id.ll_feedback:
-                startActivityForNoIntent(ReportBackActivity.class);
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    startActivityForNoIntent(ReportBackActivity.class);
+                } else {
+                    Intent intent = new Intent(this, LoginRegisterActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
             case R.id.tv_ok:
-                logout();
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+                    logout();
+                } else {
+                    Intent intent = new Intent(this, LoginRegisterActivity.class);
+                    startActivity(intent);
+                    overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
         }
     }

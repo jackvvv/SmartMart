@@ -1,5 +1,6 @@
 package sinia.com.smartmart.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -186,7 +188,7 @@ public class RegisterFragment extends BaseFragment {
                                 }
                             }).start();
                         } else {
-                            showToast((String)bean.getRescnt());
+                            showToast((String) bean.getRescnt());
                         }
                     }
                 }
@@ -215,10 +217,10 @@ public class RegisterFragment extends BaseFragment {
                             ValidateCodeBean bean = gson.fromJson(s, ValidateCodeBean.class);
                             int state = bean.getRescode();
                             if (0 == state) {
-                                showToast((String)bean.getRescnt());
+                                showToast((String) bean.getRescnt());
                                 code = bean.getCode();
                             } else {
-                                showToast((String)bean.getRescnt());
+                                showToast((String) bean.getRescnt());
                             }
                         }
                     }

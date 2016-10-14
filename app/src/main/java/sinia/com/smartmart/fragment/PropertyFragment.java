@@ -111,7 +111,7 @@ public class PropertyFragment extends BaseFragment {
         localImages.add(AppInfoUtil.getResId("xiaoguo", R.drawable.class));
         int h = AppInfoUtil.getScreenWidth(getActivity()) * 200 / 750;
         convenientBanner.getLayoutParams().height = h;
-        String transforemerName = "FlipHorizontalTransformer";
+        String transforemerName = "StackTransformer";
         ABaseTransformer transforemer = null;
         try {
             Class cls = Class.forName("com.ToxicBakery.viewpager.transforms." + transforemerName);

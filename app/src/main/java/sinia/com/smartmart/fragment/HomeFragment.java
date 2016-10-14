@@ -90,7 +90,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         localImages.add(AppInfoUtil.getResId("img_dets", R.drawable.class));
         int h = AppInfoUtil.getScreenWidth(getActivity()) * 340 / 750;
         convenientBanner.getLayoutParams().height = h;
-        String transforemerName = "FlipHorizontalTransformer";
+        String transforemerName = "StackTransformer";
         ABaseTransformer transforemer = null;
         try {
             Class cls = Class.forName("com.ToxicBakery.viewpager.transforms." + transforemerName);
