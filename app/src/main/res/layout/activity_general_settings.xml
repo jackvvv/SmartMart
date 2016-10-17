@@ -2,18 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f4f4f4"
     android:orientation="vertical">
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/divider_color" />
 
     <LinearLayout
         android:id="@+id/ll_modifypwd"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/layout_selector"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -41,21 +37,11 @@
             android:src="@drawable/ic_detail_jian" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/divider_color" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/divider_color" />
-
     <LinearLayout
         android:id="@+id/ll_contact"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/layout_selector"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -252,11 +238,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/divider_color" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
         android:layout_weight="1" />
 
     <TextView
@@ -264,9 +245,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"
         android:layout_marginLeft="35dp"
         android:layout_marginRight="35dp"
-        android:layout_marginBottom="20dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/btn_ok"
         android:gravity="center"

@@ -68,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right"
-                android:text="周杰伦"
+                android:text=""
                 android:textColor="#242424"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -105,7 +105,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right"
-                android:text="月桂圆 14栋 2306室"
+                android:text=""
                 android:textColor="#242424"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -151,7 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right"
-                android:text="68.5元"
+                android:text=""
                 android:textColor="@color/themeColor"
                 android:textSize="25sp" />
         </LinearLayout>
@@ -211,7 +211,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|right"
-            android:text="贵阳水利公司"
+            android:text=""
             android:textColor="#242424"
             android:textSize="15sp" />
     </LinearLayout>
@@ -249,7 +249,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|right"
-            android:text="024425486"
+            android:text=""
             android:textColor="#242424"
             android:textSize="15sp" />
     </LinearLayout>

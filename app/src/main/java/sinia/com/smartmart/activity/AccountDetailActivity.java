@@ -26,6 +26,7 @@ import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.bean.BillDetailBean;
 import sinia.com.smartmart.bean.FeeMessageListBean;
 import sinia.com.smartmart.bean.JsonBean;
+import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.utils.Constants;
 import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.MyApplication;
@@ -71,7 +72,7 @@ public class AccountDetailActivity extends BaseActivity {
     LinearLayout llNotPay;
 
     private MaterialDialog materialDialog;
-    private String feeType, status, billid;
+    private String feeType, status, billid,orderno;
     private AsyncHttpClient client = new AsyncHttpClient();
 
     @Override
@@ -168,7 +169,7 @@ public class AccountDetailActivity extends BaseActivity {
         tvCode.setText(bean.getPaymentno());
         tvOrderno.setText(bean.getOrderno());
         tvTime.setText(bean.getCreatetime());
-
+        orderno = bean.getOrderno();
     }
 
     @OnClick({R.id.tv_call, R.id.tv_pay})
@@ -178,14 +179,50 @@ public class AccountDetailActivity extends BaseActivity {
                 callService();
                 break;
             case R.id.tv_pay:
+                //直接跳转支付宝或者微信支付，支付成功，paysuccess
+                paySuccess(orderno);
                 break;
         }
+    }
+
+    private void paySuccess(final String orderno) {
+        showLoad("加载中...");
+        RequestParams params = new RequestParams();
+        params.put("memberid", MyApplication.getInstance().getUserInfo().getMemberid());
+        params.put("orderno", orderno);
+        Log.i("tag", Constants.BASE_URL + "paysuccess" + params);
+        client.post(Constants.BASE_URL + "paysuccess", params,
+                new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onFailure(Throwable arg0, String arg1) {
+                        super.onFailure(arg0, arg1);
+                    }
+
+                    @Override
+                    public void onSuccess(int arg0, String s) {
+                        dismiss();
+                        String resultStr = Utils
+                                .getStrVal(new String(s));
+                        JsonBean json = JsonUtil.getJsonBean(resultStr);
+                        Gson gson = new Gson();
+                        int rescode = json.getRescode();
+                        if (0 == rescode) {
+                            Intent intent = new Intent();
+                            intent.putExtra("orderno", orderno);
+                            startActivityForIntent(PayResultActivity.class, intent);
+                            ActivityManager.getInstance().finishCurrentActivity();
+                        } else {
+                            showToast((String) json.getRescnt());
+                        }
+                    }
+                });
     }
 
     private void callService() {
         materialDialog = new MaterialDialog(this);
         materialDialog.setTitle("联系物业");
-        materialDialog.setMessage("025-8888666");
+        materialDialog.setMessage("400-20392888");
         materialDialog.setPositiveButton("呼叫", new View.OnClickListener() {
             @Override
             public void onClick(View v) {

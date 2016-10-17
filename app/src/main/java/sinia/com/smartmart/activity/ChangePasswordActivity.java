@@ -132,32 +132,58 @@ public class ChangePasswordActivity extends BaseActivity {
                 if (!StringUtils.isMobileNumber(etTel.getEditableText().toString().trim())) {
                     showToast("请输入正确的手机号码");
                 } else {
-                    tvGetCode.setClickable(false);
-                    tvGetCode.setText("重新发送(" + i + ")");
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            for (; i > 0; i--) {
-                                handler.sendEmptyMessage(-9);
-                                if (i <= 0) {
-                                    break;
-                                }
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            handler.sendEmptyMessage(-8);
-                        }
-                    }).start();
-                    getCode(etTel.getText().toString());
+                    isPhoneIsRegister();
                 }
                 break;
             case R.id.tv_ok:
                 validator.validate();
                 break;
         }
+    }
+
+    private void isPhoneIsRegister() {
+        showLoad("加载中...");
+        RequestParams params = new RequestParams();
+        params.put("mobile", etTel.getEditableText().toString().trim());
+        Log.i("tag", Constants.BASE_URL + "checkmobile&" + params);
+        client.post(Constants.BASE_URL + "checkmobile", params, new AsyncHttpResponseHandler() {
+            @Override
+            public void onSuccess(int arg0, String s) {
+                super.onSuccess(i, s);
+                dismiss();
+                String resultStr = Utils.getStrVal(new String(s));
+                if (null != resultStr) {
+                    JsonBean bean = JsonUtil.getJsonBean(resultStr);
+                    if (null != bean) {
+                        int rescode = bean.getRescode();
+                        if (rescode != 0) {
+                            tvGetCode.setClickable(false);
+                            tvGetCode.setText("重新发送(" + i + ")");
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    for (; i > 0; i--) {
+                                        handler.sendEmptyMessage(-9);
+                                        if (i <= 0) {
+                                            break;
+                                        }
+                                        try {
+                                            Thread.sleep(1000);
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                    handler.sendEmptyMessage(-8);
+                                }
+                            }).start();
+                            getCode(etTel.getText().toString());
+                        } else {
+                            showToast("该手机号没有注册");
+                        }
+                    }
+                }
+            }
+        });
     }
 
     private void getCode(String string) {
@@ -181,7 +207,7 @@ public class ChangePasswordActivity extends BaseActivity {
                             ValidateCodeBean bean = gson.fromJson(s, ValidateCodeBean.class);
                             int state = bean.getRescode();
                             if (0 == state) {
-                                showToast((String) bean.getRescnt());
+                                showToast(bean.getCode());
                                 code = bean.getCode();
                             } else {
                                 showToast((String) bean.getRescnt());

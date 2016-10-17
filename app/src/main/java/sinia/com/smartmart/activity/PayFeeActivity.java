@@ -158,6 +158,8 @@ public class PayFeeActivity extends BaseActivity {
         if (0 == detailBean.getRatecost()) {
             llNofee.setVisibility(View.VISIBLE);
             llFee.setVisibility(View.GONE);
+            tvOk.setBackgroundResource(R.drawable.btn_ok_gray);
+            tvOk.setClickable(false);
         } else {
             llFee.setVisibility(View.VISIBLE);
             llNofee.setVisibility(View.GONE);

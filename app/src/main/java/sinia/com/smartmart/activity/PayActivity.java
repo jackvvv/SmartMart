@@ -119,6 +119,8 @@ public class PayActivity extends BaseActivity {
             method = "addbillbymessage";
         } else {
             method = "addbillbymember";
+            params.put("ratecost", fee);
+            params.put("ratetype", fee_type);
         }
         params.put("paytype", pay_type);
         Log.i("tag", Constants.BASE_URL + method + params);

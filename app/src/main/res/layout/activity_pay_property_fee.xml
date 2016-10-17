@@ -180,7 +180,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|right"
-                android:text="益华地产股份公司"
                 android:textColor="#242424"
                 android:textSize="15sp" />
         </LinearLayout>
@@ -236,7 +235,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical|right"
-                    android:text="68.5元"
                     android:textColor="@color/themeColor"
                     android:textSize="25sp" />
 
@@ -276,7 +274,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="2016-04-20"
+                    android:text=""
                     android:textColor="#555"
                     android:textSize="15sp" />
 
@@ -284,7 +282,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="至"
+                    android:text=""
                     android:textColor="#555"
                     android:textSize="15sp"
                     android:visibility="gone" />
@@ -294,7 +292,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="2017-04-19"
+                    android:text=""
                     android:textColor="#555"
                     android:textSize="15sp"
                     android:visibility="gone" />

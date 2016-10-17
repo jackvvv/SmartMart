@@ -152,13 +152,13 @@ public class AddWaterAccountActivity extends BaseActivity {
                 break;
             case R.id.tv_company:
                 if ("1".equals(fee_type)) {
-                    createCompanyDialog(this, "贵阳水利公司", "贵州水利公司", tvCompany);
+                    createCompanyDialog(this, "贵阳水力公司", "贵阳水力公司", tvCompany);
                 }
                 if ("2".equals(fee_type)) {
-                    createCompanyDialog(this, "贵阳电力公司", "贵州电力公司", tvCompany);
+                    createCompanyDialog(this, "贵阳电力公司", "贵阳电力公司", tvCompany);
                 }
                 if ("3".equals(fee_type)) {
-                    createCompanyDialog(this, "贵阳燃气公司", "贵州燃气公司", tvCompany);
+                    createCompanyDialog(this, "贵阳燃气公司", "贵阳燃气公司", tvCompany);
                 }
                 break;
             case R.id.tv_ok:
@@ -172,14 +172,6 @@ public class AddWaterAccountActivity extends BaseActivity {
                 .builder()
                 .setCancelable(true)
                 .setCanceledOnTouchOutside(true)
-                .addSheetItem(company1, ActionSheetDialog.SheetItemColor.BLACK,
-                        new ActionSheetDialog.OnSheetItemClickListener() {
-                            @Override
-                            public void onClick(int which) {
-                                tv.setText(company1);
-                                companyName = company2;
-                            }
-                        })
                 .addSheetItem(company2, ActionSheetDialog.SheetItemColor.BLACK,
                         new ActionSheetDialog.OnSheetItemClickListener() {
                             @Override

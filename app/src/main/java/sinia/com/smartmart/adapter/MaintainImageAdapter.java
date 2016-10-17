@@ -56,7 +56,7 @@ public class MaintainImageAdapter extends BaseAdapter {
             view = LayoutInflater.from(context).inflate(R.layout.item_maintain_img, null);
         }
         ImageView img = ViewHolder.get(view, R.id.img);
-        Glide.with(context).load(list.get(i).getImageurl()).crossFade().placeholder(R.drawable.ic_launcher).into(img);
+        Glide.with(context).load(list.get(i).getImageurl()).crossFade().placeholder(R.drawable.ic_loading_zheng).into(img);
         final String url = list.get(i).getImageurl();
         img.setOnClickListener(new View.OnClickListener() {
             @Override

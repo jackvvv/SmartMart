@@ -275,7 +275,7 @@ public class MaintainDetailActivity extends BaseActivity {
     private void callService() {
         materialDialog = new MaterialDialog(this);
         materialDialog.setTitle("联系物业");
-        materialDialog.setMessage("025-8888666");
+        materialDialog.setMessage("400-20392888");
         materialDialog.setPositiveButton("呼叫", new View.OnClickListener() {
             @Override
             public void onClick(View v) {

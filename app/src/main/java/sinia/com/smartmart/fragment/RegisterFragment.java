@@ -123,25 +123,6 @@ public class RegisterFragment extends BaseFragment {
                 if (!StringUtils.isMobileNumber(etTel.getEditableText().toString().trim())) {
                     showToast("请输入正确的手机号码");
                 } else {
-                    tvGetCode.setClickable(false);
-                    tvGetCode.setText("重新发送(" + i + ")");
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            for (; i > 0; i--) {
-                                handler.sendEmptyMessage(-9);
-                                if (i <= 0) {
-                                    break;
-                                }
-                                try {
-                                    Thread.sleep(1000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                            handler.sendEmptyMessage(-8);
-                        }
-                    }).start();
                     isPhoneIsRegister();
                 }
                 break;
@@ -217,7 +198,7 @@ public class RegisterFragment extends BaseFragment {
                             ValidateCodeBean bean = gson.fromJson(s, ValidateCodeBean.class);
                             int state = bean.getRescode();
                             if (0 == state) {
-                                showToast((String) bean.getRescnt());
+                                showToast(bean.getCode());
                                 code = bean.getCode();
                             } else {
                                 showToast((String) bean.getRescnt());

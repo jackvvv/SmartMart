@@ -67,8 +67,13 @@ public class MyAccountActivity extends BaseActivity {
         setContentView(R.layout.activity_my_account, "我的账单");
         ButterKnife.bind(this);
         getDoingView().setText("筛选");
-        getBillList("-1");
         initData();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getBillList("-1");
     }
 
     private void getBillList(String type) {
