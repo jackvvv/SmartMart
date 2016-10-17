@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="10dp"
                         android:drawableTop="@drawable/ic_account"
-                        android:text="我的账单"
+                        android:text="缴费订单"
                         android:textColor="#7f8ea9"
                         android:textSize="15sp" />
                 </LinearLayout>

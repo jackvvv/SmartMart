@@ -64,7 +64,7 @@ public class MyAccountActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_account, "我的账单");
+        setContentView(R.layout.activity_my_account, "缴费订单");
         ButterKnife.bind(this);
         getDoingView().setText("筛选");
         initData();

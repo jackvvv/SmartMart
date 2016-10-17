@@ -91,15 +91,15 @@ public class AddWaterAccountActivity extends BaseActivity {
     private void initData() {
         if ("1".equals(fee_type)) {
             img.setImageResource(R.drawable.ic_water_big);
-            etCard.setHint("输入水费卡号7-10位编号");
+//            etCard.setHint("输入水费卡号7-10位编号");
         }
         if ("2".equals(fee_type)) {
             img.setImageResource(R.drawable.ic_elec_big);
-            etCard.setHint("输入电费卡号10位编号");
+//            etCard.setHint("输入电费卡号10位编号");
         }
         if ("3".equals(fee_type)) {
             img.setImageResource(R.drawable.ic_gas_big);
-            etCard.setHint("输入煤气费卡号10位编号");
+//            etCard.setHint("输入煤气费卡号10位编号");
         }
         validator.setValidationListener(new ValidationUtils.ValidationListener() {
             @Override

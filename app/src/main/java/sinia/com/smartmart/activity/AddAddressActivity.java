@@ -15,6 +15,8 @@ import com.mobsandgeeks.saripaar.annotation.Pattern;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.leefeng.citypicker.CityPicker;
+import me.leefeng.citypicker.CityPickerListener;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.utils.DialogUtils;
@@ -72,7 +74,14 @@ public class AddAddressActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.ll_address:
-                DialogUtils.createAddressDialog(AddAddressActivity.this, tvAddress);
+//                DialogUtils.createAddressDialog(AddAddressActivity.this, tvAddress);
+                CityPicker cityPicker = new CityPicker(AddAddressActivity.this, new CityPickerListener() {
+                    @Override
+                    public void getCity(String name) {
+                        showToast(name);
+                    }
+                });
+                cityPicker.show();
                 break;
             case R.id.tv_ok:
                 validator.validate();

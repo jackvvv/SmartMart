@@ -87,7 +87,7 @@
                 android:id="@+id/et_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="输入水费卡号7-10位编号"
+                android:hint="输入7-10位卡号"
                 android:inputType="number"
                 android:maxLength="10"
                 android:singleLine="true"
