@@ -10,6 +10,7 @@
     <color name="textgray2">#E6E7E6</color>
     <color name="textwhite">#FFFFFF</color>
     <color name="textblackColor">#3a3a3a</color>
+    <color name="textblackColor2">#6e6e6e</color>
     <color name="triangle">#aa72d572</color>
     <color name="view_bg">#00000000</color>
     <color name="circle">#aa738ffe</color>
@@ -20,6 +21,7 @@
     <color name="divider_color">#e5e5e5</color>
     <color name="hint_color">#cdcdcd</color>
     <color name="bg_splash">#F4F8FE</color>
+    <color name="btn_cant">#9E9E9E</color>
 
     <color name="pickerview_timebtn_nor">#057dff</color>
     <color name="pickerview_timebtn_pre">#c2daf5</color>

@@ -84,6 +84,10 @@
         <activity android:name=".activity.MyAccountActivity" />
         <activity android:name=".activity.AccountDetailActivity" />
         <activity android:name=".activity.PreViewImageActivity" />
+        <activity android:name=".activity.FoodStreetActivity" />
+        <activity android:name=".activity.FoodShopDetailActivity" />
+        <activity android:name=".activity.FoodAllCommentActivity" />
+        <activity android:name=".activity.FoodDetailActivity"/>
         <activity
             android:name=".activity.PersonalInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

@@ -2,73 +2,139 @@ package sinia.com.smartmart.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.webkit.WebView;
 import android.widget.ScrollView;
+import android.widget.Scroller;
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 /**
  * 只为顶部ScrollView使用
  * 如果使用了其它的可拖拽的控件，请仿照该类实现isAtBottom方法
  */
 public class CustScrollView extends ScrollView {
-    private static final int TOUCH_IDLE = 0;
-    private static final int TOUCH_INNER_CONSIME = 1; // touch事件由ScrollView内部消费
-    private static final int TOUCH_DRAG_LAYOUT = 2; // touch事件由上层的DragLayout去消费
+    private GestureDetector mGestureDetector;
+    private int Scroll_height = 0;
+    private int view_height = 0;
+    protected Field scrollView_mScroller;
+    private static final String TAG = "CustomScrollView";
 
-    boolean isAtBottom; // 按下的时候是否在底部
-    private int mTouchSlop = 4; // 判定为滑动的阈值，单位是像素
-    private int scrollMode;
-    private float downY;
-
-    public CustScrollView(Context arg0) {
-        this(arg0, null);
-    }
-
-    public CustScrollView(Context arg0, AttributeSet arg1) {
-        this(arg0, arg1, 0);
-    }
-
-    public CustScrollView(Context arg0, AttributeSet arg1, int arg2) {
-        super(arg0, arg1, arg2);
-        ViewConfiguration configuration = ViewConfiguration.get(getContext());
-        mTouchSlop = configuration.getScaledTouchSlop();
+    public CustScrollView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        mGestureDetector = new GestureDetector(context, new YScrollDetector());
+        setFadingEdgeLength(0);
     }
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent ev) {
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            downY = ev.getRawY();
-            isAtBottom = isAtBottom();
-            scrollMode = TOUCH_IDLE;
-            getParent().requestDisallowInterceptTouchEvent(true);
-        } else if (ev.getAction() == MotionEvent.ACTION_MOVE) {
-            if (scrollMode == TOUCH_IDLE) {
-                float yOffset = downY - ev.getRawY();
-                float yDistance = Math.abs(yOffset);
-                if (yDistance > mTouchSlop) {
-                    if (yOffset > 0 && isAtBottom) {
-                        scrollMode = TOUCH_DRAG_LAYOUT;
-                        getParent().requestDisallowInterceptTouchEvent(false);
-                        return true;
-                    } else {
-                        scrollMode = TOUCH_INNER_CONSIME;
-                    }
-                }
-            }
+            stopAnim();
         }
-        return super.dispatchTouchEvent(ev);
+        boolean ret = super.onInterceptTouchEvent(ev);
+        boolean ret2 = mGestureDetector.onTouchEvent(ev);
+        return ret && ret2;
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
-        if (scrollMode == TOUCH_DRAG_LAYOUT) {
+    // Return false if we're scrolling in the x direction
+    class YScrollDetector extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+            if (Math.abs(distanceY) > Math.abs(distanceX)) {
+                return true;
+            }
             return false;
         }
-        return super.onTouchEvent(ev);
     }
 
-    private boolean isAtBottom() {
-        return getScrollY() + getMeasuredHeight() >= computeVerticalScrollRange() - 2;
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        boolean stop = false;
+        if (Scroll_height - view_height == t) {
+            stop = true;
+        }
+
+        if (t == 0 || stop == true) {
+            try {
+                if (scrollView_mScroller == null) {
+                    scrollView_mScroller = getDeclaredField(this, "mScroller");
+                }
+
+                Object ob = scrollView_mScroller.get(this);
+                if (ob == null || !(ob instanceof Scroller)) {
+                    return;
+                }
+                Scroller sc = (Scroller) ob;
+                sc.abortAnimation();
+
+            } catch (Exception e) {
+                Log.e(TAG, e.getMessage());
+            }
+        }
+        super.onScrollChanged(l, t, oldl, oldt);
+    }
+
+    private void stopAnim() {
+        try {
+            if (scrollView_mScroller == null) {
+                scrollView_mScroller = getDeclaredField(this, "mScroller");
+            }
+
+            Object ob = scrollView_mScroller.get(this);
+            if (ob == null) {
+                return;
+            }
+            Method method = ob.getClass().getMethod("abortAnimation");
+            method.invoke(ob);
+        } catch (Exception ex) {
+        }
+    }
+
+    @Override
+    protected int computeVerticalScrollRange() {
+        Scroll_height = super.computeVerticalScrollRange();
+        return Scroll_height;
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        if (changed == true) {
+            view_height = b - t;
+        }
+    }
+
+    @Override
+    public void requestChildFocus(View child, View focused) {
+        if (focused != null && focused instanceof WebView) {
+            return;
+        }
+        super.requestChildFocus(child, focused);
+    }
+
+    /**
+     * 获取一个对象隐藏的属性，并设置属性为public属性允许直接访问
+     *
+     * @return {@link Field} 如果无法读取，返回null；返回的Field需要使用者自己缓存，本方法不做缓存�?
+     */
+    public static Field getDeclaredField(Object object, String field_name) {
+        Class<?> cla = object.getClass();
+        Field field = null;
+        for (; cla != Object.class; cla = cla.getSuperclass()) {
+            try {
+                field = cla.getDeclaredField(field_name);
+                field.setAccessible(true);
+                return field;
+            } catch (Exception e) {
+
+            }
+        }
+        return null;
     }
 
 }

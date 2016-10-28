@@ -8,7 +8,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="45dp"
+        android:layout_height="50dp"
         android:background="@color/themeColor"
         android:orientation="horizontal"
         android:paddingLeft="3dp"

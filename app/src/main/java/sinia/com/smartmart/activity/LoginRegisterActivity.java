@@ -80,6 +80,7 @@ public class LoginRegisterActivity extends BaseActivity {
             viewPager.setCurrentItem(1);
         }
 
+
         Class<?> tablayout = tabTitle.getClass();
         Field tabStrip = null;
         try {

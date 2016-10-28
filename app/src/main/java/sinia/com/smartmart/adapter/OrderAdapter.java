@@ -7,11 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import sinia.com.smartmart.R;
-import sinia.com.smartmart.utils.Util;
 import sinia.com.smartmart.utils.Utility;
 import sinia.com.smartmart.utils.ViewHolder;
 
@@ -48,7 +46,7 @@ public class OrderAdapter extends BaseAdapter {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.item_order, null);
         }
-        ImageView img_shop = ViewHolder.get(view, R.id.img_shop);
+        ImageView img_shop = ViewHolder.get(view, R.id.img_food);
         TextView tv_status = ViewHolder.get(view, R.id.tv_status);
         TextView tv_time = ViewHolder.get(view, R.id.tv_time);
         TextView tv_name = ViewHolder.get(view, R.id.tv_name);

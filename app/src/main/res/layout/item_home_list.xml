@@ -7,17 +7,17 @@
     android:padding="8dp">
 
     <ImageView
-        android:id="@+id/img_shop"
+        android:id="@+id/img_food"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ic_launcher" />
+        android:src="@drawable/ic_loading_zheng" />
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/img_shop"
+        android:layout_toRightOf="@+id/img_food"
         android:text="苏果超市"
         android:textColor="#242424"
         android:textSize="17sp" />
@@ -35,7 +35,7 @@
         android:layout_height="22dp"
         android:layout_below="@+id/tv_name"
         android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/img_shop"
+        android:layout_toRightOf="@+id/img_food"
         android:orientation="horizontal">
 
         <RatingBar
@@ -64,7 +64,7 @@
         android:layout_height="22dp"
         android:layout_below="@+id/ll_sall"
         android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/img_shop"
+        android:layout_toRightOf="@+id/img_food"
         android:orientation="horizontal">
 
         <TextView
@@ -101,7 +101,7 @@
         android:layout_height="30dp"
         android:layout_below="@+id/ll_time"
         android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/img_shop"
+        android:layout_toRightOf="@+id/img_food"
         android:background="@drawable/black_round_edit"
         android:orientation="horizontal">
 
@@ -139,9 +139,9 @@
         android:id="@+id/v"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_alignBottom="@+id/img_shop"
+        android:layout_alignBottom="@+id/img_food"
         android:layout_marginLeft="8dp"
-        android:layout_toRightOf="@+id/img_shop"
+        android:layout_toRightOf="@+id/img_food"
         android:background="@color/divider_color" />
 
 </RelativeLayout>

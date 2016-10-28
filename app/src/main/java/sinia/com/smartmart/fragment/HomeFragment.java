@@ -22,6 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.FoodStreetActivity;
 import sinia.com.smartmart.activity.SearchActivity;
 import sinia.com.smartmart.adapter.HomeAdapter;
 import sinia.com.smartmart.base.BaseFragment;
@@ -178,6 +179,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 showToast("11");
                 break;
             case R.id.imgFood:
+                intent = new Intent(getActivity(), FoodStreetActivity.class);
+                startActivity(intent);
                 break;
             case R.id.imgFarm:
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "生活服务正在完善中...");

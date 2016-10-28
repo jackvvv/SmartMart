@@ -11,7 +11,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/img_shop"
+            android:id="@+id/img_food"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:src="@drawable/ic_loading_zheng" />
@@ -21,7 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@+id/img_shop"
+            android:layout_toRightOf="@+id/img_food"
             android:text="苏果超市"
             android:textColor="#242424"
             android:textSize="16sp" />
@@ -30,9 +30,9 @@
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/img_shop"
+            android:layout_alignBottom="@+id/img_food"
             android:layout_marginLeft="8dp"
-            android:layout_toRightOf="@+id/img_shop"
+            android:layout_toRightOf="@+id/img_food"
             android:text="2016-11-12 13:14:15"
             android:textColor="#b0b0b0"
             android:textSize="14sp" />
