@@ -2,11 +2,14 @@ package sinia.com.smartmart.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -22,6 +25,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.FoodDetailActivity;
+import sinia.com.smartmart.activity.FoodShopDetailActivity;
 import sinia.com.smartmart.activity.FoodStreetActivity;
 import sinia.com.smartmart.activity.SearchActivity;
 import sinia.com.smartmart.adapter.HomeAdapter;
@@ -52,6 +57,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     ImageView imgSmart;
     @Bind(R.id.invis)
     LinearLayout invis;
+    @Bind(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     private TextView tvAddress;
     private LinearLayout ll_all, ll_smart;
@@ -65,7 +72,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable
-    Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         rootView = LayoutInflater.from(getActivity()).inflate(R.layout.fragment_home, null);
         ButterKnife.bind(this, rootView);
         initView();
@@ -87,6 +94,24 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
     private void initData() {
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent2,
+                R.color.themeColor,
+                R.color.pickerview_timebtn_nor,
+                R.color.triangle);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+//                    getCartListData();
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            swipeRefreshLayout.setRefreshing(false);
+                        }
+                    }, 4000);
+                }
+            }
+        });
         localImages.add(AppInfoUtil.getResId("img_det", R.drawable.class));
         localImages.add(AppInfoUtil.getResId("img_dets", R.drawable.class));
         int h = AppInfoUtil.getScreenWidth(getActivity()) * 340 / 750;
@@ -130,6 +155,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         listView.addHeaderView(headerView);
         listView.addHeaderView(stickyFilterView);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                startActivity(new Intent(getActivity(), FoodShopDetailActivity.class));
+            }
+        });
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
 
             @Override
@@ -143,6 +174,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 } else {
                     invis.setVisibility(View.GONE);
                 }
+
+                //解决swipeRefreshLayout与listview滑动冲突
+                boolean enable = false;
+                if (listView != null && listView.getChildCount() > 0) {
+                    // check if the first item of the list is visible
+                    boolean firstItemVisible = listView.getFirstVisiblePosition() == 0;
+                    // check if the top of the first item is visible
+                    boolean topOfFirstItemVisible = listView.getChildAt(0).getTop() == 0;
+                    // enabling or disabling the refresh layout
+                    enable = firstItemVisible && topOfFirstItemVisible;
+                }
+                swipeRefreshLayout.setEnabled(enable);
             }
         });
     }
@@ -167,29 +210,26 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.llAll:
-                showToast("1");
                 break;
             case R.id.llSmart:
-                showToast("2");
                 break;
             case R.id.ll_smart:
-                showToast("22");
                 break;
             case R.id.ll_all:
-                showToast("11");
                 break;
             case R.id.imgFood:
                 intent = new Intent(getActivity(), FoodStreetActivity.class);
                 startActivity(intent);
                 break;
             case R.id.imgFarm:
-                DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "生活服务正在完善中...");
+                intent = new Intent(getActivity(), FoodStreetActivity.class);
+                startActivity(intent);
                 break;
             case R.id.imgJancai:
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "生活服务正在完善中...");
                 break;
             case R.id.imgMore:
-                DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "生活服务正在完善中...");
+                listView.setSelection(1);
                 break;
             case R.id.imgWash:
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "洗衣服务正在完善中...");

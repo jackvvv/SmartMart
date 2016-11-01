@@ -42,7 +42,12 @@
                 android:src="@drawable/ic_serarch" />
         </RelativeLayout>
     </LinearLayout>
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/rlBottomBar"
+        android:layout_alignParentTop="true">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -133,4 +138,5 @@
                 android:background="@color/divider_color" />
         </LinearLayout>
     </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

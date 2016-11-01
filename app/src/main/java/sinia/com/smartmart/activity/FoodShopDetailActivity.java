@@ -1,10 +1,11 @@
 package sinia.com.smartmart.activity;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -28,19 +29,14 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.adapter.MainFragmentAdapter;
 import sinia.com.smartmart.adapter.MyFragmentPagerAdapter;
 import sinia.com.smartmart.base.BaseActivity;
+import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.fragment.FoodMenuFragment;
-import sinia.com.smartmart.fragment.LoginFragment;
-import sinia.com.smartmart.fragment.RegisterFragment;
 import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.utils.AppInfoUtil;
 import sinia.com.smartmart.utils.SystemBarTintManager;
-
-import static sinia.com.smartmart.R.id.tv_cancle;
-import static sinia.com.smartmart.R.id.tv_content;
-import static sinia.com.smartmart.R.id.tv_ok;
-import static sinia.com.smartmart.R.id.tv_title;
 
 /**
  * Created by 忧郁的眼神 on 2016/10/26 0026.
@@ -86,15 +82,25 @@ public class FoodShopDetailActivity extends BaseActivity {
     TextView tvUseTime;
     @Bind(R.id.rl_get_coupons)
     RelativeLayout rlGetCoupons;
-    @Bind(R.id.tab_title)
-    TabLayout tabTitle;
+    //    @Bind(R.id.tab_title)
+//    TabLayout tabTitle;
     @Bind(R.id.viewPager)
     ViewPager viewPager;
+    @Bind(R.id.tab_menu)
+    TextView tabMenu;
+    @Bind(R.id.line_menu)
+    ImageView lineMenu;
+    @Bind(R.id.tab_shop)
+    TextView tabShop;
+    @Bind(R.id.line_shop)
+    ImageView lineShop;
+    @Bind(R.id.appbar)
+    AppBarLayout appbar;
+    @Bind(R.id.coordinator)
+    CoordinatorLayout coordinator;
     private SystemBarTintManager mTintManager;
 
-    private MyFragmentPagerAdapter pagerAdapter;
-    private List<String> titleList;
-    private List<Fragment> fragmentList;
+    private ArrayList<BaseFragment> fragmentList;
     private FoodMenuFragment menuFragment;
     private MerchantDetailFragment merchantFragment;
     private Dialog dialog;
@@ -117,23 +123,46 @@ public class FoodShopDetailActivity extends BaseActivity {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
     private void initViews() {
-        titleList = new ArrayList<>();
-        titleList.add("菜单");
-        titleList.add("商家信息");
         fragmentList = new ArrayList<>();
         menuFragment = new FoodMenuFragment();
         merchantFragment = new MerchantDetailFragment();
         fragmentList.add(menuFragment);
         fragmentList.add(merchantFragment);
-        pagerAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList, titleList);
-        viewPager.setAdapter(pagerAdapter);
-        tabTitle.setTabMode(TabLayout.MODE_FIXED);
-        tabTitle.addTab(tabTitle.newTab().setText(titleList.get(0)));
-        tabTitle.addTab(tabTitle.newTab().setText(titleList.get(1)));
-        tabTitle.setupWithViewPager(viewPager);
+        MainFragmentAdapter adapter = new MainFragmentAdapter(getSupportFragmentManager(), fragmentList);
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(0);
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        lineMenu.setVisibility(View.VISIBLE);
+                        lineShop.setVisibility(View.INVISIBLE);
+                        tabMenu.setSelected(true);
+                        tabShop.setSelected(false);
+                        break;
+                    case 1:
+                        lineMenu.setVisibility(View.INVISIBLE);
+                        lineShop.setVisibility(View.VISIBLE);
+                        tabMenu.setSelected(false);
+                        tabShop.setSelected(true);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
     }
 
-    @OnClick({R.id.back, R.id.img_call, R.id.img_collect, R.id.rl_shop_detail, R.id.rl_get_coupons})
+    @OnClick({R.id.back, R.id.img_call, R.id.img_collect, R.id.rl_shop_detail, R.id.rl_get_coupons, R.id.tab_menu, R
+            .id.tab_shop})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.back:
@@ -147,6 +176,20 @@ public class FoodShopDetailActivity extends BaseActivity {
                 createShopIntroduceDialog();
                 break;
             case R.id.rl_get_coupons:
+                break;
+            case R.id.tab_menu:
+                lineMenu.setVisibility(View.VISIBLE);
+                lineShop.setVisibility(View.INVISIBLE);
+                tabMenu.setSelected(true);
+                tabShop.setSelected(false);
+                viewPager.setCurrentItem(0);
+                break;
+            case R.id.tab_shop:
+                lineMenu.setVisibility(View.INVISIBLE);
+                lineShop.setVisibility(View.VISIBLE);
+                tabMenu.setSelected(false);
+                tabShop.setSelected(true);
+                viewPager.setCurrentItem(1);
                 break;
         }
     }
@@ -184,6 +227,12 @@ public class FoodShopDetailActivity extends BaseActivity {
         return dialog;
     }
 
+    private void appBarScroll() {
+        CoordinatorLayout.Behavior behavior = ((android.support.design.widget.CoordinatorLayout
+                .LayoutParams) appbar.getLayoutParams()).getBehavior();
+        behavior.onNestedScroll(coordinator, appbar, viewPager, 0, appbar.getHeight(), 0, 0);
+
+    }
 
     private void setTranslucentStatus(boolean on) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -198,4 +247,5 @@ public class FoodShopDetailActivity extends BaseActivity {
             win.setAttributes(winParams);
         }
     }
+
 }

@@ -153,10 +153,10 @@ public class AccountDetailActivity extends BaseActivity {
     private void setData(BillDetailBean bean) {
         tvMoney.setText("-" + bean.getCost());
         if ("1".equals(bean.getBillstatus())) {
-            tvStatus.setText("未支付");
+            tvStatus.setText("等待支付");
         }
         if ("2".equals(bean.getBillstatus())) {
-            tvStatus.setText("已支付");
+            tvStatus.setText("交易成功");
         }
 
         if ("1".equals(bean.getPaytype())) {

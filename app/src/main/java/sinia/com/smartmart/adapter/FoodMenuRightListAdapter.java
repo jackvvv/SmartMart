@@ -11,6 +11,7 @@ import java.util.List;
 
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.bean.FoodModel;
+import sinia.com.smartmart.mycallback.AppBarScrollListener;
 import sinia.com.smartmart.mycallback.ModifyCountAndPriceInterface;
 
 import static sinia.com.smartmart.R.id.img_add;
@@ -30,6 +31,7 @@ public class FoodMenuRightListAdapter extends android.widget.BaseAdapter {
     private Context context;
     private List<FoodModel> list;
     private ModifyCountAndPriceInterface modifyCountAndPriceInterface;
+    private AppBarScrollListener appBarScrollListener;
 
     public FoodMenuRightListAdapter(Context context, List<FoodModel> list) {
         this.context = context;
@@ -38,6 +40,10 @@ public class FoodMenuRightListAdapter extends android.widget.BaseAdapter {
 
     public void setModifyCountAndPriceInterface(ModifyCountAndPriceInterface modifyCountAndPriceInterface) {
         this.modifyCountAndPriceInterface = modifyCountAndPriceInterface;
+    }
+
+    public void setAppBarScrollListener(AppBarScrollListener appBarScrollListener) {
+        this.appBarScrollListener = appBarScrollListener;
     }
 
     @Override
@@ -62,11 +68,17 @@ public class FoodMenuRightListAdapter extends android.widget.BaseAdapter {
         }
         TextView tv_name = (TextView) convertView.findViewById(R.id.tv_name);
         TextView tv_sall = (TextView) convertView.findViewById(R.id.tv_sall);
-        TextView tv_price = (TextView) convertView.findViewById(R.id.tv_price);
+        final TextView tv_price = (TextView) convertView.findViewById(R.id.tv_price);
         final TextView tv_num = (TextView) convertView.findViewById(R.id.tv_num);
         final ImageView img_food = (ImageView) convertView.findViewById(R.id.img_food);
         final ImageView img_jian = (ImageView) convertView.findViewById(R.id.img_jian);
         final ImageView img_add = (ImageView) convertView.findViewById(R.id.img_add);
+
+        if (list.get(position).getCount() == 0) {
+            img_add.setImageResource(R.drawable.ic_addto_cart);
+            tv_num.setVisibility(View.INVISIBLE);
+            img_jian.setVisibility(View.INVISIBLE);
+        }
 
         tv_name.setText(list.get(position).getName());
         tv_price.setText("¥" + list.get(position).getPrice());
@@ -75,16 +87,16 @@ public class FoodMenuRightListAdapter extends android.widget.BaseAdapter {
         img_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                modifyCountAndPriceInterface.doIncrease(position, img_add, img_jian,
-                        tv_num);
+                modifyCountAndPriceInterface.doIncrease(1, position, img_add, img_jian,
+                        tv_num, tv_price);
                 listener.callBackImage(img_add);
             }
         });
         img_jian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                modifyCountAndPriceInterface.doDecrease(position, img_add, img_jian,
-                        tv_num);
+                modifyCountAndPriceInterface.doDecrease(1, position, img_add, img_jian,
+                        tv_num, tv_price);
             }
         });
         return convertView;

@@ -10,7 +10,7 @@
         android:id="@+id/img_food"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ic_loading_zheng" />
+        android:src="@drawable/lauq" />
 
     <TextView
         android:id="@+id/tv_name"
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_toRightOf="@+id/img_food"
-        android:text="苏果超市"
+        android:text="xx美食店铺名称"
         android:textColor="#242424"
         android:textSize="17sp" />
 

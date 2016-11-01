@@ -25,13 +25,13 @@ public class FoodDetailActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food_detail);
-//        hideHeadView();
+        setContentView(R.layout.activity_food_detail2, "咖喱牛肉烩饭");
+        getDoingView().setVisibility(View.GONE);
         initView();
     }
 
     private void initView() {
-        //给页面设置工具栏
+        /*//给页面设置工具栏
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //显示返回按钮图标
@@ -46,6 +46,6 @@ public class FoodDetailActivity extends BaseActivity {
             public void onClick(View v) {
                 ActivityManager.getInstance().finishCurrentActivity();
             }
-        });
+        });*/
     }
 }

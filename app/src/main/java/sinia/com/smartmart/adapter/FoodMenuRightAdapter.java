@@ -64,14 +64,14 @@ public class FoodMenuRightAdapter extends BaseQuickAdapter<FoodModel> {
         img_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                modifyCountAndPriceInterface.doIncrease(holder.getLayoutPosition(), img_add, img_jian, tv_num);
+                modifyCountAndPriceInterface.doIncrease(1, holder.getLayoutPosition(), img_add, img_jian, tv_num, null);
                 listener.callBackImage(img_add);
             }
         });
         img_jian.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                modifyCountAndPriceInterface.doDecrease(holder.getLayoutPosition(), img_add, img_jian, tv_num);
+                modifyCountAndPriceInterface.doDecrease(1, holder.getLayoutPosition(), img_add, img_jian, tv_num, null);
             }
         });
     }

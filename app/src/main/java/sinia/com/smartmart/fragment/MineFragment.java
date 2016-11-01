@@ -25,6 +25,7 @@ import sinia.com.smartmart.activity.LoginRegisterActivity;
 import sinia.com.smartmart.activity.MainActivity;
 import sinia.com.smartmart.activity.MessageWarnActivity;
 import sinia.com.smartmart.activity.MyAccountActivity;
+import sinia.com.smartmart.activity.MyCollectActivity;
 import sinia.com.smartmart.activity.MyCouponsActivity;
 import sinia.com.smartmart.activity.PersonalInfoActivity;
 import sinia.com.smartmart.activity.SettingsActivity;
@@ -185,6 +186,8 @@ public class MineFragment extends BaseFragment {
                 }
                 break;
             case R.id.ll_collect:
+                intent = new Intent(getActivity(), MyCollectActivity.class);
+                startActivity(intent);
                 break;
             case R.id.ll_coupon:
                 intent = new Intent(getActivity(), MyCouponsActivity.class);

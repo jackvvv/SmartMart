@@ -1,23 +1,37 @@
 package sinia.com.smartmart.fragment;
 
+import android.app.Activity;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.animation.SlideInLeftAnimation;
+import com.labo.kaji.relativepopupwindow.RelativePopupWindow;
 import com.nineoldandroids.animation.Animator;
 import com.nineoldandroids.animation.ValueAnimator;
 
@@ -27,23 +41,31 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.FoodDetailActivity;
+import sinia.com.smartmart.adapter.FoodCartAdapter;
 import sinia.com.smartmart.adapter.FoodMenuLeftAdapter;
 import sinia.com.smartmart.adapter.FoodMenuRightAdapter;
 import sinia.com.smartmart.adapter.FoodMenuRightAdapter2;
 import sinia.com.smartmart.adapter.FoodMenuRightListAdapter;
 import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.bean.FoodModel;
+import sinia.com.smartmart.mycallback.AppBarScrollListener;
 import sinia.com.smartmart.mycallback.ModifyCountAndPriceInterface;
 import sinia.com.smartmart.utils.Utility;
+import sinia.com.smartmart.view.MyPopupWindow;
 import sinia.com.smartmart.view.RecycleViewDivider;
+
+import static sinia.com.smartmart.R.id.recyclerView;
+import static sinia.com.smartmart.R.id.tv_buy_price;
+import static sinia.com.smartmart.R.id.tv_select_price;
 
 /**
  * Created by 忧郁的眼神 on 2016/10/26 0026.
  */
 
-public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPriceInterface {
+public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPriceInterface, AppBarScrollListener {
 
     @Bind(R.id.lv_left)
     RecyclerView lvLeft;
@@ -57,11 +79,11 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
     RelativeLayout rlCart;
     @Bind(R.id.rl_parent)
     RelativeLayout rl_parent;
-    @Bind(R.id.tv_select_price)
+    @Bind(tv_select_price)
     TextView tvSelectPrice;
     @Bind(R.id.tv_send_price)
     TextView tvSendPrice;
-    @Bind(R.id.tv_buy_price)
+    @Bind(tv_buy_price)
     TextView tvBuyPrice;
     @Bind(R.id.tv_goods_count)
     TextView tv_goods_count;
@@ -69,18 +91,28 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
     RelativeLayout rlBottom;
     @Bind(R.id.rl_btn_pay)
     RelativeLayout rl_btn_pay;
+    @Bind(R.id.view_line)
+    View view_line;
+    @Bind(R.id.view_bg)
+    View view_bg;
     private View rootView;
     private FoodMenuLeftAdapter leftAdapter;
     //        private FoodMenuRightAdapter rightAdapter;
 //    private FoodMenuRightAdapter2 rightAdapter2;
     private FoodMenuRightListAdapter adapter;
     private List<FoodModel> foodList = new ArrayList<>();
+    private List<FoodModel> cartFoodList = new ArrayList<>();//加入购物车中的
     // 贝塞尔曲线中间过程点坐标
     private float[] mCurrentPosition = new float[2];
     // 路径测量
     private PathMeasure mPathMeasure;
     private int goodsCount = 0;//购买的总数量
     private double totalPrice = 0.00;// 购买的商品总价
+    private MyPopupWindow popWindow;
+    private Dialog dialog;
+    private FoodCartAdapter cartAdapter;
+    private TextView tv_goods_count1, tv_select_price1, tv_buy_price1, tv_send_price1;
+    private RelativeLayout rl_btn_pay1;
 
     @Nullable
     @Override
@@ -143,6 +175,7 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
             }
         });
         adapter.setModifyCountAndPriceInterface(this);
+        adapter.setAppBarScrollListener(this);
         adapter.setListener(new FoodMenuRightListAdapter.CallBackListener() {
             @Override
             public void callBackImage(ImageView image) {
@@ -239,57 +272,129 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
 
     @OnClick(R.id.rl_cart)
     public void onClick() {
+        if (goodsCount == 0) {
+            return;
+        }
+        showCart();
     }
 
     @OnClick(R.id.rl_btn_pay)
     public void rl_btn_pay() {
-    }
+        if (tvBuyPrice.getText().toString().contains("去结算")) {
+            showToast("去结算");
+        } else {
 
-    @Override
-    public void doIncrease(int position, ImageView imgAdd, ImageView imgSubstract, TextView tvNum) {
-        int count = foodList.get(position).getCount();
-        count++;
-        tvNum.setText(count + "");
-        foodList.get(position).setCount(count);
-        foodList.get(position).setChecked(true);
-        imgAdd.setImageResource(R.drawable.ic_num_add);
-        tvNum.setVisibility(View.VISIBLE);
-        imgSubstract.setVisibility(View.VISIBLE);
-//        rightAdapter2.notifyItemChanged(position);
-        adapter.notifyDataSetChanged();
-        Utility.setListViewHeightBasedOnChildren(lvRight);
-        calculateMoneyAndNum();
-    }
-
-    @Override
-    public void doDecrease(int position, ImageView imgAdd, ImageView imgSubstract, TextView tvNum) {
-        int count = foodList.get(position).getCount();
-        count--;
-        if (count <= 0) {
-            imgAdd.setImageResource(R.drawable.ic_addto_cart);
-            tvNum.setVisibility(View.INVISIBLE);
-            imgSubstract.setVisibility(View.INVISIBLE);
-            //数量减为0，从购物车删除
-            foodList.get(position).setChecked(false);
         }
-        tvNum.setText(count + "");
-        foodList.get(position).setCount(count);
-//        rightAdapter2.notifyItemChanged(position);
-        adapter.notifyDataSetChanged();
-        Utility.setListViewHeightBasedOnChildren(lvRight);
-        calculateMoneyAndNum();
     }
 
-    private void calculateMoneyAndNum() {
-        goodsCount = 0;
-        totalPrice = 0;
-        for (int i = 0; i < foodList.size(); i++) {
-            FoodModel fm = foodList.get(i);
-            if (fm.isChecked()) {
-                goodsCount += fm.getCount();
-                totalPrice += fm.getCount() * fm.getPrice();
+    @Override
+    public void doIncrease(int adapterType, int position, ImageView imgAdd, ImageView imgSubstract, TextView tvNum,
+                           TextView tvPrice) {
+        if (adapterType == 1) {
+            int count = foodList.get(position).getCount();
+            count++;
+            tvNum.setText(count + "");
+
+            foodList.get(position).setCount(count);
+            foodList.get(position).setChecked(true);
+            imgAdd.setImageResource(R.drawable.ic_num_add);
+            tvNum.setVisibility(View.VISIBLE);
+            imgSubstract.setVisibility(View.VISIBLE);
+            adapter.notifyDataSetChanged();
+            Utility.setListViewHeightBasedOnChildren(lvRight);
+        } else {
+            int countCart = cartFoodList.get(position).getCount();
+            countCart++;
+            tvPrice.setText("¥" + cartFoodList.get(position).getPrice() * countCart);
+            tvNum.setText(countCart + "");
+            String id = cartFoodList.get(position).getId();
+            for (int i = 0; i < foodList.size(); i++) {
+                FoodModel fm = foodList.get(i);
+                String id2 = fm.getId();
+                //更新菜单中选中的菜品数量
+                if (id.equals(id2)) {
+                    fm.setCount(countCart);
+                    adapter.notifyDataSetChanged();
+                    Utility.setListViewHeightBasedOnChildren(lvRight);
+                }
+            }
+            cartFoodList.get(position).setCount(countCart);
+            cartAdapter.notifyDataSetChanged();
+        }
+
+        calculateMoneyAndNum(adapterType);
+    }
+
+    @Override
+    public void doDecrease(int adapterType, int position, ImageView imgAdd, ImageView imgSubstract, TextView tvNum,
+                           TextView tvPrice) {
+        if (adapterType == 1) {
+            int count = foodList.get(position).getCount();
+            count--;
+            tvNum.setText(count + "");
+            foodList.get(position).setCount(count);
+            if (count <= 0) {
+                imgAdd.setImageResource(R.drawable.ic_addto_cart);
+                tvNum.setVisibility(View.INVISIBLE);
+                imgSubstract.setVisibility(View.INVISIBLE);
+                //数量减为0，从购物车删除
+                foodList.get(position).setChecked(false);
+            }
+            adapter.notifyDataSetChanged();
+            Utility.setListViewHeightBasedOnChildren(lvRight);
+        } else {
+            int countCart = cartFoodList.get(position).getCount();
+            countCart--;
+            tvNum.setText(countCart + "");
+            cartFoodList.get(position).setCount(countCart);
+
+            String id = cartFoodList.get(position).getId();
+            for (int i = 0; i < foodList.size(); i++) {
+                FoodModel fm = foodList.get(i);
+                String id2 = fm.getId();
+                //更新菜单中选中的菜品数量
+                if (id.equals(id2)) {
+                    fm.setCount(countCart);
+                    adapter.notifyDataSetChanged();
+                    Utility.setListViewHeightBasedOnChildren(lvRight);
+                }
+            }
+
+            if (countCart <= 0) {
+                //数量减为0，从购物车删除
+                cartFoodList.get(position).setChecked(false);
+                cartFoodList.remove(position);
+                cartAdapter.notifyItemRemoved(position);
+                if (cartFoodList.size() == 0) {
+                    setCartViewData();
+                    popWindow.dismiss();
+                }
             }
         }
+        calculateMoneyAndNum(adapterType);
+    }
+
+    private void calculateMoneyAndNum(int adapterType) {
+        goodsCount = 0;
+        totalPrice = 0;
+        if (adapterType == 2) {
+            for (int i = 0; i < cartFoodList.size(); i++) {
+                FoodModel fm = cartFoodList.get(i);
+                if (fm.isChecked()) {
+                    goodsCount += fm.getCount();
+                    totalPrice += fm.getCount() * fm.getPrice();
+                }
+            }
+        } else {
+            for (int i = 0; i < foodList.size(); i++) {
+                FoodModel fm = foodList.get(i);
+                if (fm.isChecked()) {
+                    goodsCount += fm.getCount();
+                    totalPrice += fm.getCount() * fm.getPrice();
+                }
+            }
+        }
+
         isShowGoodsCountTv();
         tv_goods_count.setText(goodsCount + "");
         tvSelectPrice.setText(totalPrice + "元");
@@ -305,6 +410,90 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
             rl_btn_pay.setBackgroundColor(getResources().getColor(R.color.btn_cant));
             rl_btn_pay.setClickable(false);
         }
+        setCartViewData();
+    }
+
+    private void showCart() {
+        LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context
+                .LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.view_bottom_food_cart,
+                null);
+        popWindow = new MyPopupWindow(getActivity(), view, rlBottom);
+        popWindow.showOnAnchor(rlBottom, RelativePopupWindow.VerticalPosition.ALIGN_BOTTOM, RelativePopupWindow
+                .HorizontalPosition.ALIGN_LEFT);
+
+        TextView tvClear = (TextView) view.findViewById(R.id.tv_clear_cart);
+        tv_goods_count1 = (TextView) view.findViewById(R.id.tv_goods_count);
+        tv_send_price1 = (TextView) view.findViewById(R.id.tv_send_price);
+        tv_select_price1 = (TextView) view.findViewById(tv_select_price);
+        tv_buy_price1 = (TextView) view.findViewById(tv_buy_price);
+        rl_btn_pay1 = (RelativeLayout) view.findViewById(R.id.rl_btn_pay);
+        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+
+        setCartViewData();
+
+        cartFoodList = new ArrayList<>();
+        for (int i = 0; i < foodList.size(); i++) {
+            FoodModel fm = foodList.get(i);
+            if (fm.isChecked()) {
+                cartFoodList.add(fm);
+            }
+        }
+        cartAdapter = new FoodCartAdapter(getActivity(), cartFoodList);
+        cartAdapter.setModifyCountAndPriceInterface(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setItemAnimator(new SlideInLeftAnimator());
+        recyclerView.addItemDecoration(new RecycleViewDivider(
+                getActivity(), LinearLayoutManager.HORIZONTAL, 1, getResources().getColor(R.color.divider_color)));
+        recyclerView.setAdapter(cartAdapter);
+
+        tvClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cartFoodList.clear();
+                cartAdapter.notifyDataSetChanged();
+                calculateMoneyAndNum(2);
+                for (int i = 0; i < foodList.size(); i++) {
+                    FoodModel fm = foodList.get(i);
+                    if (fm.isChecked()) {
+                        fm.setCount(0);
+                        fm.setChecked(false);
+                        adapter.notifyDataSetChanged();
+                    }
+                }
+                popWindow.dismiss();
+            }
+        });
+
+    }
+
+    private void setCartViewData() {
+        if (null != tv_goods_count1 && null != tv_select_price1 && null != tv_buy_price1 && null != tv_send_price1 &&
+                null != rl_btn_pay1) {
+            tv_goods_count1.setText(tv_goods_count.getText().toString());
+            tv_select_price1.setText(tvSelectPrice.getText().toString());
+            tv_buy_price1.setText(tvBuyPrice.getText().toString());
+            tv_send_price1.setText(tvSendPrice.getText().toString());
+            if (tv_buy_price1.getText().toString().contains("去结算")) {
+                //大于起送价20
+                rl_btn_pay1.setBackgroundColor(getResources().getColor(R.color.themeColor));
+                rl_btn_pay1.setClickable(true);
+            } else {
+                rl_btn_pay1.setBackgroundColor(getResources().getColor(R.color.btn_cant));
+                rl_btn_pay1.setClickable(false);
+            }
+            rl_btn_pay1.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (tv_buy_price1.getText().toString().contains("去结算")) {
+                        showToast("去结算");
+                    } else {
+
+                    }
+                }
+            });
+        }
+
     }
 
     @Override
@@ -313,4 +502,8 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
         ButterKnife.unbind(this);
     }
 
+    @Override
+    public void scroll() {
+
+    }
 }

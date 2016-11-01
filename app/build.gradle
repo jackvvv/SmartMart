@@ -64,4 +64,6 @@ dependencies {
     compile 'me.leefeng:citypicker:1.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.5.8'
     compile 'com.hedgehog.ratingbar:app:1.1.2'
+    compile 'com.labo.kaji:relativepopupwindow:0.2.1'
+    compile 'jp.wasabeef:recyclerview-animators:2.2.4'
 }

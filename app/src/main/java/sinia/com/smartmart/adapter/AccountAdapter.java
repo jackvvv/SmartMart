@@ -82,10 +82,10 @@ public class AccountAdapter extends BaseAdapter {
         }
 
         if ("1".equals(status)) {
-            tv_status.setText("未支付");
+            tv_status.setText("等待支付");
         }
         if ("2".equals(status)) {
-            tv_status.setText("已支付");
+            tv_status.setText("交易成功");
         }
         if ("3".equals(status)) {
             tv_status.setText("已删除");
