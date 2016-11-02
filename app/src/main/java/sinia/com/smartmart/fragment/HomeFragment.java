@@ -25,9 +25,11 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.BuildMaterialMarketActivity;
 import sinia.com.smartmart.activity.FoodDetailActivity;
 import sinia.com.smartmart.activity.FoodShopDetailActivity;
 import sinia.com.smartmart.activity.FoodStreetActivity;
+import sinia.com.smartmart.activity.LoginRegisterActivity;
 import sinia.com.smartmart.activity.SearchActivity;
 import sinia.com.smartmart.adapter.HomeAdapter;
 import sinia.com.smartmart.base.BaseFragment;
@@ -37,6 +39,8 @@ import sinia.com.smartmart.utils.AppInfoUtil;
 import sinia.com.smartmart.utils.DialogUtils;
 import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.view.LocalImageHolderView;
+
+import static sinia.com.smartmart.R.id.tv_address;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/3.
@@ -142,7 +146,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         headerView = View.inflate(getActivity(), R.layout.view_home_head, null);
         stickyFilterView = View.inflate(getActivity(), R.layout.view_home_sticky_filter, null);
         convenientBanner = (ConvenientBanner) headerView.findViewById(R.id.convenientBanner);
-        tvAddress = (TextView) headerView.findViewById(R.id.tv_address);
+        tvAddress = (TextView) headerView.findViewById(tv_address);
         imgFood = (ImageView) headerView.findViewById(R.id.imgFood);
         imgFarm = (ImageView) headerView.findViewById(R.id.imgFarm);
         imgJancai = (ImageView) headerView.findViewById(R.id.imgJancai);
@@ -199,6 +203,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         imgClean.setOnClickListener(this);
         ll_smart.setOnClickListener(this);
         ll_all.setOnClickListener(this);
+        tvAddress.setOnClickListener(this);
     }
 
     @OnClick({R.id.imgSearch, R.id.llAll, R.id.llSmart})
@@ -226,7 +231,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.imgJancai:
-                DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "生活服务正在完善中...");
+                intent = new Intent(getActivity(), BuildMaterialMarketActivity.class);
+                startActivity(intent);
                 break;
             case R.id.imgMore:
                 listView.setSelection(1);
@@ -236,6 +242,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 break;
             case R.id.imgClean:
                 DialogUtils.createFountionDevelopingTipsDialog(getActivity(), "清洁服务正在完善中...");
+                break;
+            case R.id.tv_address:
+                if (MyApplication.getInstance().getBoolValue("is_login")) {
+
+                } else {
+                    intent = new Intent(getActivity(), LoginRegisterActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.login_open, 0);
+                }
                 break;
         }
     }

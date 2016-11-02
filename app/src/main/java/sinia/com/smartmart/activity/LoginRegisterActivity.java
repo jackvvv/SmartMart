@@ -1,10 +1,12 @@
 package sinia.com.smartmart.activity;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,7 @@ import sinia.com.smartmart.utils.AppInfoUtil;
 /**
  * Created by 忧郁的眼神 on 2016/9/3.
  */
-public class LoginRegisterActivity extends BaseActivity {
+public class LoginRegisterActivity extends FragmentActivity {
 
     @Bind(R.id.tab_title)
     TabLayout tabTitle;
@@ -73,7 +75,6 @@ public class LoginRegisterActivity extends BaseActivity {
         tabTitle.addTab(tabTitle.newTab().setText(titleList.get(0)));
         tabTitle.addTab(tabTitle.newTab().setText(titleList.get(1)));
         tabTitle.setupWithViewPager(viewPager);
-
         if ("1".equals(from_findpwd)) {
             viewPager.setCurrentItem(0);
         } else if ("2".equals(from_findpwd)) {

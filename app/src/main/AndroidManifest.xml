@@ -46,53 +46,127 @@
             android:theme="@style/activityTheme" />
         <activity
             android:name=".activity.FindPasswordActivity"
-            android:theme="@style/activityTheme" />
+            android:theme="@style/SwipeBack.Transparent.Theme" />
         <activity
             android:name=".activity.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity android:name=".activity.PerfectInfoActivity" />
-        <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.WaterAccountListActivity" />
-        <activity android:name=".activity.AddWaterAccountActivity" />
-        <activity android:name=".activity.PayFeeActivity" />
-        <activity android:name=".activity.PayActivity" />
-        <activity android:name=".activity.PayResultActivity" />
-        <activity android:name=".activity.PayPropertyFeeActivity" />
-        <activity android:name=".activity.PropertyFeeActivity" />
-        <activity android:name=".activity.MaintainListActivity" />
-        <activity android:name=".activity.GeneralSettingsActivity" />
-        <activity android:name=".activity.ChangePasswordActivity" />
-        <activity android:name=".activity.ReportBackActivity" />
-        <activity android:name=".activity.ContactUsActivity" />
+        <activity
+            android:name=".activity.SearchActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".activity.WaterAccountListActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.AddWaterAccountActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.PayFeeActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.PayActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.PayResultActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.PayPropertyFeeActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.PropertyFeeActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.MaintainListActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.GeneralSettingsActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.ChangePasswordActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.ReportBackActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.ContactUsActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
         <activity
             android:name=".activity.AddMaintainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
-        <activity android:name=".activity.MaintainDetailActivity" />
-        <activity android:name=".activity.FeedBackActivity" />
-        <activity android:name=".activity.SettingsActivity" />
-        <activity android:name=".activity.MessageNoticeActivity" />
-        <activity android:name=".activity.AddressManagerActivity" />
-        <activity android:name=".activity.AddAddressActivity" />
-        <activity android:name=".activity.MessageWarnActivity" />
-        <activity android:name=".activity.OrderMessageActivity" />
-        <activity android:name=".activity.FeeMessageActivity" />
-        <activity android:name=".activity.OverdueCouponsActivity" />
-        <activity android:name=".activity.MyCouponsActivity" />
-        <activity android:name=".activity.MyAccountActivity" />
-        <activity android:name=".activity.AccountDetailActivity" />
-        <activity android:name=".activity.PreViewImageActivity" />
-        <activity android:name=".activity.FoodStreetActivity" />
-        <activity android:name=".activity.FoodShopDetailActivity" />
-        <activity android:name=".activity.FoodAllCommentActivity" />
-        <activity android:name=".activity.FoodDetailActivity" />
-        <activity android:name=".activity.MyCollectActivity" />
+            android:screenOrientation="portrait"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.MaintainDetailActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.FeedBackActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.MessageNoticeActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.AddressManagerActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.AddAddressActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.MessageWarnActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.OrderMessageActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.FeeMessageActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.OverdueCouponsActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.MyCouponsActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.MyAccountActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.AccountDetailActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.PreViewImageActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.FoodStreetActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.FoodShopDetailActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.FoodAllCommentActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.FoodDetailActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.MyCollectActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.ConfirmOrderFoodActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
+        <activity
+            android:name=".activity.BuildMaterialMarketActivity"
+            android:theme="@style/SwipeBack.Transparent.Theme"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.PersonalInfoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/SwipeBack.Transparent.Theme" />
         <!-- 腾讯bugly版本升级-->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"

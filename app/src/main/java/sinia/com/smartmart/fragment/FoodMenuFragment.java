@@ -43,6 +43,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.ConfirmOrderFoodActivity;
 import sinia.com.smartmart.activity.FoodDetailActivity;
 import sinia.com.smartmart.adapter.FoodCartAdapter;
 import sinia.com.smartmart.adapter.FoodMenuLeftAdapter;
@@ -281,7 +282,8 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
     @OnClick(R.id.rl_btn_pay)
     public void rl_btn_pay() {
         if (tvBuyPrice.getText().toString().contains("去结算")) {
-            showToast("去结算");
+            Intent intent = new Intent(getActivity(), ConfirmOrderFoodActivity.class);
+            startActivity(intent);
         } else {
 
         }
@@ -486,7 +488,8 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
                 @Override
                 public void onClick(View v) {
                     if (tv_buy_price1.getText().toString().contains("去结算")) {
-                        showToast("去结算");
+                        Intent intent = new Intent(getActivity(), ConfirmOrderFoodActivity.class);
+                        startActivity(intent);
                     } else {
 
                     }

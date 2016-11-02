@@ -216,4 +216,9 @@ public class MainActivity extends BaseActivity {
             ActivityManager.getInstance().finishAllActivity();
         }
     }
+
+    @Override
+    protected boolean isSupportSwipeBack() {
+        return false;
+    }
 }

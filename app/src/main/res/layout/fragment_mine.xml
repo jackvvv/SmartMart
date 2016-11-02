@@ -57,7 +57,7 @@
         </RelativeLayout>
     </RelativeLayout>
 
-    <ScrollView
+    <sinia.com.smartmart.view.CustomerScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:overScrollMode="never"
@@ -328,5 +328,5 @@
                 android:layout_width="match_parent"
                 android:layout_height="15dp" />
         </LinearLayout>
-    </ScrollView>
+    </sinia.com.smartmart.view.CustomerScrollView>
 </LinearLayout>

@@ -1,12 +1,17 @@
 package sinia.com.smartmart.activity;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.Display;
@@ -28,6 +33,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.drakeet.materialdialog.MaterialDialog;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.adapter.MainFragmentAdapter;
 import sinia.com.smartmart.adapter.MyFragmentPagerAdapter;
@@ -104,6 +110,7 @@ public class FoodShopDetailActivity extends BaseActivity {
     private FoodMenuFragment menuFragment;
     private MerchantDetailFragment merchantFragment;
     private Dialog dialog;
+    private MaterialDialog materialDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -169,6 +176,7 @@ public class FoodShopDetailActivity extends BaseActivity {
                 ActivityManager.getInstance().finishCurrentActivity();
                 break;
             case R.id.img_call:
+                callService();
                 break;
             case R.id.img_collect:
                 break;
@@ -192,6 +200,32 @@ public class FoodShopDetailActivity extends BaseActivity {
                 viewPager.setCurrentItem(1);
                 break;
         }
+    }
+
+    private void callService() {
+        materialDialog = new MaterialDialog(this);
+        materialDialog.setTitle("联系商家");
+        materialDialog.setMessage("18276623009");
+        materialDialog.setPositiveButton("立即拨打", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "18276623009"));
+                if (ActivityCompat.checkSelfPermission(FoodShopDetailActivity.this, Manifest.permission.CALL_PHONE)
+                        != PackageManager
+                        .PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(intent);
+                materialDialog.dismiss();
+            }
+        });
+        materialDialog.setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDialog.dismiss();
+            }
+        });
+        materialDialog.show();
     }
 
     private Dialog createShopIntroduceDialog() {
