@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="#f3f3f3"
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
@@ -87,20 +87,10 @@
                     android:textSize="15sp" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="#ccc" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginTop="10dp"
-                android:background="#ccc" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="#fff"
                 android:orientation="vertical"
                 android:padding="20dp">
@@ -198,6 +188,7 @@
                     android:gravity="left|top"
                     android:hint="备注"
                     android:padding="3dp"
+                    android:textColor="@color/textblackColor"
                     android:textColorHint="@color/hint_color"
                     android:textCursorDrawable="@null"
                     android:textSize="15sp" />

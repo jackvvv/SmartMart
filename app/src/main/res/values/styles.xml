@@ -34,9 +34,11 @@
     <style name="SwipeBack.Transparent.Theme" parent="AppTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsTranslucent">true</item>
+        <item name="android:navigationBarColor" tools:targetApi="lollipop">#000000</item>
+        <item name="android:windowTranslucentNavigation" tools:targetApi="kitkat">false</item>
         <item name="android:statusBarColor" tools:targetApi="lollipop">@color/themeColor</item>
         <item name="android:windowAnimationStyle">@style/JK.Animation.SlidingBack</item>
-        <item name="android:actionBarStyle">@style/JKActionBar.Custom</item>
+        <!--<item name="android:actionBarStyle">@style/JKActionBar.Custom</item>-->
     </style>
 
     <style name="JK.Animation.SlidingBack" parent="@android:style/Animation.Activity">

@@ -32,7 +32,7 @@ import sinia.com.smartmart.utils.AppInfoUtil;
 /**
  * Created by 忧郁的眼神 on 2016/9/3.
  */
-public class LoginRegisterActivity extends FragmentActivity {
+public class LoginRegisterActivity extends BaseActivity {
 
     @Bind(R.id.tab_title)
     TabLayout tabTitle;
@@ -119,5 +119,10 @@ public class LoginRegisterActivity extends FragmentActivity {
         super.onBackPressed();
         ActivityManager.getInstance().finishCurrentActivity();
         overridePendingTransition(0, R.anim.login_close);
+    }
+
+    @Override
+    protected boolean isSupportSwipeBack() {
+        return false;
     }
 }

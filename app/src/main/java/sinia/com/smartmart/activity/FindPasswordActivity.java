@@ -264,4 +264,9 @@ public class FindPasswordActivity extends BaseActivity {
         ActivityManager.getInstance().finishCurrentActivity();
         overridePendingTransition(0, R.anim.login_close);
     }
+
+    @Override
+    protected boolean isSupportSwipeBack() {
+        return false;
+    }
 }

@@ -58,7 +58,6 @@ public class BaseActivity extends AppCompatActivity implements SlidingPaneLayout
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         ActivityManager.getInstance().addActivity(this);
-        initSwipeBackFinish();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
         }

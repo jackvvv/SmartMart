@@ -99,7 +99,6 @@ public class PersonalInfoActivity extends TakePhotoActivity implements SlidingPa
         ButterKnife.bind(this);
         Bmob.initialize(this, Constants.BMOB_KEY);
         ActivityManager.getInstance().addActivity(this);
-        initSwipeBackFinish();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
         }
