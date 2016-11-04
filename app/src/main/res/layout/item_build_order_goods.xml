@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="#fff"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:paddingBottom="5dp"
         android:paddingTop="5dp">
 
@@ -17,10 +17,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="40dp"
+            android:layout_marginRight="60dp"
             android:layout_toLeftOf="@+id/tv_money_unit"
             android:maxLines="2"
-            android:text="立邦净味全效120油漆 5L"
+            android:text="立邦净味全效120油漆 5L立邦净味全效120油漆"
             android:textColor="@color/textblackColor"
             android:textSize="14sp" />
 
@@ -28,9 +28,11 @@
             android:id="@+id/tv_money_unit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
             android:text="¥192.9/桶"
+            android:drawableRight="@drawable/ic_detail_jian"
+            android:drawablePadding="5dp"
             android:textColor="@color/textblackColor"
             android:textSize="14sp" />
     </RelativeLayout>

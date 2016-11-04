@@ -9,7 +9,7 @@
         android:id="@+id/txt_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/layout_selector"
+        android:background="@drawable/actionsheet_top_selector"
         android:gravity="center"
         android:minHeight="45dp"
         android:paddingBottom="10dp"
@@ -17,7 +17,7 @@
         android:paddingRight="15dp"
         android:paddingTop="10dp"
         android:textColor="#037BFF"
-        android:textSize="13sp"
+        android:textSize="14sp"
         android:visibility="gone" />
 
     <ScrollView

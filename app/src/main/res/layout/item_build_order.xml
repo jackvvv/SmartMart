@@ -39,7 +39,7 @@
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="10dp"
         android:divider="@color/divider_color"
         android:dividerHeight="0.5dp"
         android:listSelector="#00000000"

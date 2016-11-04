@@ -1,7 +1,11 @@
 package sinia.com.smartmart.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,6 +19,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.drakeet.materialdialog.MaterialDialog;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.utils.ActivityManager;
@@ -36,6 +41,7 @@ public class BuildMaterialMarketActivity extends BaseActivity {
     @Bind(R.id.convenientBanner)
     ConvenientBanner convenientBanner;
     private ArrayList<Integer> localImages = new ArrayList<Integer>();
+    private MaterialDialog materialDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +89,7 @@ public class BuildMaterialMarketActivity extends BaseActivity {
             case R.id.tv_all:
                 intent = new Intent();
                 intent.putExtra("orderType", "1");
-                startActivityForIntent(BuildOrderManageActivity.class, intent);
+                startActivityForIntent(BuildGoodsDetailActivity.class, intent);
                 break;
             case R.id.tv_comfirm:
                 intent = new Intent();
@@ -101,6 +107,7 @@ public class BuildMaterialMarketActivity extends BaseActivity {
                 startActivityForIntent(BuildOrderManageActivity.class, intent);
                 break;
             case R.id.tv_call:
+                callService();
                 break;
             case R.id.tv_tuliao:
                 break;
@@ -125,5 +132,31 @@ public class BuildMaterialMarketActivity extends BaseActivity {
             case R.id.img_cuxiao:
                 break;
         }
+    }
+
+    private void callService() {
+        materialDialog = new MaterialDialog(this);
+        materialDialog.setTitle("联系我们");
+        materialDialog.setMessage("400-20392888");
+        materialDialog.setPositiveButton("呼叫", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "400-20392888"));
+                if (ActivityCompat.checkSelfPermission(BuildMaterialMarketActivity.this, Manifest.permission.CALL_PHONE)
+                        != PackageManager
+                        .PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(intent);
+                materialDialog.dismiss();
+            }
+        });
+        materialDialog.setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDialog.dismiss();
+            }
+        });
+        materialDialog.show();
     }
 }

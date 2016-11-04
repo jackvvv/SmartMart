@@ -70,7 +70,7 @@ public class BuildCommentActivity extends BaseActivity {
             }
         });
 
-        goodsAdapter = new BuildOrderGoodsAdapter(this);
+        goodsAdapter = new BuildOrderGoodsAdapter(this, false);
         listView.setAdapter(goodsAdapter);
         Utility.setListViewHeightBasedOnChildren(listView);
     }

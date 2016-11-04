@@ -7,13 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import java.util.List;
-
 import sinia.com.smartmart.R;
-import sinia.com.smartmart.bean.VillageListBean;
 import sinia.com.smartmart.utils.ViewHolder;
-
-import static android.R.id.list;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/5.
@@ -21,9 +16,11 @@ import static android.R.id.list;
 public class BuildOrderGoodsAdapter extends BaseAdapter {
 
     private Context context;
+    private boolean isToGoodsDetail;
 
-    public BuildOrderGoodsAdapter(Context context) {
+    public BuildOrderGoodsAdapter(Context context, boolean isToGoodsDetail) {
         this.context = context;
+        this.isToGoodsDetail = isToGoodsDetail;
     }
 
     @Override
@@ -48,6 +45,14 @@ public class BuildOrderGoodsAdapter extends BaseAdapter {
         }
         TextView tv_goods = ViewHolder.get(view, R.id.tv_goods);
         TextView tv_money_unit = ViewHolder.get(view, R.id.tv_money_unit);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isToGoodsDetail) {
+                    //商品详情
+                }
+            }
+        });
         return view;
     }
 }

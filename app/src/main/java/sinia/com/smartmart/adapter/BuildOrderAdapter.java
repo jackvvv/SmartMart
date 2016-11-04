@@ -16,6 +16,8 @@ import java.util.List;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.BuildCommentActivity;
 import sinia.com.smartmart.bean.FoodModel;
+import sinia.com.smartmart.mycallback.BuildOrderCallBack;
+import sinia.com.smartmart.mycallback.MyRecyclerViewClickListener;
 import sinia.com.smartmart.utils.Utility;
 
 import static android.R.attr.type;
@@ -29,21 +31,31 @@ public class BuildOrderAdapter extends RecyclerView.Adapter<BuildOrderAdapter.Bu
     private Context context;
     private String orderType;
     private BuildOrderGoodsAdapter goodsAdapter;
+    private MyRecyclerViewClickListener clickListener;
+    private BuildOrderCallBack buildOrderCallBack;
 
     public BuildOrderAdapter(Context context, String orderType) {
         this.context = context;
         this.orderType = orderType;
     }
 
+    public void setBuildOrderCallBack(BuildOrderCallBack buildOrderCallBack) {
+        this.buildOrderCallBack = buildOrderCallBack;
+    }
+
+    public void setClickListener(MyRecyclerViewClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
     @Override
     public BuildOrderViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         BuildOrderViewHolder buildOrderViewHolder = new BuildOrderViewHolder(LayoutInflater.from(context).inflate(R
-                .layout.item_build_order, null));
+                .layout.item_build_order, null), clickListener);
         return buildOrderViewHolder;
     }
 
     @Override
-    public void onBindViewHolder(BuildOrderViewHolder holder, int position) {
+    public void onBindViewHolder(BuildOrderViewHolder holder, final int position) {
 
         if (orderType.equals("2") || orderType.equals("3")) {
             // 待收货，待审核 显示：取消订单，订单详情
@@ -65,7 +77,7 @@ public class BuildOrderAdapter extends RecyclerView.Adapter<BuildOrderAdapter.Bu
             @Override
             public void onClick(View v) {
                 if (orderType.equals("2") || orderType.equals("3")) {
-                    notifyItemRemoved(0);
+                    buildOrderCallBack.cancleOrder(position);
                 }
             }
         });
@@ -82,7 +94,7 @@ public class BuildOrderAdapter extends RecyclerView.Adapter<BuildOrderAdapter.Bu
                 context.startActivity(intent);
             }
         });
-        goodsAdapter = new BuildOrderGoodsAdapter(context);
+        goodsAdapter = new BuildOrderGoodsAdapter(context, false);
         holder.listView.setAdapter(goodsAdapter);
         Utility.setListViewHeightBasedOnChildren(holder.listView);
     }
@@ -92,14 +104,16 @@ public class BuildOrderAdapter extends RecyclerView.Adapter<BuildOrderAdapter.Bu
         return 5;
     }
 
-    class BuildOrderViewHolder extends RecyclerView.ViewHolder {
+    class BuildOrderViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tv_order_no, tv_status, tv_num, tv_money, tv_coupons, tv_time, tv_comment, tv_cancle, tv_detail;
         ImageView img_delete;
         ListView listView;
+        private MyRecyclerViewClickListener clickListener;
 
-        public BuildOrderViewHolder(View itemView) {
+        public BuildOrderViewHolder(View itemView, MyRecyclerViewClickListener clickListener) {
             super(itemView);
+            this.clickListener = clickListener;
             tv_order_no = (TextView) itemView.findViewById(R.id.tv_order_no);
             tv_status = (TextView) itemView.findViewById(R.id.tv_status);
             tv_num = (TextView) itemView.findViewById(R.id.tv_num);
@@ -111,6 +125,12 @@ public class BuildOrderAdapter extends RecyclerView.Adapter<BuildOrderAdapter.Bu
             tv_detail = (TextView) itemView.findViewById(R.id.tv_detail);
             img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
             listView = (ListView) itemView.findViewById(R.id.listView);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            clickListener.onitemClick(v, getPosition());
         }
     }
 }
