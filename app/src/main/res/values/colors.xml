@@ -22,7 +22,7 @@
     <color name="price_color">#DB2220</color>
     <color name="divider_color">#e5e5e5</color>
     <color name="divider_color2">#f4f4f4</color>
-    <color name="hint_color">#cdcdcd</color>
+    <color name="hint_color">#f4f4f4</color>
     <color name="bg_splash">#F4F8FE</color>
     <color name="btn_cant">#9E9E9E</color>
 

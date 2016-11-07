@@ -89,7 +89,7 @@ public class BuildMaterialMarketActivity extends BaseActivity {
             case R.id.tv_all:
                 intent = new Intent();
                 intent.putExtra("orderType", "1");
-                startActivityForIntent(BuildGoodsDetailActivity.class, intent);
+                startActivityForIntent(BuildOrderManageActivity.class, intent);
                 break;
             case R.id.tv_comfirm:
                 intent = new Intent();

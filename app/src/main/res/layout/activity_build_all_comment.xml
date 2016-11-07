@@ -31,76 +31,29 @@
                     android:textColor="@color/textblackColor"
                     android:textSize="18sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="综合评分"
-                    android:textColor="@color/textblackColor2"
-                    android:textSize="15sp" />
-
                 <com.hedgehog.ratingbar.RatingBar
                     android:id="@+id/ratingBar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="20dp"
                     hedgehog:clickable="true"
                     hedgehog:halfstart="true"
                     hedgehog:starCount="5"
                     hedgehog:starEmpty="@drawable/star_normal"
                     hedgehog:starFill="@drawable/star"
                     hedgehog:starHalf="@drawable/star"
-                    hedgehog:starImageHeight="18dp"
+                    hedgehog:starImageHeight="25dp"
                     hedgehog:starImagePadding="5dp"
                     hedgehog:starImageWidth="18dp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:background="#f4f4f4" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_comment_num"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingBottom="13dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="13dp">
+                    android:layout_marginBottom="20dp"
+                    android:text="共10人评价"
+                    android:textColor="@color/textblackColor2"
+                    android:textSize="15sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="评论"
-                        android:textColor="@color/textblackColor"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tv_avg_rating"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="13dp"
-                        android:text="4分"
-                        android:textColor="@color/themeColor"
-                        android:textSize="16sp" />
-
-                    <View
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_weight="1" />
-
-                    <TextView
-                        android:id="@+id/tv_comment_num"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:drawablePadding="5dp"
-                        android:drawableRight="@drawable/ic_detail_jian"
-                        android:gravity="center_vertical"
-                        android:text="105条评论"
-                        android:textColor="#9a9a9a"
-                        android:textSize="14sp" />
-                </LinearLayout>
             </LinearLayout>
 
             <View

@@ -1,4 +1,4 @@
-package sinia.com.smartmart.activity;
+package sinia.com.smartmart.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +18,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
+import sinia.com.smartmart.activity.FoodAllCommentActivity;
 import sinia.com.smartmart.adapter.FoodCommentAdapter;
 import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.view.RecycleViewDivider;

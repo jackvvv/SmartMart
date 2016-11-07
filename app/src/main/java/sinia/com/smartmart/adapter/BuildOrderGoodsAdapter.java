@@ -45,14 +45,6 @@ public class BuildOrderGoodsAdapter extends BaseAdapter {
         }
         TextView tv_goods = ViewHolder.get(view, R.id.tv_goods);
         TextView tv_money_unit = ViewHolder.get(view, R.id.tv_money_unit);
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isToGoodsDetail) {
-                    //商品详情
-                }
-            }
-        });
         return view;
     }
 }
