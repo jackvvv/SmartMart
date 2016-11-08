@@ -78,10 +78,9 @@
                 android:layout_width="52dp"
                 android:layout_height="52dp"
                 android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
                 android:layout_toLeftOf="@+id/s"
-                android:src="@drawable/ic_launcher"
-                app:border_color="@android:color/transparent"
-                app:border_width="1dp" />
+                android:src="@drawable/head_default" />
 
             <ImageView
                 android:id="@+id/s"

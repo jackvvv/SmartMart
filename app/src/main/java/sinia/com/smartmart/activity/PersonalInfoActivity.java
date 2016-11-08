@@ -20,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,11 +46,9 @@ import sinia.com.smartmart.actionsheetdialog.ActionSheetDialog;
 import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.bean.UserBean;
 import sinia.com.smartmart.bean.UserInfo;
-import sinia.com.smartmart.bean.VillageListBean;
 import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.utils.BitmapUtilsHelp;
 import sinia.com.smartmart.utils.Constants;
-import sinia.com.smartmart.utils.DialogUtils;
 import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.utils.StringUtil;
@@ -59,10 +56,6 @@ import sinia.com.smartmart.utils.SystemBarTintManager;
 import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.view.CircleImageView;
 import sinia.com.smartmart.view.loadingview.LoadingView;
-
-import static android.R.id.list;
-import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
-import static sinia.com.smartmart.R.id.s;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/8.

@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import butterknife.Bind;
@@ -17,8 +16,6 @@ import sinia.com.smartmart.fragment.BuildGoodsDetailFragment;
 import sinia.com.smartmart.fragment.BuildImageFragment;
 import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.view.SegmentView;
-
-import static sinia.com.smartmart.R.id.f1;
 
 /**
  * Created by 忧郁的眼神 on 2016/11/4 0004.
@@ -34,6 +31,8 @@ public class BuildGoodsDetailActivity extends BaseActivity {
     SegmentView segmentView;
     @Bind(R.id.rl_bottom)
     LinearLayout rl_bottom;
+    @Bind(R.id.tv_collect)
+    TextView tvCollect;
 
     private BuildGoodsDetailFragment goodsDetailFragment;
     private BuildImageFragment imageFragment;
@@ -90,8 +89,19 @@ public class BuildGoodsDetailActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.back)
-    public void onClick() {
-        ActivityManager.getInstance().finishCurrentActivity();
+    @OnClick({R.id.back, R.id.tv_call, R.id.tv_collect, R.id.tv_add_cart, R.id.tv_buy})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_call:
+                ActivityManager.getInstance().finishCurrentActivity();
+                break;
+            case R.id.tv_collect:
+                break;
+            case R.id.tv_add_cart:
+                break;
+            case R.id.tv_buy:
+                startActivityForNoIntent(BuildConfirmOrderActivity.class);
+                break;
+        }
     }
 }

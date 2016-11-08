@@ -37,9 +37,6 @@ import sinia.com.smartmart.view.CircleImageView;
 import sinia.com.smartmart.view.LocalImageHolderView;
 import sinia.com.smartmart.view.MyGridView;
 
-import static sinia.com.smartmart.R.id.gv_color;
-import static sinia.com.smartmart.R.id.gv_norm;
-
 /**
  * Created by 忧郁的眼神 on 2016/11/7 0007.
  */

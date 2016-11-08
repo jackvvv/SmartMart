@@ -13,14 +13,6 @@
         <attr name="loadingTextAppearance" format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="CircleImageView">
-        <attr name="border_width" format="dimension" />
-        <attr name="border_color" format="color" />
-    </declare-styleable>
-    <declare-styleable name="CircleImageViewGray">
-        <attr name="border_gray_width" format="dimension" />
-        <attr name="border_gray_color" format="color" />
-    </declare-styleable>
     <declare-styleable name="NumberPicker">
         <attr name="normalTextColor" format="color" />
         <attr name="normalTextSize" format="dimension" />
@@ -36,12 +28,20 @@
 
     <declare-styleable name="wheelview">
         <attr name="gravity">
-            <enum name="center" value="17"/>
-            <enum name="left" value="3"/>
-            <enum name="right" value="5"/>
+            <enum name="center" value="17" />
+            <enum name="left" value="3" />
+            <enum name="right" value="5" />
         </attr>
-        <attr name="textColorOut" format="color"/>
-        <attr name="textColorCenter" format="color"/>
-        <attr name="dividerColor" format="color"/>
+        <attr name="textColorOut" format="color" />
+        <attr name="textColorCenter" format="color" />
+        <attr name="dividerColor" format="color" />
+    </declare-styleable>
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+    <declare-styleable name="CircleImageViewGray">
+        <attr name="border_gray_width" format="dimension" />
+        <attr name="border_gray_color" format="color" />
     </declare-styleable>
 </resources>
