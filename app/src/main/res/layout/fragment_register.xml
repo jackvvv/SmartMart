@@ -62,7 +62,7 @@
                 android:layout_gravity="center_vertical"
                 android:layout_toRightOf="@+id/tl"
                 android:layout_weight="1"
-                android:background="@drawable/theme_color_btn"
+                android:background="@drawable/theme_color_btn_draw"
                 android:gravity="center"
                 android:paddingBottom="6dp"
                 android:paddingLeft="5dp"

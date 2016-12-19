@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_goods_bg"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <CheckBox
+        android:id="@+id/ivCheckChild"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:button="@drawable/shop_car_check"
+        android:padding="5dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_goods"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/class_grid_g" />
+
+        <TextView
+            android:id="@+id/tv_goodsname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/img_goods"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_goods"
+            android:text="生态板材-杉木E0"
+            android:textColor="#242424"
+            android:textSize="16sp" />
+
+
+        <LinearLayout
+            android:id="@+id/ll_sall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_goodsname"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_goods"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="规格：1220×2440×17mm"
+                android:textColor="#b0b0b0"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_sall"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_goods"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:text="颜色：暖白"
+                android:textColor="#b0b0b0"
+                android:textSize="13sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/img_goods"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/img_goods"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:text="¥192.9/张"
+                android:textColor="@color/themeColor"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:id="@+id/ll_jiajian"
+                android:layout_width="100dp"
+                android:layout_height="33dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/black_round_edit2"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:id="@+id/rl_jian"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#eee">
+
+                    <ImageView
+                        android:id="@+id/jian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/jian" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_num"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@color/textblackColor"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_jia"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#eee">
+
+                    <ImageView
+                        android:id="@+id/jia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/jia" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

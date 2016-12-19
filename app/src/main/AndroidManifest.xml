@@ -96,6 +96,12 @@
         <activity android:name=".activity.BuildGoodsDetailActivity" />
         <activity android:name=".activity.BuildAllCommentActivity" />
         <activity android:name=".activity.BuildConfirmOrderActivity" />
+        <activity android:name=".activity.BuildMarketListActivity" />
+        <activity android:name=".activity.BuildCartActivity" />
+        <activity android:name=".activity.BuildMeterialListActivity" />
+        <activity
+            android:name=".activity.BuildMoreCategoryActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".activity.BuildMaterialMarketActivity"
             android:windowSoftInputMode="stateHidden" />

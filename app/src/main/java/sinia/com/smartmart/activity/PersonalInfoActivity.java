@@ -31,6 +31,8 @@ import com.jph.takephoto.model.CropOptions;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.zhy.http.okhttp.OkHttpUtils;
+import com.zhy.http.okhttp.callback.Callback;
 
 import java.io.File;
 import java.lang.reflect.Field;
@@ -38,9 +40,8 @@ import java.lang.reflect.Field;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import cn.bmob.v3.Bmob;
-import cn.bmob.v3.datatype.BmobFile;
-import cn.bmob.v3.listener.UploadFileListener;
+import okhttp3.Call;
+import okhttp3.Response;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.actionsheetdialog.ActionSheetDialog;
 import sinia.com.smartmart.bean.JsonBean;
@@ -60,7 +61,7 @@ import sinia.com.smartmart.view.loadingview.LoadingView;
 /**
  * Created by 忧郁的眼神 on 2016/9/8.
  */
-public class PersonalInfoActivity extends TakePhotoActivity implements SlidingPaneLayout.PanelSlideListener{
+public class PersonalInfoActivity extends TakePhotoActivity implements SlidingPaneLayout.PanelSlideListener {
 
     @Bind(R.id.img_head)
     CircleImageView imgHead;
@@ -90,7 +91,7 @@ public class PersonalInfoActivity extends TakePhotoActivity implements SlidingPa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_center);
         ButterKnife.bind(this);
-        Bmob.initialize(this, Constants.BMOB_KEY);
+       // Bmob.initialize(this, Constants.BMOB_KEY);
         ActivityManager.getInstance().addActivity(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setTranslucentStatus(true);
@@ -255,7 +256,7 @@ public class PersonalInfoActivity extends TakePhotoActivity implements SlidingPa
     }
 
     private void uploadImage(String avataPath) {
-        if (avataPath != null) {
+        /*if (avataPath != null) {
             showLoad("正在上传头像");
             final BmobFile file = new BmobFile(new File(avataPath));
             file.upload(this, new UploadFileListener() {
@@ -274,7 +275,7 @@ public class PersonalInfoActivity extends TakePhotoActivity implements SlidingPa
                     dismiss();
                 }
             });
-        }
+        }*/
     }
 
     private void showImg(String imagePath) {
@@ -346,7 +347,8 @@ public class PersonalInfoActivity extends TakePhotoActivity implements SlidingPa
             slidingPaneLayout.setSliderFadeColor(getResources().getColor(android.R.color.transparent));
 
             View leftView = new View(this);
-            leftView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            leftView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup
+                    .LayoutParams.MATCH_PARENT));
             slidingPaneLayout.addView(leftView, 0);
 
             ViewGroup decor = (ViewGroup) getWindow().getDecorView();

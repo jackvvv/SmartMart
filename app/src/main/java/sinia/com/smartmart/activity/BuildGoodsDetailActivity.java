@@ -1,6 +1,11 @@
 package sinia.com.smartmart.activity;
 
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,6 +15,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import me.drakeet.materialdialog.MaterialDialog;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.fragment.BuildGoodsDetailFragment;
@@ -89,19 +95,52 @@ public class BuildGoodsDetailActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.back, R.id.tv_call, R.id.tv_collect, R.id.tv_add_cart, R.id.tv_buy})
+    @OnClick({R.id.back, R.id.tv_call, R.id.tv_collect, R.id.tv_add_cart, R.id.img_cart, R.id.tv_buy})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_call:
+            case R.id.back:
                 ActivityManager.getInstance().finishCurrentActivity();
+                break;
+            case R.id.tv_call:
+                callService();
                 break;
             case R.id.tv_collect:
                 break;
             case R.id.tv_add_cart:
+                startActivityForNoIntent(BuildCartActivity.class);
+                break;
+            case R.id.img_cart:
+                startActivityForNoIntent(BuildCartActivity.class);
                 break;
             case R.id.tv_buy:
                 startActivityForNoIntent(BuildConfirmOrderActivity.class);
                 break;
         }
+    }
+
+    private void callService() {
+        final MaterialDialog materialDialog = new MaterialDialog(this);
+        materialDialog.setTitle("联系客服");
+        materialDialog.setMessage("18276623009");
+        materialDialog.setPositiveButton("立即拨打", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "18276623009"));
+                if (ActivityCompat.checkSelfPermission(BuildGoodsDetailActivity.this, Manifest.permission.CALL_PHONE)
+                        != PackageManager
+                        .PERMISSION_GRANTED) {
+                    return;
+                }
+                startActivity(intent);
+                materialDialog.dismiss();
+            }
+        });
+        materialDialog.setNegativeButton("取消", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                materialDialog.dismiss();
+            }
+        });
+        materialDialog.show();
     }
 }

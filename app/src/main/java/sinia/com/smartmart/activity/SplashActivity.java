@@ -23,7 +23,7 @@ import sinia.com.smartmart.utils.SystemBarTintManager;
  */
 public class SplashActivity extends BaseActivity {
 
-    @Bind(R.id.img_splash)
+   @Bind(R.id.img_splash)
     ImageView imgSplash;
     @Bind(R.id.ll)
     LinearLayout ll;

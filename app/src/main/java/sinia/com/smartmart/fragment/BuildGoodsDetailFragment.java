@@ -29,6 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.BuildAllCommentActivity;
+import sinia.com.smartmart.activity.BuildCartActivity;
 import sinia.com.smartmart.adapter.BuildGoodsColorAdapter;
 import sinia.com.smartmart.adapter.BuildGoodsNormAdapter;
 import sinia.com.smartmart.base.BaseFragment;
@@ -208,6 +209,8 @@ public class BuildGoodsDetailFragment extends BaseFragment {
         tv_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), BuildCartActivity.class);
+                startActivity(intent);
                 normPopupWindow.dismiss();
             }
         });

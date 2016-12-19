@@ -50,7 +50,7 @@ public class DialogUtils {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
-//                tv_name.setBackgroundResource(R.drawable.theme_color_btn);
+//                tv_name.setBackgroundResource(R.drawable.theme_color_btn_draw);
 //                tv_name.setTextColor(context.getResources().getColor(R.color.textwhite));
 //                tv_area.setText("智慧中环");
 //                dialog.dismiss();

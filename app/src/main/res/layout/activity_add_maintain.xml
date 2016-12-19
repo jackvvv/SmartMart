@@ -184,7 +184,7 @@
                     android:layout_marginLeft="35dp"
                     android:layout_marginRight="35dp"
                     android:layout_marginTop="20dp"
-                    android:background="@drawable/gray_round_edit"
+                    android:background="@drawable/gray_round_edit_draw"
                     android:gravity="left|top"
                     android:hint="备注"
                     android:padding="3dp"

@@ -110,7 +110,6 @@ public class FoodMenuFragment extends BaseFragment implements ModifyCountAndPric
     private int goodsCount = 0;//购买的总数量
     private double totalPrice = 0.00;// 购买的商品总价
     private MyPopupWindow popWindow;
-    private Dialog dialog;
     private FoodCartAdapter cartAdapter;
     private TextView tv_goods_count1, tv_select_price1, tv_buy_price1, tv_send_price1;
     private RelativeLayout rl_btn_pay1;

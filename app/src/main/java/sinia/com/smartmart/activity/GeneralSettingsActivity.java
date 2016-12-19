@@ -6,8 +6,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.tencent.bugly.beta.Beta;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -76,7 +74,7 @@ public class GeneralSettingsActivity extends BaseActivity {
                 break;
             case R.id.ll_version:
                 //手动检测更新
-                Beta.checkUpgrade();
+//                Beta.checkUpgrade();
                 break;
             case R.id.ll_clear:
                 clearCache();

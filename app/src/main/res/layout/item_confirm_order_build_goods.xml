@@ -25,7 +25,7 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/lauq" />
+            android:src="@drawable/class_grid_g" />
 
         <TextView
             android:id="@+id/tv_name"

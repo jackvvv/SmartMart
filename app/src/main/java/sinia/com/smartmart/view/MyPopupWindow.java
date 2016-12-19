@@ -25,7 +25,7 @@ import sinia.com.smartmart.R;
 
 public class MyPopupWindow extends RelativePopupWindow {
 
-    public MyPopupWindow(final Activity context, View view, RelativeLayout rlBottom) {
+    public MyPopupWindow(final Activity context, View view, View rlBottom) {
         setContentView(view);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);

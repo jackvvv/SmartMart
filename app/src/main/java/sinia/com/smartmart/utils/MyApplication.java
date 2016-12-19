@@ -4,14 +4,14 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.tencent.bugly.Bugly;
-import com.tencent.bugly.beta.Beta;
+import com.zhy.http.okhttp.OkHttpUtils;
 
-import sinia.com.smartmart.bean.UserBean;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
 import sinia.com.smartmart.bean.UserInfo;
 import sinia.com.smartmart.bean.UserNoticeBean;
 
-import static com.tencent.bugly.Bugly.applicationContext;
 
 /**
  * Created by 忧郁的眼神 on 2016/7/15.
@@ -30,9 +30,12 @@ public class MyApplication extends Application {
         super.onCreate();
         context = this;
         instance = this;
-        Bugly.init(getApplicationContext(), "16bbef9827", false);
-        Beta.checkUpgrade(false, false);
+//        Bugly.init(getApplicationContext(), "16bbef9827", false);
+//        Beta.checkUpgrade(false, false);
         initUMPush();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(10000L, TimeUnit.MILLISECONDS)
+                .readTimeout(10000L, TimeUnit.MILLISECONDS).build();
+        OkHttpUtils.initClient(okHttpClient);
     }
 
     private void initUMPush() {
@@ -142,7 +145,7 @@ public class MyApplication extends Application {
 
     public UserNoticeBean getUserNoticeBean() {
         if (null == userNoticeBean) {
-            UserNoticeBean unb = SaveUtils.getShareObject(applicationContext, "UserNotice",
+            UserNoticeBean unb = SaveUtils.getShareObject(context, "UserNotice",
                     "usernotice", UserNoticeBean.class);
             return unb;
         }
@@ -152,14 +155,14 @@ public class MyApplication extends Application {
     public void setUserNoticeBean(UserNoticeBean userNoticeBean) {
         this.userNoticeBean = userNoticeBean;
         if (userNoticeBean != null) {
-            SaveUtils.putShareObject(applicationContext, "UserNotice", "usernotice",
+            SaveUtils.putShareObject(context, "UserNotice", "usernotice",
                     userNoticeBean);
         }
     }
 
     public UserInfo getUserInfo() {
         if (null == userInfo) {
-            UserInfo userInfo = SaveUtils.getShareObject(applicationContext, "USERINFO",
+            UserInfo userInfo = SaveUtils.getShareObject(context, "USERINFO",
                     "userinfo", UserInfo.class);
             return userInfo;
         }
@@ -169,7 +172,7 @@ public class MyApplication extends Application {
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
         if (userInfo != null) {
-            SaveUtils.putShareObject(applicationContext, "USERINFO", "userinfo",
+            SaveUtils.putShareObject(context, "USERINFO", "userinfo",
                     userInfo);
         }
     }

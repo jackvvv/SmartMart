@@ -85,6 +85,7 @@ public class BuildMaterialMarketActivity extends BaseActivity {
                 ActivityManager.getInstance().finishCurrentActivity();
                 break;
             case R.id.img_cart:
+                startActivityForNoIntent(BuildCartActivity.class);
                 break;
             case R.id.tv_all:
                 intent = new Intent();
@@ -110,20 +111,42 @@ public class BuildMaterialMarketActivity extends BaseActivity {
                 callService();
                 break;
             case R.id.tv_tuliao:
+                intent = new Intent();
+                intent.putExtra("title", "涂料");
+                startActivityForIntent(BuildMarketListActivity.class, intent);
                 break;
             case R.id.tv_bancai:
+                intent = new Intent();
+                intent.putExtra("title", "板材");
+                startActivityForIntent(BuildMarketListActivity.class, intent);
                 break;
             case R.id.tv_shuidian:
+                intent = new Intent();
+                intent.putExtra("title", "水电");
+                startActivityForIntent(BuildMarketListActivity.class, intent);
                 break;
             case R.id.tv_door:
+                intent = new Intent();
+                intent.putExtra("title", "木门");
+                startActivityForIntent(BuildMarketListActivity.class, intent);
                 break;
             case R.id.tv_diaoding:
+                intent = new Intent();
+                intent.putExtra("title", "吊顶");
+                startActivityForIntent(BuildMarketListActivity.class, intent);
                 break;
             case R.id.tv_chugui:
+                intent = new Intent();
+                intent.putExtra("title", "橱柜");
+                startActivityForIntent(BuildMarketListActivity.class, intent);
                 break;
             case R.id.tv_diban:
+                intent = new Intent();
+                intent.putExtra("title", "地板");
+                startActivityForIntent(BuildMarketListActivity.class, intent);
                 break;
             case R.id.tv_more:
+                startActivityForNoIntent(BuildMoreCategoryActivity.class);
                 break;
             case R.id.img_new:
                 break;

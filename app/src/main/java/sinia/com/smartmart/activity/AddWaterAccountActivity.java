@@ -41,7 +41,6 @@ import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.bean.VillageListBean;
 import sinia.com.smartmart.utils.AppInfoUtil;
 import sinia.com.smartmart.utils.Constants;
-import sinia.com.smartmart.utils.DialogUtils;
 import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.utils.ValidationUtils;
@@ -204,7 +203,7 @@ public class AddWaterAccountActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 TextView tv_name = (TextView) view.findViewById(R.id.tv_name);
-                tv_name.setBackgroundResource(R.drawable.theme_color_btn);
+                tv_name.setBackgroundResource(R.drawable.theme_color_btn_draw);
                 tv_name.setTextColor(context.getResources().getColor(R.color.textwhite));
                 tv_area.setText(list.get(i).getVillagename());
                 villageId = list.get(i).getVillageid();
