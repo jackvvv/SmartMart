@@ -26,14 +26,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.BuildMaterialMarketActivity;
-import sinia.com.smartmart.activity.FoodDetailActivity;
 import sinia.com.smartmart.activity.FoodShopDetailActivity;
 import sinia.com.smartmart.activity.FoodStreetActivity;
 import sinia.com.smartmart.activity.LoginRegisterActivity;
 import sinia.com.smartmart.activity.SearchActivity;
 import sinia.com.smartmart.adapter.HomeAdapter;
 import sinia.com.smartmart.base.BaseFragment;
-import sinia.com.smartmart.bean.UserBean;
 import sinia.com.smartmart.bean.UserInfo;
 import sinia.com.smartmart.utils.AppInfoUtil;
 import sinia.com.smartmart.utils.DialogUtils;
@@ -117,7 +115,6 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             }
         });
         localImages.add(AppInfoUtil.getResId("img_det", R.drawable.class));
-        localImages.add(AppInfoUtil.getResId("img_dets", R.drawable.class));
         int h = AppInfoUtil.getScreenWidth(getActivity()) * 340 / 750;
         convenientBanner.getLayoutParams().height = h;
         String transforemerName = "StackTransformer";

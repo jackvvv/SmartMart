@@ -194,6 +194,7 @@ public class PayFeeActivity extends BaseActivity {
         Intent intent = new Intent();
         intent.putExtra("fee_type", fee_type);
         intent.putExtra("isFromProperty", isFromProperty);
+        intent.putExtra("isFromAccountList", "2");
         intent.putExtra("fee", money + "");
         if (isFromProperty.equals("2")) {
             intent.putExtra("rateid", rateid);

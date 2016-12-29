@@ -1,6 +1,5 @@
 package sinia.com.smartmart.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -39,9 +37,6 @@ import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.StringUtils;
 import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.utils.ValidationUtils;
-
-import static android.icu.lang.UScript.getCode;
-import static sinia.com.smartmart.R.id.s;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/3.

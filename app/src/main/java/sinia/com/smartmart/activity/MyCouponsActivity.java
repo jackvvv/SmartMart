@@ -1,7 +1,6 @@
 package sinia.com.smartmart.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomSheetDialog;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;

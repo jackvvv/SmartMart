@@ -67,5 +67,4 @@ dependencies {
     compile 'com.labo.kaji:relativepopupwindow:0.2.1'
     compile 'jp.wasabeef:recyclerview-animators:2.2.4'
     compile 'jp.wasabeef:glide-transformations:2.0.1'
-    compile 'com.zhy:okhttputils:2.6.2'
 }

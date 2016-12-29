@@ -35,8 +35,6 @@ import sinia.com.smartmart.utils.StringUtils;
 import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.utils.ValidationUtils;
 
-import static android.icu.lang.UScript.getCode;
-
 /**
  * Created by 忧郁的眼神 on 2016/9/5.
  */

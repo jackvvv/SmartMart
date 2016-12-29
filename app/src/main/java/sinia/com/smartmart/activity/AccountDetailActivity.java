@@ -72,7 +72,8 @@ public class AccountDetailActivity extends BaseActivity {
     LinearLayout llNotPay;
 
     private MaterialDialog materialDialog;
-    private String feeType, status, billid,orderno;
+    private String feeType, status, billid, orderno;
+    private double money;
     private AsyncHttpClient client = new AsyncHttpClient();
 
     @Override
@@ -142,6 +143,7 @@ public class AccountDetailActivity extends BaseActivity {
                         int rescode = json.getRescode();
                         if (0 == rescode) {
                             BillDetailBean bean = gson.fromJson(resultStr, BillDetailBean.class);
+                            money = bean.getCost();
                             setData(bean);
                         } else {
                             showToast((String) json.getRescnt());
@@ -180,7 +182,19 @@ public class AccountDetailActivity extends BaseActivity {
                 break;
             case R.id.tv_pay:
                 //直接跳转支付宝或者微信支付，支付成功，paysuccess
-                paySuccess(orderno);
+//                paySuccess(orderno);
+
+                Intent intent = new Intent();
+                intent.putExtra("fee_type", feeType);
+                intent.putExtra("isFromProperty", "3");
+                intent.putExtra("fee", money + "");
+                intent.putExtra("isFromAccountList", "1");
+                intent.putExtra("orderno", orderno);
+//                if (isFromProperty.equals("2")) {
+//                    intent.putExtra("rateid", rateid);
+//                }
+                startActivityForIntent(PayActivity.class, intent);
+                ActivityManager.getInstance().finishCurrentActivity();
                 break;
         }
     }

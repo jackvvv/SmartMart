@@ -16,8 +16,6 @@ import sinia.com.smartmart.adapter.BuildCategoryRightAdapter;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.utils.ActivityManager;
 
-import static com.alipay.sdk.protocol.h.i;
-
 /**
  * Created by 忧郁的眼神 on 2016/11/14 0014.
  */

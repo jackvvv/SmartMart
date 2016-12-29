@@ -26,8 +26,6 @@ import sinia.com.smartmart.adapter.FoodSortAdapter;
 import sinia.com.smartmart.adapter.HomeAdapter;
 import sinia.com.smartmart.base.BaseActivity;
 
-import static com.alipay.sdk.protocol.h.i;
-
 /**
  * Created by 忧郁的眼神 on 2016/10/26 0026.
  */

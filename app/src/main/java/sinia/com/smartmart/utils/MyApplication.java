@@ -4,11 +4,9 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.zhy.http.okhttp.OkHttpUtils;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
 import sinia.com.smartmart.bean.UserInfo;
 import sinia.com.smartmart.bean.UserNoticeBean;
 
@@ -30,12 +28,12 @@ public class MyApplication extends Application {
         super.onCreate();
         context = this;
         instance = this;
-//        Bugly.init(getApplicationContext(), "16bbef9827", false);
-//        Beta.checkUpgrade(false, false);
+        Bugly.init(getApplicationContext(), "16bbef9827", false);
+        Beta.checkUpgrade(false, false);
         initUMPush();
-        OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(10000L, TimeUnit.MILLISECONDS)
-                .readTimeout(10000L, TimeUnit.MILLISECONDS).build();
-        OkHttpUtils.initClient(okHttpClient);
+//        OkHttpClient okHttpClient = new OkHttpClient.Builder().connectTimeout(10000L, TimeUnit.MILLISECONDS)
+//                .readTimeout(10000L, TimeUnit.MILLISECONDS).build();
+//        OkHttpUtils.initClient(okHttpClient);
     }
 
     private void initUMPush() {

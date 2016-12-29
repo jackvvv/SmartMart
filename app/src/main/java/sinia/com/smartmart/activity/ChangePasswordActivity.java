@@ -1,6 +1,5 @@
 package sinia.com.smartmart.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -26,18 +25,13 @@ import butterknife.OnClick;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.base.BaseActivity;
 import sinia.com.smartmart.bean.JsonBean;
-import sinia.com.smartmart.bean.UserBean;
-import sinia.com.smartmart.bean.UserInfo;
 import sinia.com.smartmart.bean.ValidateCodeBean;
 import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.utils.Constants;
 import sinia.com.smartmart.utils.JsonUtil;
-import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.utils.StringUtils;
 import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.utils.ValidationUtils;
-
-import static android.icu.lang.UScript.getCode;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/12.

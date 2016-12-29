@@ -1,6 +1,5 @@
 package sinia.com.smartmart.fragment;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,7 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -20,18 +18,14 @@ import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Order;
 import com.mobsandgeeks.saripaar.annotation.Pattern;
-import com.zhy.http.okhttp.OkHttpUtils;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import okhttp3.Call;
 import sinia.com.smartmart.R;
 import sinia.com.smartmart.activity.FindPasswordActivity;
 import sinia.com.smartmart.activity.LoginRegisterActivity;
 import sinia.com.smartmart.activity.MainActivity;
-import sinia.com.smartmart.activity.PerfectInfoActivity;
 import sinia.com.smartmart.base.BaseFragment;
 import sinia.com.smartmart.bean.JsonBean;
 import sinia.com.smartmart.bean.UserBean;
@@ -39,13 +33,10 @@ import sinia.com.smartmart.bean.UserInfo;
 import sinia.com.smartmart.bean.UserNoticeBean;
 import sinia.com.smartmart.utils.ActivityManager;
 import sinia.com.smartmart.utils.Constants;
-import sinia.com.smartmart.utils.DialogUtils;
 import sinia.com.smartmart.utils.JsonUtil;
 import sinia.com.smartmart.utils.MyApplication;
 import sinia.com.smartmart.utils.Utils;
 import sinia.com.smartmart.utils.ValidationUtils;
-
-import static android.R.attr.password;
 
 /**
  * Created by 忧郁的眼神 on 2016/9/3.
