@@ -49,7 +49,7 @@ public class AccountAdapter extends BaseAdapter {
     @Override
     public View getView(final int i, View view, ViewGroup viewGroup) {
         if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_my_account, null);
+            view = LayoutInflater.from(context).inflate(R.layout.item_my_account, viewGroup, false);
         }
         TextView tv_money = ViewHolder.get(view, R.id.tv_money);
         TextView tv_status = ViewHolder.get(view, R.id.tv_status);
